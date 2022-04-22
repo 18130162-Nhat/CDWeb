@@ -1,0 +1,296 @@
+
+
+@import url('http://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700,800,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto' ,'sans-serif';
+}
+.header .header-navigation ul li ,
+.header .header-user ul li{
+    list-style: none;
+    
+}
+.header .header-logo a ,
+.header-navigation ul li a{
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 20px;
+}
+.header-user ul li a{
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 400;
+
+}
+.header{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+/* style logo */
+.header-logo{
+    height: 70px;
+    width: 150px;
+}
+.header .header-logo .logo{
+    position: relative;
+    display: block;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+.header .header-logo .logo img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* style meneu-nagivation */
+.header .menu-navigation{
+    display: none;
+}
+
+
+
+/* style header-navigation */
+.header .header-navigation{
+    position: relative;
+    
+}
+.setting , .logout{
+    display: none;
+}
+ .header .header-navigation ul{
+    display: flex;
+    flex-direction: row;
+}
+.header .header-navigation ul li a {
+    display: block;
+    padding: 10px 10px 12px 12px;
+    color: #111;
+}
+
+/* style search */
+.header-search .search{
+    position: relative;
+    border: solid 1px #111;
+    height: 25px;
+    border-radius: 15px;
+    padding: 4px;
+}
+.header-search .search .input-search{
+   width: 100%;
+   height: 100%;
+   outline: none;
+   border: none;
+    padding-right: 25px;
+    padding-left: 10px;
+}
+.header-search .search input[type='text']{
+    color: #111;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+.header-search .search i{
+    position: absolute;
+    top: 4px;
+    right:5px;
+}
+/* style header-user  */
+
+.header-user{
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.header-user .option{
+    position: absolute;
+    top: 140%;
+    left: 0;
+    width: 100%;  
+    background:#ffffff;
+    border-radius: 3px;
+    overflow: hidden;
+    height: 0px;
+    transition: .5s;
+    
+}
+.header-user:hover .option{
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    height: 70px;
+}
+.header-user .option li a {
+    display: block;
+    color: #111;
+    padding: 8px;
+
+}
+.header-user .option li a:hover{
+    background:rgba(0, 0, 0, 0.05) ;
+}
+.header-user .name-user{
+    display: inline-block;
+    font-size: 13px;
+    padding: 5px;
+
+}
+.header-user .fa-user{
+    display: inline-block;
+    margin-left: 3px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+/* style bag-shopping */
+.bag-shopping .item-shopping{
+    display: inline-block;
+    font-size: 14px;
+    transform: translateY(-5px);
+    color:#111;
+    font-weight: 600;
+}
+
+
+
+/* responsive header */
+
+.header-navigation .navigation-logo ,
+.hr-navigation{
+    display: none;
+}
+
+@media (max-width: 992px){
+    .header .menu-navigation{
+        display: block;
+    }
+
+    /* responsive mobile */
+    .header-logo{      
+        height: 100px;
+        width: 150px;
+    }
+    .header .header-navigation{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background:#ffffff;
+    z-index: 1;
+    }
+    .header .header-navigation.active{
+        display: block;
+    }
+
+    .header .header-navigation ul{
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+    .header-navigation .navigation-logo{
+        position: relative;
+        display: block;
+    }
+    .header-navigation .navigation-logo .logo-close div{
+        position: relative;
+        width: 150px;
+        height: 100px;
+        overflow: hidden;
+    }
+    .header-navigation .navigation-logo .logo-close div img{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .hr-navigation{
+        display: block;
+    }
+.header .header-logo a ,
+.header-navigation ul li a{
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 25px;
+}
+.bag-shopping{
+    display: none;
+}
+.header-user{
+    display: none;
+
+}
+.close-btn{
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    z-index: 2;
+}
+.header-search .search{
+    height: 40px;
+    width: 300px;
+}
+.header-search .search i{
+    top: 50%;
+    transform: translateY(-50%);
+}
+.header-search .search input[type='text']{
+    color: #111;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.logo-close{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.logo-close span{
+    font-weight: 500;
+}
+.setting , .logout{
+    display: block;
+}
+.bag-responsive{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bag-responsive span{
+    display: block;
+    transform: translateY(-5px);
+    font-size: 17px;
+}
+
+}
+@media (max-width: 480px){
+
+    .header-search .search{
+        height: 35px;
+        width: 200px;
+    }
+    .header-logo{      
+        height: 70px;
+        width: 100px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,19 +1,26 @@
-import '../style/header.css'
+import './style/header.css'
 import logo from '../Image/logo-shoe.jpg'
 import '../fontawesome-free-6.0.0-web/css/all.css'
+import { useState } from 'react'
 function Header(){
+
+    const [active , setActive] = useState(true) 
+
+    const activeClick = () =>{
+        setActive(!active)
+    }
     return(
         <div className="header">
 
-            <div className="menu-navigation"><i  className="fa-solid fa-bars fa-2x"></i></div>
+            <div onClick={activeClick} className="menu-navigation"><i  className="fa-solid fa-bars fa-2x"></i></div>
             <div  className="header-logo"> 
                 <a  className="logo" href="#">
                     <img src={logo} alt=""/>
                 </a>
             </div>
-            <div className="header-navigation ">
+            <div className={active?'header-navigation' : 'header-navigation active'}>
                     <div  className="navigation-logo">
-                        <div  className="close-btn"><i  className="fa-solid fa-xmark fa-2x"></i></div>
+                        <div onClick={activeClick}  className="close-btn"><i  className="fa-solid fa-xmark fa-2x"></i></div>
                        <div  className="logo-close">
                         <div>
                             <img src={logo} alt=""/>

@@ -7,10 +7,12 @@ import SwiperLogin from './SwiperLogin'
 function PageLogin(){
 
     return(
-        <div className='page-login'>
+        <div className='container-page-login'>
+            <div className='page-login'>
             <SwiperLogin></SwiperLogin>
             <FormLogin></FormLogin>
 
+        </div>
         </div>
     )
 }

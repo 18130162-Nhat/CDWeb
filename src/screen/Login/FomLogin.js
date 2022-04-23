@@ -2,7 +2,7 @@
 function FormLogin(){
 
     return(
-        <div style={{width : '30%' , height : '100vh'}}>
+        <div style={{width : '45%' , height : '100vh'}}>
 
         </div>
     )

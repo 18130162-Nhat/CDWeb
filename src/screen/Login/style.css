@@ -4,10 +4,25 @@
     margin: 0;
     box-sizing: border-box;
 }
+.container-page-login{
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 30px;
+}
+.container-swiper{
+  width :55%;  
+  height :100vh  ;
+   position : relative;
+}
 .page-login{
+  border-radius: 10px;
+  margin-top: 2px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+   
 }
 .swiper {
     width: 100%;
@@ -35,9 +50,62 @@
   }
   
   .swiper-slide img {
+    border-top-left-radius: inherit;
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
+  .swiper-pagination-bullet.swiper-pagination-bullet-active{
+    background: #ffffff;
+  }
+  
+  
+  /* style slide */
+  .slide{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.slide img{
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+border-radius: 15px;
+
+}
+.slide h4{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    top: 50%;
+    white-space: nowrap;
+    color: #ffffff;
+    font-size: 37px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+.container-login{
+  padding: 20px;
+}
+/* style button register */
+
+.btn-register{
+  position: absolute;
+  bottom: 20%;
+  left: 20%;
+  height: 50px;
+  width: 150px;
+  z-index: 3;
+  outline: none;
+  color: #ffffff;
+  background:#8c12fd;
+  font-size: 22px;
+  border-radius: 25px;
+  border: none;
+}
   

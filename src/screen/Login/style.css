@@ -98,14 +98,126 @@ border-radius: 15px;
   position: absolute;
   bottom: 20%;
   left: 20%;
-  height: 50px;
-  width: 150px;
+  height: 40px;
+  width: 140px;
   z-index: 3;
   outline: none;
   color: #ffffff;
-  background:#8c12fd;
-  font-size: 22px;
-  border-radius: 25px;
+  background:#6a5af9;
+  font-size: 17px;
+  border-radius: 5px;
   border: none;
+}
+
+/* style form login */
+.container-form{
+width : 45% ; 
+height : 100vh;
+padding: 50px;
+}
+.container-form h2{
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 35px;
+  font-weight: 400;
+
+
+}
+.container-form form .field-email{
+  margin-bottom: 50px;
+}
+.container-form form .field-pass{
+  margin-bottom: 50px;
+}
+.container-form form .field-email ,
+.container-form form .field-pass{
+  position: relative;
+}
+.container-form form div input[type='text']{
+  font-size: 15px;
+  color: #111;
+  font-weight: 500;
+}
+.container-form form .field-email .input-email,
+.container-form form .field-pass .input-pass{
+  width: 100%;
+  outline: none;
+  /* border: 1px solid #eee; */
+  border: 1px solid #d9d9d9;
+  height: 50px;
+  padding: 0 40px;
+  border-radius: 4px;
+  transition: 0.25s ease;
+
+}
+.container-form form .field-email .input-email:focus ,
+.container-form form .field-pass .input-pass:focus {
+  border-color: #6a5af9;;
+}
+.container-form form .field-email .label-email,
+.container-form form .field-pass .label-pass{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  user-select: none;
+  pointer-events: none;
+  left: 40px;
+  color: #999;
+  transition: 0.25s ease;
+}
+.container-form form .field-email .input-email:focus + .label-email ,
+.container-form form .field-email .input-email:not(:placeholder-shown) + .label-email,
+.container-form form .field-pass .input-pass:focus + .label-pass ,
+.container-form form .field-pass .input-pass:not(:placeholder-shown) +.label-pass {
+  top: 0;
+  padding: 5px;
+  font-size: 12px;
+  background-color: #ffffff;
+  
+}
+.container-form form .field-email i ,
+.container-form form .field-pass i{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
+}
+.container-form form .field-email span,
+.container-form form .field-pass span{
+  position: absolute;
+  top: 120%;
+  color: #ff3333;
+  font-size: 13px;
+  left: 0;
+  
+}
+
+/* style forgetpass-register */
+.container-form form .register-forgetpass{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.container-form form .register-forgetpass a{
+  text-decoration: none;
+  color: #6a5af9;
+  font-size: 13px;
+} 
+.container-form form .btn-login button{
+  height: 40px;
+  width: 140px;
+  outline: none;
+  background-color: #6a5af9;
+  border: none;
+  font-size: 17px;
+  border-radius: 5px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: .25s ease;
+}
+.container-form form .btn-login button:hover{
+  background-color:#1a73e8;
 }
   

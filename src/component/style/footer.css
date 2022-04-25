@@ -1,0 +1,108 @@
+@import url('http://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700,800,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto' ,'sans-serif';
+}
+.footer{
+    padding: 40px 40px;
+    background : #0c0e30;
+    margin-top: 20px;
+}
+.footer .content-footer{
+    /* display: flex;
+    justify-content: space-between; */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    grid-gap: 20px;
+    
+}
+.about-us h2 ,
+.customer-care h2 ,
+.contact-us h2 {
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+.contact-us p{
+    margin-bottom: 15px;
+}
+.content-footer div p{
+    line-height: 2;
+    margin-bottom: 10px;
+}
+.g-play_a-store img:first-child{
+margin-left: 0px !important;
+
+}
+.g-play_a-store img{
+border-radius: 5px;
+}
+
+.contact-us div span {
+    text-align: center;
+    display: inline-block;
+    margin-left: 5px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: 1px solid #aeb4be ;
+}
+.contact-us div span i{
+    color: #ffffff;
+    line-height: 30px;
+}
+.contact-us p strong{
+    color: #ffffff;
+}
+.logo-store-shoe p ,
+.contact-us p{
+    color: #aeb4be;
+    font-size: 12px;
+}
+
+
+.about-us a ,
+.customer-care a{
+    display: block;
+    text-decoration: none;
+    color: #aeb4be;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.logo-store-shoe h1{
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+ .footer .content-footer .logo-store-shoe div img{
+     display: inline-block;
+    margin-left: 10px;
+ }
+ @media (max-width: 992px){
+    .footer .content-footer{
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 20px;
+    }
+   
+
+
+ }
+ @media (max-width: 480px){
+    .footer .content-footer{
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 10px;
+    }
+}
+
+
+
+
+
+

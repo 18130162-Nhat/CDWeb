@@ -220,4 +220,15 @@ padding: 50px;
 .container-form form .btn-login button:hover{
   background-color:#1a73e8;
 }
-  
+/* .rotate {
+  animation: rotation 8s infinite linear;
+} */
+ /* animation icon loading */
+/* @keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+} */

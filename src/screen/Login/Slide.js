@@ -5,9 +5,7 @@ function Slide({image , title}){
         <div className="slide">
             <div class="slide">
         <img  src={image} alt=""/>
-       
            {title}
-       
     </div>
         </div>
     )

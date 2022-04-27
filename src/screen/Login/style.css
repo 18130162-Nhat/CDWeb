@@ -15,7 +15,6 @@
    position : relative;
 }
 .page-login{
-  border-radius: 10px;
   margin-top: 2px;
     display: flex;
     justify-content: center;
@@ -126,8 +125,14 @@ padding: 50px;
 .container-form form .field-email{
   margin-bottom: 50px;
 }
+.field-email.text-err{
+  color: #ff3333;
+}
 .container-form form .field-pass{
   margin-bottom: 50px;
+}
+.field-pass.text-err{
+  color: #ff3333;
 }
 .container-form form .field-email ,
 .container-form form .field-pass{
@@ -152,7 +157,7 @@ padding: 50px;
 }
 .container-form form .field-email .input-email:focus ,
 .container-form form .field-pass .input-pass:focus {
-  border-color: #6a5af9;;
+  border-color: #6a5af9;
 }
 .container-form form .field-email .label-email,
 .container-form form .field-pass .label-pass{
@@ -164,6 +169,10 @@ padding: 50px;
   left: 40px;
   color: #999;
   transition: 0.25s ease;
+}
+.container-form form .field-email .label-email.text-err,
+.container-form form .field-pass .label-pass.text-err{
+  color: #ff3333;
 }
 .container-form form .field-email .input-email:focus + .label-email ,
 .container-form form .field-email .input-email:not(:placeholder-shown) + .label-email,
@@ -216,6 +225,15 @@ padding: 50px;
   color: #ffffff;
   cursor: pointer;
   transition: .25s ease;
+}
+/* style border err */
+.container-form form .field-email .input-email.border-err,
+.container-form form .field-pass .input-pass.border-err{
+  border-color: #ff3333;
+
+}
+.input-pass.border-err{
+  border-color: #ff3333;
 }
 .container-form form .btn-login button:hover{
   background-color:#1a73e8;

@@ -6,13 +6,20 @@ function FormLogin() {
 
     const [inputEmail, setInputEmail] = useState({
         value: "", listError: getListError([FIELD_EMPTY, REQUIRE_EMAIL])
-        , messageError: " "
+        , messageError: " " , isError : false
     })
 
     const [inputPass, setInputPass] = useState({
         value: "", listError: getListError([FIELD_EMPTY])
-        , messageError: " "
+        , messageError: " " , isError : false
     })
+    const focusEmail = () =>{
+        setInputEmail({...inputEmail, messageError :" " , isError : false})
+        
+    }
+    const focusPass = () =>{
+        setInputPass({...inputPass , messageError : " " , isError : false})
+    }
 
     const changEmail = (event) => {
         setInputEmail({ ...inputEmail, value: event.target.value })
@@ -34,7 +41,7 @@ function FormLogin() {
                 setInputEmail({ ...inputEmail, messageError: " " })
                     check = true
             }else {
-                setInputEmail({ ...inputEmail, messageError: func(inputEmail.value) })
+                setInputEmail({ ...inputEmail, messageError: func(inputEmail.value) , isError : true})
                 check =false
                 return
             }
@@ -50,7 +57,7 @@ function FormLogin() {
                  check = true
             }
             else {
-                setInputPass({...inputPass , messageError : func(inputPass.value)})
+                setInputPass({...inputPass , messageError : func(inputPass.value) , isError : true})
                check = false 
                return
             }
@@ -71,22 +78,22 @@ function FormLogin() {
         <div className="container-form">
             <h2>Chào mừng bạn đến với cửa hàng</h2>
             <form onSubmit={submit}>
-                <div className="field-email">
-                    <input onBlur={blurEmail} onChange={changEmail} className="input-email" placeholder=" " type="text" name="email" id="email" value={inputEmail.value} />
-                    <label className="label-email" for="email">Email*</label>
+                <div className={inputEmail.isError?"field-email text-err" : "field-email"}>
+                    <input onFocus={focusEmail} onBlur={blurEmail} onChange={changEmail} className={!inputEmail.isError?"input-email":" input-email border-err"} placeholder=" " type="text" name="email" id="email" value={inputEmail.value} />
+                    <label className={inputEmail.isError?"label-email text-err" : "label-email"} for="email">Email*</label>
                     <i className="fa-solid fa-envelope-open"></i>
                     <span className="message-error">{inputEmail.messageError}</span>
                 </div>
-                <div className="field-pass">
-                    <input onBlur={blurPass} onChange={changePass} className="input-pass" type="password" name="pass" id="pass" placeholder=" " value={inputPass.value} />
-                    <label className="label-pass" for="pass">Mật khẩu*</label>
+                <div className={inputPass.isError?"field-pass text-err" : "field-pass"}>
+                    <input onFocus={focusPass} onBlur={blurPass} onChange={changePass} className={!inputPass.isError?"input-pass" : " input-pass border-err"} type="password" name="pass" id="pass" placeholder=" " value={inputPass.value} />
+                    <label className={inputPass.isError?"label-pass text-err" : "label-pass"} for="pass">Mật khẩu*</label>
                     <i className="fa-solid fa-user-secret"></i>
                     <span className="message-error">{inputPass.messageError}</span>
                 </div>
 
                 <div className="register-forgetpass">
                     <Link to={''}>Quên mật khẩu </Link>
-                    <Link to={''}>Bạn chưa có tài khoản?</Link>
+                    <Link to={'/register/formInFor'}>Bạn chưa có tài khoản?</Link>
                 </div>
                 <div className="btn-login">
                     <button type="submit">

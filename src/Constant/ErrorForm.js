@@ -26,9 +26,10 @@ const getListError = (listNameError) =>{
 
             case REQUIRE_PHONE :
                let phone = (value) =>{
-                let regex  = new RegExp('/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/')
+                let regex  = new RegExp('/((09|03|07|08|05)+([0-9]{8})\b)/g')
                 return regex.test(value.trim()) ? undefined : TEXT_REQUIRE_PHONE
                }
+               listError.push(phone)
 
             break ;
 

@@ -1,13 +1,12 @@
+import { Outlet } from "react-router-dom";
 import Footer from "../component/footer";
 import Header from "../component/header";
-import PageLogin from "../screen/Login/PageLogin";
-
 
 function Layout(){
     return (
-        <div style={{height : '100vh'}} className="container">
+        <div className="container">
            <Header/>
-           <PageLogin/>
+          <Outlet/>
            <Footer/>
         </div>
     )

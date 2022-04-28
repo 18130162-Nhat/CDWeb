@@ -1,16 +1,28 @@
 import { useState } from "react"
 import { getListError } from "../Constant/ErrorForm"
 import './style/input.css'
+import { TEXT_REPEAT_PASS } from '../Constant/ErrorForm'
 
-function Input({ children, config , refFunc }) {
-    const { name, label, listError,  index,  url } = config
+function Input({ children, config, refFunc, funcParent }) {
+    const { name, label, listError, index, repeat, type,url } = config
+    const [eye, setEye] = useState(true)
     const [input, setInput] = useState({
         value: "", messageError: " ",
         listError: getListError(listError), isErr: false
     })
     const changInput = (event) => {
-        setInput({ ...input, value: event.target.value })
-
+        if (repeat) {
+            repeat.value === event.target.value ? 
+            setInput({ ...input, value : event.target.value,messageError: " " }) :
+             setInput({ ...input, value:event.target.value , messageError: TEXT_REPEAT_PASS })
+        }
+        else setInput({ ...input, value: event.target.value })
+        function setValueForParent() {
+            funcParent(() => {
+                return event.target.value
+            })
+        }
+        funcParent && setValueForParent()
     }
     const blurInput = () => {
         if (check() & url) {
@@ -18,11 +30,16 @@ function Input({ children, config , refFunc }) {
         }
     }
     const check = () => {
+        if(type &&repeat && input.value.length!==0) {
+            repeat.value === input.value ? 
+            setInput({ ...input,messageError: " " }) :
+             setInput({ ...input, messageError: TEXT_REPEAT_PASS })
+             return
+        }
         if (listError.length === 0) return true
         let check = false
         input.listError.forEach(func => {
             if (func(input.value) === undefined) {
-               
                 check = true
                 setInput({ ...input, messageError: " " })
             }
@@ -35,22 +52,32 @@ function Input({ children, config , refFunc }) {
         return check
     }
     const focusInput = () => {
-        setInput({ ...input, isErr: false , messageError : " " })
-
+        setInput({ ...input, isErr: false, messageError: " " })
     }
-    // const setRef = () => {
-    //     if (refFunc.current.length < total) {
-    //         console.log(name)
-    //         refFunc.current.push(check)
-    //     }
-    //     else {
-    //         refFunc.current[index] = check;
-    //     }
-    // }
-    // setRef()
     refFunc.current[index] = check
+    if(type){
+        return(
+            <div className={input.isErr ? 'field-form text-err' : 'field-form'}>
+            <input
+                onFocus={focusInput}
+                onBlur={blurInput}
+                onChange={changInput}
+                className={!input.isErr ? 'input-form' : 'input-form border-err'} placeholder=" " type={eye?"password" : "text"} name={name} id={name} value={input.value} />
+            <label className={input.isErr ? 'label-form label-err' : 'label-form'} for={name}>{label}</label>
+            {children}
+            <span className="message-error">{input.messageError}</span>
+         
+         
+               {
+                   eye?  <div onClick={() => setEye(!eye)}  className="eye"><i className="fa-solid fa-eye-slash"></i></div> : 
+                   <div onClick={() => setEye(!eye)} className="eye"><i className="fa-solid fa-eye"></i></div>
+               }
+               
+        </div>
+            
+        )
+    }
     return (
-
         <div className={input.isErr ? 'field-form text-err' : 'field-form'}>
             <input
                 onFocus={focusInput}
@@ -58,11 +85,9 @@ function Input({ children, config , refFunc }) {
                 onChange={changInput}
                 className={!input.isErr ? 'input-form' : 'input-form border-err'} placeholder=" " type="text" name={name} id={name} value={input.value} />
             <label className={input.isErr ? 'label-form label-err' : 'label-form'} for={name}>{label}</label>
-            {/* <i className="fa-solid fa-envelope-open"></i> */}
             {children}
-            <span className="message-error">{input.messageError}</span>
+                <span className="message-error">{input.messageError}</span>
         </div>
-
     )
 }
 export default Input

@@ -53,7 +53,7 @@
     background-color: #ffffff;
   }
   .field-form i{
-    position: absolute;
+    position: absolute ;
     top: 50%;
     transform: translateY(-50%);
     left: 10px;
@@ -67,4 +67,13 @@
   }
   .field-form .input-form.border-err{
       border-color: #ff3333;
+  }
+  .eye{
+    position: absolute !important ;
+    top: 50% ;
+    transform: translateY(-50%) ;
+    right: 50px;
+  }
+  input[type='password']{
+    font-size: 20px;
   }

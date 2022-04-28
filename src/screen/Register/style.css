@@ -139,7 +139,8 @@
   justify-content: flex-end;
 
 }
-.form-register-infor form div button{
+.back-next .next,
+.form-register-infor form div .submit-btn {
   height: 40px;
   width: 140px;
   outline: none;
@@ -151,10 +152,32 @@
   background: #6a5af9;
   cursor: pointer;
   
-}
-.form-register-infor form div button:hover{
+}.back-next .next:hover,
+.form-register-infor form div .submit-btn:hover{
   background:#1a73e8;
 
+}
+/* style btn formEmail */
+.back-next{
+  display: flex;
+  justify-content: space-between;
+}
+.back-next .back{
+  height: 40px;
+  width: 140px;
+  outline: none;
+  border: 1px solid #1a73e8;
+  font-size: 17px;
+  color: #1a73e8;
+  border-radius: 5px;
+  /* background:#fce9ec; */
+  /* background: #f6f9fc; */
+  background: #ffffff;
+  cursor: pointer;
+  transition: .5s ease;
+}
+.back-next .back:hover{
+  background: #f6f9fc;
 }
 
 

@@ -10,19 +10,29 @@ function FormInformation() {
         name : 'firstname' ,
         label : 'FirstName*',
         listError : [FIELD_EMPTY],
-          index : 0 
+          index : 0 ,
+          repeat : false,
+          type  : false,
+          url : false
     }
     const configLastName = {
         name : 'lastname' ,
         label : 'LastName*',
         listError : [FIELD_EMPTY],
-          index : 1
+          index : 1,
+          repeat : false,
+          type  : false,
+          url : false
     }
     const configPhone = {
         name : 'phone' ,
         label : 'Phone*',
         listError : [ FIELD_EMPTY],
-          index : 2 
+          index : 2 ,
+          repeat : false,
+          type  : false,
+          url : false
+
     }
 
     const sunmitForm = (event) =>{
@@ -55,17 +65,17 @@ function FormInformation() {
                <form onSubmit={sunmitForm}>
                <div className="form-body">
                 <Input refFunc={refFunc}  config={configFirstName}>
-                <i class="fa-solid fa-file-signature"></i>
+                <i className="fa-solid fa-file-signature"></i>
                 </Input>
                 <Input refFunc={refFunc} config={configLastName}>
-                <i class="fa-solid fa-users"></i>
+                <i className="fa-solid fa-users"></i>
                 </Input>
                 <Input refFunc={refFunc} config={configPhone}>
-                <i class="fa-solid fa-phone"></i>
+                <i className="fa-solid fa-phone"></i>
                 </Input>
                 </div>
                 <div className="form-btn">
-                    <button type="submit">Tiếp tục</button>
+                    <button className="submit-btn" type="submit">Tiếp tục</button>
                 </div>
                </form>
             </div>

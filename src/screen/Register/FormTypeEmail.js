@@ -1,20 +1,48 @@
 
 
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './style.css'
-import {REQUIRE_EMAIL} from '../../Constant/ErrorForm'
+import {REQUIRE_EMAIL ,FIELD_EMPTY ,PASSWORD} from '../../Constant/ErrorForm'
 import Input from '../../component/Input'
 function FormTypeEmail(){
     const refFunc = useRef([]) 
     const navigate = useNavigate()
+    const [valueOfPass, setValue] = useState(" ")
 
     const configEmail = {
         name : 'email' ,
         label : 'Email*',
         listError : [REQUIRE_EMAIL],
-        index : 0 
+        index : 0 ,
+        repeat : false,
+        type : false,
+        url:false
     }
+    const configPass = {
+        name : 'pass' ,
+        label : 'Mật khẩu*',
+        listError : [PASSWORD],
+        index : 1 ,
+        repeat : false,
+        type : true,
+        url : false
+    }
+    const configRepeatPass = {
+        name : 'repeat' ,
+        label : 'Nhập lại mật khẩu*',
+        listError : [FIELD_EMPTY],
+        index : 2 ,
+        repeat : {value : valueOfPass},
+        type : true,
+        url : false
+    }
+
+    const setValueOf = ( callback) =>{
+        let value = callback()
+        setValue(value)
+    }
+    console.log(valueOfPass)
 
     return (
         <div className="container-form">
@@ -38,6 +66,16 @@ function FormTypeEmail(){
                     <Input config={configEmail} refFunc={refFunc} >
                     <i class="fa-solid fa-envelope"></i>
                     </Input>
+                    <Input config={configPass} refFunc={refFunc} funcParent = {setValueOf} >
+                    <i class="fa-solid fa-key"></i>
+                    </Input>
+                    <Input config={configRepeatPass} refFunc={refFunc} >
+                    <i class="fa-brands fa-react"></i>
+                    </Input>
+                    <div className='back-next'>
+                        <button onClick={() =>navigate("/register/formInFor")} className='back'>Quay lại</button>
+                        <button  className='next'>Tiếp tục</button>
+                    </div>
                 </div>
                 </form>
              </div>

@@ -1,9 +1,10 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { FIELD_EMPTY, REQUIRE_EMAIL, getListError } from "../../Constant/ErrorForm"
-
+import APIAuthen from "../../service/Authen"
 function FormLogin() {
-
+    const navigate = useNavigate()
+    const [loading , setLoading] = useState(false)
     const [inputEmail, setInputEmail] = useState({
         value: "", listError: getListError([FIELD_EMPTY, REQUIRE_EMAIL])
         , messageError: " " , isError : false
@@ -62,7 +63,8 @@ function FormLogin() {
                return
             }
         })
-        return true
+        // return true
+        return check
     }
     const submit = (event) =>{
             event.preventDefault()
@@ -71,8 +73,18 @@ function FormLogin() {
               let email = formData.get("email")
 
               let pass = formData.get("pass")
-             // API 
+             login()
             }
+    }
+
+    // action login
+    const login = () =>{
+      
+        setLoading(true)
+        APIAuthen.signIn(() =>{
+            setLoading(false)
+            setInputPass({...inputPass , messageError : "Mật khẩu không chính xác !"})
+        } )
     }
     return (
         <div className="container-form">
@@ -97,8 +109,12 @@ function FormLogin() {
                 </div>
                 <div className="btn-login">
                     <button type="submit">
-                        {/* <i className="fa-solid fa-spinner fa-2x"></i>  */}
-                        Đăng nhập
+                        {
+                            loading? <i className="fa-solid fa-spinner"></i> 
+                            :"Đăng nhập"
+                        }
+                        
+                        
                     </button>
                 </div>
             </form>

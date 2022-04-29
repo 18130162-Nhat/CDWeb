@@ -92,13 +92,13 @@ function FormLogin() {
             <form onSubmit={submit}>
                 <div className={inputEmail.isError?"field-email text-err" : "field-email"}>
                     <input onFocus={focusEmail} onBlur={blurEmail} onChange={changEmail} className={!inputEmail.isError?"input-email":" input-email border-err"} placeholder=" " type="text" name="email" id="email" value={inputEmail.value} />
-                    <label className={inputEmail.isError?"label-email text-err" : "label-email"} for="email">Email*</label>
+                    <label className={inputEmail.isError?"label-email text-err" : "label-email"} htmlFor="email">Email*</label>
                     <i className="fa-solid fa-envelope-open"></i>
                     <span className="message-error">{inputEmail.messageError}</span>
                 </div>
                 <div className={inputPass.isError?"field-pass text-err" : "field-pass"}>
                     <input onFocus={focusPass} onBlur={blurPass} onChange={changePass} className={!inputPass.isError?"input-pass" : " input-pass border-err"} type="password" name="pass" id="pass" placeholder=" " value={inputPass.value} />
-                    <label className={inputPass.isError?"label-pass text-err" : "label-pass"} for="pass">Mật khẩu*</label>
+                    <label className={inputPass.isError?"label-pass text-err" : "label-pass"} htmlFor="pass">Mật khẩu*</label>
                     <i className="fa-solid fa-user-secret"></i>
                     <span className="message-error">{inputPass.messageError}</span>
                 </div>

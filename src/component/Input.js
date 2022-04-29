@@ -34,7 +34,7 @@ function Input({ children, config, refFunc, funcParent }) {
             repeat.value === input.value ? 
             setInput({ ...input,messageError: " " }) :
              setInput({ ...input, messageError: TEXT_REPEAT_PASS })
-             return
+             return repeat.value === input.value
         }
         if (listError.length === 0) return true
         let check = false
@@ -63,7 +63,7 @@ function Input({ children, config, refFunc, funcParent }) {
                 onBlur={blurInput}
                 onChange={changInput}
                 className={!input.isErr ? 'input-form' : 'input-form border-err'} placeholder=" " type={eye?"password" : "text"} name={name} id={name} value={input.value} />
-            <label className={input.isErr ? 'label-form label-err' : 'label-form'} for={name}>{label}</label>
+            <label className={input.isErr ? 'label-form label-err' : 'label-form'} htmlFor={name}>{label}</label>
             {children}
             <span className="message-error">{input.messageError}</span>
          
@@ -84,7 +84,7 @@ function Input({ children, config, refFunc, funcParent }) {
                 onBlur={blurInput}
                 onChange={changInput}
                 className={!input.isErr ? 'input-form' : 'input-form border-err'} placeholder=" " type="text" name={name} id={name} value={input.value} />
-            <label className={input.isErr ? 'label-form label-err' : 'label-form'} for={name}>{label}</label>
+            <label className={input.isErr ? 'label-form label-err' : 'label-form'} htmlFor={name}>{label}</label>
             {children}
                 <span className="message-error">{input.messageError}</span>
         </div>

@@ -1,15 +1,17 @@
 
 
 import { useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate , Navigate, useLocation } from 'react-router-dom'
 import './style.css'
 import {REQUIRE_EMAIL ,FIELD_EMPTY ,PASSWORD} from '../../Constant/ErrorForm'
 import Input from '../../component/Input'
+import useRegister from '../../Custom/Hook/useRegister'
 function FormTypeEmail(){
+    const location = useLocation();
     const refFunc = useRef([]) 
     const navigate = useNavigate()
     const [valueOfPass, setValue] = useState(" ")
-
+    const register = useRegister()
     const configEmail = {
         name : 'email' ,
         label : 'Email*',
@@ -37,20 +39,40 @@ function FormTypeEmail(){
         type : true,
         url : false
     }
+    const submitForm = (event) =>{
+            event.preventDefault() ;
+            let check = true 
+
+            refFunc.current.forEach(func =>{
+                    check = check &func()
+            })
+            if(check){
+                let formData = new FormData(event.currentTarget)
+                let pass = formData.get("pass")
+                let email = formData.get("email")
+                let formEmail = true
+                register.setForm({pass , email , formEmail})
+                navigate("/register/OTP")
+            }
+    }
 
     const setValueOf = ( callback) =>{
         let value = callback()
         setValue(value)
     }
-    console.log(valueOfPass)
-
+   
+    if(register.formRegister.formInFor===false){
+    
+        return <Navigate to={"/register/formInfor"} state={{ from: location }} replace/>
+    }
+   
     return (
         <div className="container-form">
              <div className="form-register-infor">
              <div className="form-header">
                     <h1>Đăng kí tài khoản</h1>
-                    <div class="display-step">
-                        <span className="step"><i class="fa-solid fa-check"></i></span>
+                    <div className="display-step">
+                        <span className="step"><i className="fa-solid fa-check"></i></span>
                         <span className="text">Thông tin cá nhân</span>
                         <span className="line"></span>
                         <span className="step">2</span>
@@ -61,20 +83,20 @@ function FormTypeEmail(){
                     </div>
                 </div>
                 <p> (*Bắt buộc)</p>
-                <form>
+                <form onSubmit={submitForm}>
                 <div className="form-body">
                     <Input config={configEmail} refFunc={refFunc} >
-                    <i class="fa-solid fa-envelope"></i>
+                    <i className="fa-solid fa-envelope"></i>
                     </Input>
                     <Input config={configPass} refFunc={refFunc} funcParent = {setValueOf} >
-                    <i class="fa-solid fa-key"></i>
+                    <i className="fa-solid fa-key"></i>
                     </Input>
                     <Input config={configRepeatPass} refFunc={refFunc} >
-                    <i class="fa-brands fa-react"></i>
+                    <i className="fa-brands fa-react"></i>
                     </Input>
                     <div className='back-next'>
                         <button onClick={() =>navigate("/register/formInFor")} className='back'>Quay lại</button>
-                        <button  className='next'>Tiếp tục</button>
+                        <button type='submit'  className='next'>Tiếp tục</button>
                     </div>
                 </div>
                 </form>

@@ -1,6 +1,6 @@
 
 import { Outlet } from 'react-router-dom'
-import FormInformation from './FormInFor'
+import RegisterProvider from '../../context/ResgisterProvider'
 import './style.css'
 import SwiperRegister from './SwiperRegister'
 function PageRegister(){
@@ -9,7 +9,9 @@ function PageRegister(){
         <div className="container-page-register">
        <div className="page-register">
        <SwiperRegister/>
-        <Outlet/>
+       <RegisterProvider>
+           <Outlet/>
+       </RegisterProvider>
        </div>
         </div>
     )

@@ -1,11 +1,15 @@
 import { useRef } from "react"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import Input from "../../component/Input"
 import {FIELD_EMPTY } from "../../Constant/ErrorForm"
+import useRegister from "../../Custom/Hook/useRegister"
 
 function FormInformation() {
     const refFunc = useRef([]) 
     const navigate = useNavigate()
+    const register = useRegister()
+    const location = useLocation()
+    console.log(location)
     const  configFirstName  = {
         name : 'firstname' ,
         label : 'FirstName*',
@@ -42,7 +46,17 @@ function FormInformation() {
         refFunc.current.forEach(func =>{
             check = func() && check 
         })
-        check && navigate("/register/formEmail")
+        
+        if(check){
+            let formData = new FormData(event.currentTarget)
+            let phone =  formData.get("phone")
+            let lastName = formData.get("lastname")
+            let firstName  = formData.get("firstname")
+            let formInFor = true
+            register.setForm({phone , lastName , firstName , formInFor})
+            navigate("/register/formEmail")
+
+        }
     }
    
     return (
@@ -50,7 +64,7 @@ function FormInformation() {
             <div className="form-register-infor">
                 <div className="form-header">
                     <h1>Đăng kí tài khoản</h1>
-                    <div class="display-step">
+                    <div className="display-step">
                         <span className="step">1</span>
                         <span className="text">Thông tin cá nhân</span>
                         <span className="line"></span>

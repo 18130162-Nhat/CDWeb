@@ -43,7 +43,7 @@ function Cart() {
                 </div>
                 <div class="left-part-end">
                     <div class="icon-left">
-                    <i class="fa-solid fa-comment"></i>
+                        <i class="fa-solid fa-comment"></i>
                     </div>
                     <div class="description">
                         <div><span class="title-left">Nhận xét-Đánh giá</span></div>
@@ -52,7 +52,7 @@ function Cart() {
                 </div>
 
                 <button class="btn-continue-buy" type="button">Tiếp tục mua sắm</button>
-                
+
             </div>
 
             <div class="modal-body">
@@ -162,7 +162,7 @@ function Cart() {
                     <input class="voucher-text" type="text" name="voucher"></input>
                 </div>
                 <button class="btn btn-apply" type="button">Áp dụng</button>
-                
+
             </div>
             {/* <div class="checkout-payment">
                 <span class="checkout-title">Thanh toán</span>

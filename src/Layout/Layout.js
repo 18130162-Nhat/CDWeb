@@ -1,12 +1,15 @@
 import { Outlet } from "react-router-dom";
 import Footer from "../component/footer";
 import Header from "../component/header";
+import PageCart from "../screen/Cart/PageCart";
+
 
 function Layout(){
     return (
-        <div className="container">
+        <div>
            <Header/>
-          <Outlet/>
+          {/* <Outlet/> */}
+<PageCart/>
            <Footer/>
         </div>
     )

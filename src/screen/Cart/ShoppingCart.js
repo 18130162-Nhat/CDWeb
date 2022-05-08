@@ -11,7 +11,7 @@ import "../Cart/cart.css"
 
 function Cart() {
     return (
-        <div class="container">
+        <div class="container-cart">
 
             <div class="left-part-container">
                 <div class="left-part">
@@ -154,14 +154,16 @@ function Cart() {
             <div class="checkout">
 
                 <div class="checkout-note">
-                    <span class="note-title">Thêm ghi chú</span>
-                    <input class="note-text" name="note" id="" rows="3"></input>
+                    <span class="note-title">Thêm ghi chú</span>      
                 </div>
+                <input class="note-text" name="note" id="" rows="3"></input>
                 <div class="voucher">
-                    <span>Mã giảm giá - Voucher</span>
-                    <input class="voucher-text" type="text" name="voucher"></input>
+                    <span>Mã giảm giá - Voucher</span>  
                 </div>
+                <input class="voucher-text" type="text" name="voucher"></input>
+                <div>
                 <button class="btn btn-apply" type="button">Áp dụng</button>
+                </div>
 
             </div>
             {/* <div class="checkout-payment">

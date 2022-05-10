@@ -6,7 +6,7 @@ function PageCart(){
     return(
         <div className='container-page-cart'>
             <div className='page-cart'>
-           <Cart/>
+            <Cart></Cart>
         </div>
         </div>
     )

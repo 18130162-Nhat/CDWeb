@@ -9,6 +9,7 @@ import PageRegister from "./screen/Register/PageRegister";
 
 function App() {
   return (
+<<<<<<< HEAD
     <Routes>
       < Route  element ={<Layout/>}>
         <Route path="/" index element ={<PageLogin/>}/>
@@ -21,6 +22,19 @@ function App() {
       </Route>
     </Routes>
    
+=======
+    <Layout/>
+    // <Routes>
+    //   < Route  element ={<Layout/>}>
+    //     <Route path="/" index element ={<PageLogin/>}/>
+    //     <Route path="/register" element ={<PageRegister/>}>
+    //       <Route index path="formInfor" element={<FormInformation/>}/>
+    //       <Route path="formEmail" element ={<FormTypeEmail/>}/>
+    //       <Route path="OTP" element = {<OTP/>}/>
+    //     </Route>
+    //   </Route>
+    // </Routes>
+>>>>>>> bb7275fab2309ac5ad1b56c14e9b8f00924cfd88
   );
 }
 

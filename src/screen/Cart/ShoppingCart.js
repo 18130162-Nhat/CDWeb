@@ -11,8 +11,52 @@ import "../Cart/cart.css"
 
 function Cart() {
     return (
-        <div class="container">
+        <div class="container-cart">
+
+            <div class="left-part-container">
+                <div class="left-part">
+                    <div class="icon-left">
+                        <i class="fa-solid fa-truck-fast" ></i>
+                    </div>
+                    <div class="description">
+                        <div><span class="title-left">Giao hàng nhanh chóng</span></div>
+                        <div><span class="detail">Free ship cho đơn hàng từ 500.000</span></div>
+                    </div>
+                </div>
+                <div class="left-part">
+                    <div class="icon-left">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <div class="description">
+                        <div><span class="title-left">Hỗ trợ 24/7</span></div>
+                        <div><span class="detail">Liên hệ hỗ trợ 24h/ngày</span></div>
+                    </div>
+                </div>
+                <div class="left-part">
+                    <div class="icon-left">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                    </div>
+                    <div class="description">
+                        <div><span class="title-left">Đổi trả-Hoàn tiền 100%</span></div>
+                        <div><span class="detail">Nếu sản phẩm bị lỗi/hư hỏng</span></div>
+                    </div>
+                </div>
+                <div class="left-part-end">
+                    <div class="icon-left">
+                        <i class="fa-solid fa-comment"></i>
+                    </div>
+                    <div class="description">
+                        <div><span class="title-left">Nhận xét-Đánh giá</span></div>
+                        <div><span class="detail"></span></div>
+                    </div>
+                </div>
+
+                <button class="btn-continue-buy" type="button">Tiếp tục mua sắm</button>
+
+            </div>
+
             <div class="modal-body">
+
                 <div class="cart-row-header">
                     <span class="cart-header">Giỏ hàng</span>
                     <div class="null-header"></div>
@@ -20,12 +64,13 @@ function Cart() {
                     <div class="null-header"></div>
                     <span class="cart-header">Thanh toán</span>
                 </div>
+
                 <div class="cart-items">
 
                     <div class="cart-row">
                         <div class="cart-item cart-column">
                             <img class="cart-item-image" src={image1} width="100" height="100"></img>
-                                <span class="cart-item-title">Giày Sneaker</span>
+                            <span class="cart-item-title">Giày Sneaker</span>
                         </div>
                         <span class="cart-price cart-column">250.000<sup>vnd</sup></span>
                         <div class="cart-item cart-column cart-amount">
@@ -40,7 +85,7 @@ function Cart() {
                     <div class="cart-row">
                         <div class="cart-item cart-column">
                             <img class="cart-item-image" src={image2} width="100" height="100"></img>
-                                <span class="cart-item-title">Giày Sneaker</span>
+                            <span class="cart-item-title">Giày Sneaker</span>
                         </div>
                         <span class="cart-price cart-column">250.000<sup>vnd</sup></span>
                         <div class="cart-item cart-column cart-amount">
@@ -55,7 +100,7 @@ function Cart() {
                     <div class="cart-row">
                         <div class="cart-item cart-column">
                             <img class="cart-item-image" src={image3} width="100" height="100"></img>
-                                <span class="cart-item-title">Giày Sneaker</span>
+                            <span class="cart-item-title">Giày Sneaker</span>
                         </div>
                         <span class="cart-price cart-column">250.000<sup>vnd</sup></span>
                         <div class="cart-item cart-column cart-amount">
@@ -70,7 +115,7 @@ function Cart() {
                     <div class="cart-row">
                         <div class="cart-item cart-column">
                             <img class="cart-item-image" src={image4} width="100" height="100"></img>
-                                <span class="cart-item-title">Giày Sneaker</span>
+                            <span class="cart-item-title">Giày Sneaker</span>
                         </div>
                         <span class="cart-price cart-column">250.000<sup>vnd</sup></span>
                         <div class="cart-item cart-column cart-amount">
@@ -85,7 +130,7 @@ function Cart() {
                     <div class="cart-row">
                         <div class="cart-item cart-column">
                             <img class="cart-item-image" src={image5} width="100" height="100"></img>
-                                <span class="cart-item-title">Giày Sneaker hhhh hhhhhhh hhhhhh hhhhh hhh hhhhh hhhhhh</span>
+                            <span class="cart-item-title">Giày Sneaker hhhh hhhhhhh hhhhhh hhhhh hhh hhhhh hhhhhh</span>
                         </div>
                         <span class="cart-price cart-column">250.000<sup>vnd</sup></span>
                         <div class="cart-item cart-column cart-amount">
@@ -105,6 +150,26 @@ function Cart() {
                 </div>
 
             </div>
+
+            <div class="checkout">
+
+                <div class="checkout-note">
+                    <span class="note-title">Thêm ghi chú</span>      
+                </div>
+                <input class="note-text" name="note" id="" rows="3"></input>
+                <div class="voucher">
+                    <span>Mã giảm giá - Voucher</span>  
+                </div>
+                <input class="voucher-text" type="text" name="voucher"></input>
+                <div>
+                <button class="btn btn-apply" type="button">Áp dụng</button>
+                </div>
+
+            </div>
+            {/* <div class="checkout-payment">
+                <span class="checkout-title">Thanh toán</span>
+            </div> */}
+
         </div>
     )
 }

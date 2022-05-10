@@ -50,7 +50,7 @@ function Header(){
             </div>
             <div  className="header-search">
                 <div  className="search">
-                    <input  className="input-search" type="text" name="search" id="" placeholder="tiềm kiếm"/>
+                    <input  className="input-search" type="text" name="search" id="" placeholder="Tìm kiếm"/>
                     <i  className="fa-solid fa-magnifying-glass"></i>
                 </div>
             </div>

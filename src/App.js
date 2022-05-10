@@ -8,16 +8,17 @@ import PageRegister from "./screen/Register/PageRegister";
 
 function App() {
   return (
-    <Routes>
-      < Route  element ={<Layout/>}>
-        <Route path="/" index element ={<PageLogin/>}/>
-        <Route path="/register" element ={<PageRegister/>}>
-          <Route index path="formInfor" element={<FormInformation/>}/>
-          <Route path="formEmail" element ={<FormTypeEmail/>}/>
-          <Route path="OTP" element = {<OTP/>}/>
-        </Route>
-      </Route>
-    </Routes>
+    <Layout/>
+    // <Routes>
+    //   < Route  element ={<Layout/>}>
+    //     <Route path="/" index element ={<PageLogin/>}/>
+    //     <Route path="/register" element ={<PageRegister/>}>
+    //       <Route index path="formInfor" element={<FormInformation/>}/>
+    //       <Route path="formEmail" element ={<FormTypeEmail/>}/>
+    //       <Route path="OTP" element = {<OTP/>}/>
+    //     </Route>
+    //   </Route>
+    // </Routes>
   );
 }
 

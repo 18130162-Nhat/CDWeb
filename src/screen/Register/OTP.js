@@ -5,6 +5,7 @@ import useRegister from "../../Custom/Hook/useRegister"
 function OTP(){
     const register = useRegister()
     const location = useLocation()
+    
 if(!register.formRegister.formEmail && !register.formRegister.formInFor){
         return <Navigate to={"/register/formInfor"} state={{ from: location }} replace/>
     }

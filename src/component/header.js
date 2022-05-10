@@ -2,6 +2,7 @@ import './style/header.css'
 import logo from '../Image/logo-shoe.jpg'
 import '../fontawesome-free-6.0.0-web/css/all.css'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 function Header(){
 
     const [active , setActive] = useState(true) 
@@ -40,7 +41,7 @@ function Header(){
                     <li> <a href="#">Trang chủ</a></li>
                     <li> <a href="#">Cửa hàng</a></li>
                     <li> <a href="#">Liên hệ</a></li>
-                    <li> <a href="#">Giỏ hàng</a></li>
+                    <li> <Link to={"/pagecart"}>Giỏ hàng</Link></li>
                     <li  className="setting"> <a href="#">Cài đặt</a></li>
                     <li  className="logout"> <a href="#">Đăng xuất</a></li>
             

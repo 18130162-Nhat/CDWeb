@@ -179,6 +179,25 @@
 .back-next .back:hover{
   background: #e7f2ff;
 }
+@media (max-width: 992px){
+  .container-page-register{
+    padding-left: 0px;
+    padding-right: 0;
+    padding-top: 30px;
+
+  }
+  .container-swiper{
+    display: none;
+  }
+  .container-form{
+    width : 100% !important ; 
+    height : 80vh !important;
+    
+}
+.form-register-infor .form-header .display-step .text {
+  display: none;
+}
+}
 
 
 

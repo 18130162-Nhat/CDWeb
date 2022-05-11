@@ -82,10 +82,12 @@
 /* style search */
 .header-search .search{
     position: relative;
-    border: solid 1px #111;
+    border: solid 1px #e6e6e6;
     height: 25px;
     border-radius: 15px;
     padding: 4px;
+    height: 33px;
+    width: 300px;
 }
 .header-search .search .input-search{
    width: 100%;
@@ -104,6 +106,8 @@
     position: absolute;
     top: 4px;
     right:5px;
+    top: 6px;
+    right:10px;
 }
 /* style header-user  */
 

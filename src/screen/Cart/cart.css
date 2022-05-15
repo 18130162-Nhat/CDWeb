@@ -11,7 +11,6 @@
   background-color:#f6f9fc;
 }
 .container-page-cart{
-  height: 100vh;
   background-color:#f6f9fc;
   padding-top: 50px;
 }
@@ -98,7 +97,7 @@
     border: 1px solid #e1e1e1;
 }
 .btn-apply{
-  border: 1px solid rgba(210, 63, 87, 0.5);;
+  border: 1px solid rgba(210, 63, 87, 0.5);
   margin-top: 10px;
   font-size: 16px;
     border-radius: 5px;

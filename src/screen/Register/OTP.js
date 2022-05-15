@@ -96,9 +96,9 @@ function OTP() {
             }
         }
     }
-    if(true) return <>
-    <Loading/>
-    </>
+    // if(true) return <>
+    // <Loading/>
+    // </>
     if (!register.formRegister.formEmail && !register.formRegister.formInFor) {
         return <Navigate to={"/register/formInfor"} state={{ from: location }} replace />
     }

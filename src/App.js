@@ -6,6 +6,8 @@ import FormInformation from "./screen/Register/FormInFor";
 import FormTypeEmail from "./screen/Register/FormTypeEmail";
 import OTP from "./screen/Register/OTP";
 import PageRegister from "./screen/Register/PageRegister";
+import PageProfile from "./screen/Profile/PageProfile"
+import PageChangePass from "./screen/Profile/PageChangePass"
 
 function App() {
   return (
@@ -18,9 +20,10 @@ function App() {
           <Route path="OTP" element = {<OTP/>}/>
         </Route>
         <Route path="/pagecart"  element = {<PageCart/>}/>
+        <Route path="/pageprofile"  element = {<PageProfile/>}/>
+        <Route path="/pagechangepass"  element = {<PageChangePass/>}/>
       </Route>
     </Routes>
-   
   );
 }
 

@@ -3,12 +3,12 @@ import Footer from "../component/footer";
 import Header from "../component/header";
 
 
+
 function Layout(){
     return (
-        <div>
+        <div >
            <Header/>
-          {/* <Outlet/> */}
-<PageCart/>
+       <Outlet/>
            <Footer/>
         </div>
     )

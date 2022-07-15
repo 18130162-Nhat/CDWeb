@@ -1,7 +1,7 @@
 import { useRef } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import Input from "../../component/Input"
-import {FIELD_EMPTY } from "../../Constant/ErrorForm"
+import {FIELD_EMPTY,REQUIRE_PHONE } from "../../Constant/ErrorForm"
 import useRegister from "../../Custom/Hook/useRegister"
 
 function FormInformation() {
@@ -31,7 +31,7 @@ function FormInformation() {
     const configPhone = {
         name : 'phone' ,
         label : 'Phone*',
-        listError : [ FIELD_EMPTY],
+        listError : [ REQUIRE_PHONE],
           index : 2 ,
           repeat : false,
           type  : false,

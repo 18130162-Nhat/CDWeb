@@ -256,6 +256,7 @@ padding: 50px;
   animation: rotation 1s infinite linear;
 
 }
+
 @keyframes rotation{
   from{
 transform: rotate(0deg) ;
@@ -263,4 +264,28 @@ transform: rotate(0deg) ;
   to{
     transform: rotate(359deg);
   }
+}
+@media (max-width: 992px){
+
+ 
+  .container-swiper{
+    display: none;
+  }
+  .container-form{
+    width : 100% !important ; 
+    height : 80vh !important;
+}
+
+}
+@media (max-width: 480px){
+
+  .container-page-login {
+    padding-left: 0px;
+    padding-right: 0;
+    padding-top: 30px;
+}
+.container-form {
+  height : 70vh !important;
+  padding: 15px !important;
+}
 }

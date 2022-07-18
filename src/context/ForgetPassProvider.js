@@ -4,13 +4,14 @@ function ForgetPassProvider({children}){
     const formForget = {
         email : "",
         OTP : "",
+        pass:"",
         formEmail : false
     }
     const [form , setFormForget] = useState(formForget)
     const setForm= (object) =>{
-        setFormForget({...formForget , ...object})
+        setFormForget({...form , ...object})
     }
-    let value = {formForget , setForm}
+    let value = {form , setForm}
 
     return <ForgetPassContext.Provider value={value}>
         {children}

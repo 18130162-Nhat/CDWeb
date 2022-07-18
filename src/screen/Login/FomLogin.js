@@ -104,7 +104,7 @@ function FormLogin() {
                 </div>
 
                 <div className="register-forgetpass">
-                    <Link to={''}>Quên mật khẩu </Link>
+                    <Link to={'/forgetpass/typePass'}>Quên mật khẩu </Link>
                     <Link to={'/register/formInFor'}>Bạn chưa có tài khoản?</Link>
                 </div>
                 <div className="btn-login">

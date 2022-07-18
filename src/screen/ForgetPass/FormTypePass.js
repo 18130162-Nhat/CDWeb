@@ -1,17 +1,16 @@
 
 
 import { useRef, useState } from 'react'
-import { useNavigate , Navigate, useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from "react-router-dom"
 import './style.css'
 import {REQUIRE_EMAIL ,FIELD_EMPTY ,PASSWORD} from '../../Constant/ErrorForm'
 import Input from '../../component/Input'
-import useRegister from '../../Custom/Hook/useRegister'
-function FormTypeEmail(){
-    const location = useLocation();
+import useForgetPass from '../../Custom/Hook/useForgetPass'
+function FormTypeEmailOfPass(){
     const refFunc = useRef([]) 
     const navigate = useNavigate()
+    const useForget = useForgetPass()
     const [valueOfPass, setValue] = useState(" ")
-    const register = useRegister()
     const configEmail = {
         name : 'email' ,
         label : 'Email*',
@@ -48,11 +47,12 @@ function FormTypeEmail(){
             })
             if(check){
                 let formData = new FormData(event.currentTarget)
-                let pass = formData.get("pass")
-                let email = formData.get("email")
-                let formEmail = true
-                register.setForm({pass , email , formEmail})
-                navigate("/register/OTP")
+               let email = formData.get('email')
+               let pass = formData.get('pass')
+              let  formEmail  = true
+              useForget.setForm({email,pass,formEmail})
+            navigate("/forgetpass/otp")
+               
             }
     }
 
@@ -61,22 +61,18 @@ function FormTypeEmail(){
         setValue(value)
     }
    
-    if(register.formRegister.formInFor===false){
-        return <Navigate to={"/register/formInfor"} state={{ from: location }} replace/>
-    }
-   
+  
     return (
         <div className="container-form">
              <div className="form-register-infor">
              <div className="form-header">
-                    <h1>Đăng kí tài khoản</h1>
+                    <h1>Quên mật khẩu</h1>
                     <div className="display-step">
-                        <span className="step"><i className="fa-solid fa-check"></i></span>
-                        <span className="text">Thông tin cá nhân</span>
+                        <span className="step">1</span>
+                        <span className="text">Nhập mật khẩu mới</span>
                         <span className="line"></span>
                         <span className="step-none">2</span>
-                        <span className="text">Nhập email</span>
-            
+                        <span className="text">Nhập mã OTP</span>
                     </div>
                 </div>
                 <p> (*Bắt buộc)</p>
@@ -92,8 +88,8 @@ function FormTypeEmail(){
                     <i className="fa-brands fa-react"></i>
                     </Input>
                     <div className='back-next'>
-                        <button onClick={() =>navigate(-1)} className='back'>Quay lại</button>
-                        <button type='submit'  className='next'>Tiếp tục</button>
+                        <button onClick={() =>{navigate("/")}} className='back'>Đăng nhập</button>
+                        <button type='submit' className='next'>Tiếp tục</button>
                     </div>
                 </div>
                 </form>
@@ -101,4 +97,4 @@ function FormTypeEmail(){
         </div>
     )
 }
-export default FormTypeEmail
+export default FormTypeEmailOfPass

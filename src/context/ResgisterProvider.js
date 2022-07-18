@@ -9,13 +9,12 @@ function RegisterProvider({children}){
         gender : "",
         email :"",
         pass :"",
-        OPT : "",
-        formInFor : false ,
+        formInFor : false,
         formEmail : false
     }
     const [formRegister , setFormRegister]  = useState(form) 
     const setForm  =(object) =>{
-       setFormRegister({...form , ...object})
+       setFormRegister({...formRegister , ...object})
     }
     let value = {formRegister, setForm}
     return <RegisterContext.Provider value={value}>

@@ -19,6 +19,7 @@ function Input({ children, config, refFunc, funcParent }) {
         else setInput({ ...input, value: event.target.value })
         function setValueForParent() {
             funcParent(() => {
+              
                 return event.target.value
             })
         }

@@ -10,6 +10,8 @@ import FormTypeEmail from "./screen/Register/FormTypeEmail";
 import OTP from "./screen/Register/OTP";
 import PageRegister from "./screen/Register/PageRegister";
 import PageShop from "./screen/shop/PageShop"
+import PageProfile from "./screen/Profile/PageProfile"
+import PageChangePass from "./screen/Profile/PageChangePass"
 
 function App() {
   return (
@@ -26,9 +28,10 @@ function App() {
         <Route path="/contact" element ={<PageContact/>}/>
         <Route path="/order" element ={<Order/>}/>
         <Route path="/detail" element={<Detail/>}/>
+        <Route path="/pageprofile"  element = {<PageProfile/>}/>
+        <Route path="/pagechangepass"  element = {<PageChangePass/>}/>
       </Route>
     </Routes>
-   
   );
 }
 

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import localStorageApp from '../service/LocalStorage'
 import useApplication from '../Custom/Hook/useApplication'
 import { useNavigate } from "react-router-dom"
+
 function Header(){
     const navigate = useNavigate()
     const [show , setShow] = useState(false)
@@ -18,15 +19,14 @@ function Header(){
         else setShow(true)
     }
 
-    
-   
+
+
 
     const activeClick = () =>{
         setActive(!active)
     }
     return(
         <div className="header">
-
             <div onClick={activeClick} className="menu-navigation"><i  className="fa-solid fa-bars fa-2x"></i></div>
             <div  className="header-logo"> 
                 <a  className="logo" href="#">
@@ -51,20 +51,21 @@ function Header(){
 
                     </div>
                     <hr  className="hr-navigation"/>
-                <ul style={{marginBottom : '0px'}}> 
+                    <ul style={{marginBottom : '0px'}}> 
                     <li> <Link to={"/order"}>Trang chủ</Link></li>
                     <li> <Link to={"/shop"}>Cửa hàng</Link></li>
                     <li> <Link to={"/contact"}>Liên hệ</Link></li>
+
                     <li> <Link to={"/pagecart"}>Giỏ hàng</Link></li>
                     <li  className="setting"> <a href="#">Cài đặt</a></li>
                     <li  className="logout"> <a href="#">Đăng xuất</a></li>
-            
-                   
-                </ul>
+                    </ul>
             </div>
+
             <div  className="header-search">
+
                 <div  className="search">
-                    <input onInput={inputSearch}  className="input-search" type="text" name="search" id="" placeholder="Tìm kiếm"/>
+                <input onInput={inputSearch}  className="input-search" type="text" name="search" id="" placeholder="Tìm kiếm"/>
                     <i  className="fa-solid fa-magnifying-glass"></i>
                     <ul className={show?'search-auto-complete show':'search-auto-complete'}>
                         <li>
@@ -85,14 +86,13 @@ function Header(){
                         </div>
                         <span>Giày ninja shool</span>
                         </li>
-                       
+
                     </ul>
                 </div>
             </div>
             <div  className="bag-shopping">
         
                     <i  className="fa-solid fa-bag-shopping"></i>
-
                     <span  className="item-shopping">0</span>
             </div>
 
@@ -112,8 +112,7 @@ function Header(){
         </div>
             :<button onClick={() => navigate("/")} type="button" class="btn btn-primary">Đăng nhập</button>}
             
-            
-
+                
         </div>
     )
     

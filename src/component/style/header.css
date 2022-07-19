@@ -104,10 +104,12 @@
 }
 .header-search .search i{
     position: absolute;
-    top: 4px;
-    right:5px;
-    top: 6px;
-    right:10px;
+    top: 0;
+    right:0;
+    padding: 6px;
+    height: 30px;
+    border-left: solid 1px rgba(0, 0, 0, 0.05) ;
+   
 }
 /* style header-user  */
 
@@ -129,7 +131,7 @@
 }
 .header-user:hover .option{
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
-    height: 70px;
+    height: 90px;
 }
 .header-user .option li a {
     display: block;
@@ -287,6 +289,54 @@
         width: 100px;
     }
 }
+.search-auto-complete{
+    position: absolute;
+    width: 100%;
+    top: 110%;
+    left: -5px;
+    z-index: 99;
+    padding: 5px;
+    border-radius: 8px;
+    box-shadow: rgb(43 52 69 / 10%) 0px 4px 16px;
+    background: #ffffff;
+    display: none;
+    
+}
+.search-auto-complete.show{
+    display: block;
+}
+/* Interstellar */
+.search-auto-complete .tag-auto-complete{
+    position: relative;
+    overflow: hidden;
+    height: 50px;
+    width: 50px;
+}
+.search-auto-complete .tag-auto-complete img{
+    position: absolute;
+    height: 50px;
+    width: 50px;
+   object-fit: cover;
+   border-radius: 8px;
+  
+}
+.search-auto-complete li{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    cursor: pointer;
+    transition: all .3s ease;
+    padding: 5px;
+    border-radius: 8px;
+}
+.search-auto-complete li:hover{
+    background: #e9ecf0;
+}
+.search-auto-complete div{
+    margin-right: 5px;
+}
+
 
 
 

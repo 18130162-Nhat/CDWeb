@@ -29,7 +29,17 @@ function FormLogin() {
         setInputPass({ ...inputPass, value: event.target.value })
     }
     const blurEmail = () => {
-            validateEmail()
+            validateEmail() && fetch(`http://localhost:8080/isExistEmail?email=${inputEmail.value}`)
+            .then(res =>{
+                if(!res.ok) throw new Error(res.status)
+                return res.json()
+            })
+            .then(data =>{
+             if(data.message!=='oke') setInputEmail({...inputEmail, messageError :"Emai không chính xác !" , isError : true})
+            })
+            .catch(err =>{
+                setInputEmail({...inputEmail, messageError :"Email không chính xác !" , isError : true})
+            })
     }
     const blurPass = () => {
         validatePass()
@@ -71,7 +81,6 @@ function FormLogin() {
             if(validateEmail() & validatePass()){
               let formData = new FormData(event.currentTarget)
               let email = formData.get("email")
-
               let pass = formData.get("pass")
              login()
             }
@@ -79,12 +88,20 @@ function FormLogin() {
 
     // action login
     const login = () =>{
-      
+       let form = new FormData()
+       form.append('email' ,inputEmail.value)
+       form.append('pass', inputPass.value)
         setLoading(true)
         APIAuthen.signIn(() =>{
+            setLoading(true)
+            navigate("/order")
+           
+        } ,() =>{
             setLoading(false)
-            setInputPass({...inputPass , messageError : "Mật khẩu không chính xác !"})
-        } )
+            setInputPass({...inputPass , messageError : "",isError:true})
+            setInputEmail({...inputEmail, messageError :"" , isError : true})
+
+        },form)
     }
     return (
         <div className="container-form">
@@ -104,7 +121,7 @@ function FormLogin() {
                 </div>
 
                 <div className="register-forgetpass">
-                    <Link to={''}>Quên mật khẩu </Link>
+                    <Link to={'/forgetpass/typePass'}>Quên mật khẩu </Link>
                     <Link to={'/register/formInFor'}>Bạn chưa có tài khoản?</Link>
                 </div>
                 <div className="btn-login">

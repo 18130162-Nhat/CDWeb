@@ -11,73 +11,6 @@ import "../Profile/profile.css"
 
 function Profile() {
 
-    // const navigate = useNavigate()
-    // const [loading , setLoading] = useState(false)
-
-    // const [inputPass, setInputPass] = useState({
-    //     value: "", listError: getListError([FIELD_EMPTY])
-    //     , messageError: " " , isError : false
-    // })
-    // const [inputNewPass, setInputNewPass] = useState({
-    //     value: "", listError: getListError([FIELD_EMPTY])
-    //     , messageError: " " , isError : false
-    // })
-
-    // const focusPass = () =>{
-    //     setInputPass({...inputPass , messageError : " " , isError : false})
-    // }
-
-    // const changePass = (event) => {
-    //     setInputPass({ ...inputPass, value: event.target.value })
-    // }
-
-    // const blurPass = () => {
-    //     validatePass()
-
-    // }
-    // const validateNewPass = () => {
-    //     let check = false
-    //     inputNewPass.listError.forEach(func => {
-    //         if (func(inputNewPass.value) === undefined) {
-    //             setInputPass({ ...inputNewPass, messageError: " " })
-    //                 check = true
-    //         }else {
-    //             setInputEmail({ ...inputNewPass, messageError: func(inputPass.value) , isError : true})
-    //             check =false
-    //             return
-    //         }
-    //     })
-    //     return check
-    // }
-
-    // const validatePass = () =>{
-    //     let check = false
-    //     inputPass.listError.forEach(func =>{
-    //         if(func(inputPass.value)===undefined){
-    //              setInputPass({...inputPass, messageError : " "})
-    //              check = true
-    //         }
-    //         else {
-    //             setInputPass({...inputPass , messageError : func(inputPass.value) , isError : true})
-    //            check = false 
-    //            return
-    //         }
-    //     })
-    //     // return true
-    //     return check
-    // }
-    // const submit = (event) =>{
-    //         event.preventDefault()
-    //         if(validatePass()){
-    //           let formData = new FormData(event.currentTarget)
-
-    //           let pass = formData.get("pass")
-    //          login()
-    //         }
-    // }
-
-
-
     return (
         <div class="profile-container">
             <div class="part-left">
@@ -100,7 +33,7 @@ function Profile() {
                 <div class="active">
 
                     <div class="dropdown">
-                        <div class="dropbtn"><i class="fa-solid fa-user"></i>Tài khoản của tôi</div>
+                        <div class="dropbtn"><i class="fa-solid fa-user"></i><span class="text-drop">Tài khoản của tôi</span></div>
                         <div id="1" class="dropdown-content">
                             <Link to={"/pageprofile"}><span class="text-item">Chỉnh sửa hồ sơ</span></Link>
                             <Link to={"/pagechangepass"}><span class="text-item">Đổi mật khẩu</span></Link>
@@ -108,7 +41,7 @@ function Profile() {
                 </div>
 
                 <div class="dropdown">
-                    <div class="dropbtn"><i class="fa-solid fa-file-invoice-dollar"></i>Lịch sử mua hàng</div>
+                    <div class="dropbtn"><i class="fa-solid fa-file-invoice-dollar"></i><span class="text-drop">Lịch sử mua hàng</span></div>
  
                 </div>
 
@@ -132,7 +65,7 @@ function Profile() {
                                             <div class="text-input">
                                                 <div class="input-with-validator-wrapper">
                                                     <div class="input-with-validator">
-                                                        <input type="text" placeholder="" maxlength="255" value="Nguyen Van A"></input>
+                                                        <input type="text" placeholder="Nguyen Van A" maxlength="255"></input>
                                                         </div>
                                                 </div>
                                             </div>
@@ -144,7 +77,7 @@ function Profile() {
                                             <div class="text-input">
                                                 <div class="input-with-validator-wrapper">
                                                     <div class="input-with-validator">
-                                                        <input type="text" placeholder="" maxlength="255" value="nlu789"></input>
+                                                        <input type="text" placeholder="nlu789" maxlength="255" ></input>
                                                         </div>
                                                 </div>
                                             </div>
@@ -156,7 +89,7 @@ function Profile() {
                                             <div class="text-input">
                                                 <div class="input-with-validator-wrapper">
                                                     <div class="input-with-validator">
-                                                        <input type="text" placeholder="" maxlength="255" value="0349111879"></input>
+                                                        <input type="text" placeholder="0349111879" maxlength="255" ></input>
                                                         </div>
                                                 </div>
                                             </div>
@@ -168,7 +101,7 @@ function Profile() {
                                             <div class="text-input">
                                                 <div class="input-with-validator-wrapper">
                                                     <div class="input-with-validator">
-                                                        <input type="text" placeholder="" maxlength="255" value="nlu@gmail.com"></input>
+                                                        <input type="text" placeholder="nlu@gmail.com" maxlength="255" ></input>
                                                         </div>
                                                 </div>
                                             </div>
@@ -180,7 +113,7 @@ function Profile() {
                                             <div class="text-input">
                                                 <div class="input-with-validator-wrapper">
                                                     <div class="input-with-validator">
-                                                        <input type="text" placeholder="" maxlength="255" value="01/01/2000"></input>
+                                                        <input type="text" placeholder="01/01/2000" maxlength="255" ></input>
                                                         </div>
                                                 </div>
                                             </div>

@@ -112,7 +112,7 @@ function ChangePass() {
                             <div class="form-change-pass">
                                 <p> (*Bắt buộc)</p>
                                 <form onSubmit={submitForm}>
-                                    <div className="form-body">
+                                    <div className="form-body-change-pass">
                                         <Input config={configPass} refFunc={refFunc} funcParent={setValueOf} >
                                             <i className="fa-solid fa-key"></i>
                                         </Input>

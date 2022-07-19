@@ -2,8 +2,13 @@ import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { FIELD_EMPTY, REQUIRE_EMAIL, getListError } from "../../Constant/ErrorForm"
 import APIAuthen from "../../service/Authen"
+import Swal from "sweetalert2"
+import withReactContent from "sweetalert2-react-content"
+import localStorageApp from "../../service/LocalStorage"
+import useApplication from "../../Custom/Hook/useApplication"
 function FormLogin() {
     const navigate = useNavigate()
+    const useApp = useApplication()
     const [loading , setLoading] = useState(false)
     const [inputEmail, setInputEmail] = useState({
         value: "", listError: getListError([FIELD_EMPTY, REQUIRE_EMAIL])
@@ -95,11 +100,24 @@ function FormLogin() {
         APIAuthen.signIn(() =>{
             setLoading(true)
             navigate("/order")
-           
+            localStorageApp.setItemStorage('user' , "bui nhat")
+            useApp.logged({name : 'nhat'})
         } ,() =>{
             setLoading(false)
             setInputPass({...inputPass , messageError : "",isError:true})
             setInputEmail({...inputEmail, messageError :"" , isError : true})
+            const toast = withReactContent(Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+              }))
+           
+              toast.fire({
+                icon: 'error',
+                title: 'Thông tin đăng nhập không đúng !'
+              })
 
         },form)
     }
@@ -127,7 +145,9 @@ function FormLogin() {
                 <div className="btn-login">
                     <button type="submit">
                         {
-                            loading? <i className="fa-solid fa-spinner"></i> 
+                            loading? <div class="spinner-border spinner-border-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                          </div>
                             :"Đăng nhập"
                         }
                         

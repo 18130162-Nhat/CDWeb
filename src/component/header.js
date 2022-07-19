@@ -3,12 +3,16 @@ import logo from '../Image/logo-shoe.jpg'
 import '../fontawesome-free-6.0.0-web/css/all.css'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import localStorageApp from '../service/LocalStorage'
+import useApplication from '../Custom/Hook/useApplication'
+import { useNavigate } from "react-router-dom"
 function Header(){
+    const navigate = useNavigate()
     const [show , setShow] = useState(false)
     const [active , setActive] = useState(true) 
     const [search , setSearch] = useState('')
     const [list, setList] = useState([])
-
+    const user = useApplication()
     const inputSearch = (event) =>{
         if(event.target.value.trim().length===0) setShow(false)
         else setShow(true)
@@ -91,19 +95,23 @@ function Header(){
 
                     <span  className="item-shopping">0</span>
             </div>
-            <div  className="header-user">
-                <i className="fa-solid fa-user"></i>
-                    <span className="name-user">18130162@st.hcmuaf.edu.vn </span>
-                <ul style={{paddingLeft : '0'}} className="option">
-                    <li>
-                        <a href="#">Cài đặt</a>
-                    </li>
-                    <li style={{paddingBottom:'5px'}}>
-                        <a href="#">Đăng xuất</a>
-                    </li>
-                </ul>
 
-            </div>
+            { user.user!==undefined?
+            <div  className="header-user">
+            <i className="fa-solid fa-user"></i>
+                <span className="name-user">18130162@st.hcmuaf.edu.vn </span>
+            <ul style={{paddingLeft : '0'}} className="option">
+                <li>
+                    <a href="#">Cài đặt</a>
+                </li>
+                <li style={{paddingBottom:'5px'}}>
+                    <a href="#">Đăng xuất</a>
+                </li>
+            </ul>
+
+        </div>
+            :<button onClick={() => navigate("/")} type="button" class="btn btn-primary">Đăng nhập</button>}
+            
             
 
         </div>

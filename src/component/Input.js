@@ -26,8 +26,25 @@ function Input({ children, config, refFunc, funcParent }) {
         funcParent && setValueForParent()
     }
     const blurInput = () => {
-        if (check() & url) {
-            //API
+        
+        if (check() && url) {
+            if(url.type==='email'){
+                fetch(url.url+input.value)
+               
+                .then(res =>{
+                    if(!res.ok) throw new Error(res.status)
+                    return res.json()
+                })
+                .then(data =>{
+                    
+                    if(data.message==='oke') setInput({...input , messageError:"Email này đã được sử dụng !", isErr:true})
+                    else setInput({...input , messageError:'',isErr:false})
+                })
+                .catch(err =>{
+                    setInput({...input , messageError:'',isErr:true})
+                })
+                return
+            }
         }
     }
     const check = () => {

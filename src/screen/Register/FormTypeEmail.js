@@ -19,7 +19,7 @@ function FormTypeEmail(){
         index : 0 ,
         repeat : false,
         type : false,
-        url:false
+        url: {url :"http://localhost:8080/isExistEmail?email=", type : "email"}
     }
     const configPass = {
         name : 'pass' ,
@@ -52,7 +52,7 @@ function FormTypeEmail(){
                 let email = formData.get("email")
                 let formEmail = true
                 register.setForm({pass , email , formEmail})
-                navigate("/register/OTP")
+               
             }
     }
 

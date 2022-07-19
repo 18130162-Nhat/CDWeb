@@ -1,11 +1,11 @@
 
-
 import { useRef, useState } from 'react'
 import { useNavigate , Navigate, useLocation } from 'react-router-dom'
 import './style.css'
 import {REQUIRE_EMAIL ,FIELD_EMPTY ,PASSWORD} from '../../Constant/ErrorForm'
 import Input from '../../component/Input'
 import useRegister from '../../Custom/Hook/useRegister'
+
 function FormTypeEmail(){
     const location = useLocation();
     const refFunc = useRef([]) 

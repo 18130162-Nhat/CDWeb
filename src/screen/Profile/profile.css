@@ -68,8 +68,8 @@
 }
 
 .fa-solid{
-    margin-right: 10px;
-    width: 20px;
+    margin: 5px;
+    width: 10px;
     height: 10px;
 }
 .fa-pen{
@@ -91,6 +91,16 @@
     border: none;
     cursor: pointer;
   }
+  .text-drop{
+    margin-left: 10px;
+  }
+.message-error {
+    font-size: 12px;
+}
+.form-body{
+    padding-top: 10px;
+    width: 300px;
+}
   .dropdown:hover .dropbtn{
       color: #a97c4f;
   } 

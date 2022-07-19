@@ -205,11 +205,13 @@
   }
 
   .cart-amount{
-    width: 100px;
+    width: 120px;
     margin-left: 20px;
     margin-right: 20px;
   }
+.fa-solid{
 
+}
   .cart-decrease{
     border-radius: 5px;
     display: flex;

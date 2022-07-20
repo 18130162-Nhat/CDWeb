@@ -1,15 +1,83 @@
 import '../../fontawesome-free-6.0.0-web/css/all.css'
 import avatar from "../../Image/user-img.png"
-import { useState } from "react"
+import { useRef, useState } from 'react'
 import { Link, useNavigate } from "react-router-dom"
-import { FIELD_EMPTY, getListError } from "../../Constant/ErrorForm"
-import APIAuthen from "../../service/Authen"
+import Input from '../../component/Input'
+import {REQUIRE_EMAIL ,FIELD_EMPTY ,PASSWORD} from '../../Constant/ErrorForm'
 
 import React from 'react'
 
-import "../Profile/profile.css"
+import "./profile.css"
 
 function Profile() {
+
+    // const refFunc = useRef([]) 
+    // const configEmail = {
+    //     name : 'email' ,
+    //     listError : [REQUIRE_EMAIL],
+    //     index : 0 ,
+    //     repeat : false,
+    //     type : false,
+    //     url: {url :"http://localhost:8080/isExistEmail?email=", type : "email"}
+    // }
+    const [email, setEmail] = useState({ value: "", error: '' })
+    const [phone, setPhone] = useState({ value: '', error: '' })
+    const [address, setAddress] = useState({ value: '', error: '' })
+    const [birthday, setBirthday] = useState({ value: "", error: '' })
+    const [user, setUser] = useState({ value: "", error: '' })
+
+    const changeEmail = (event) => {
+        setEmail({ ...email, value: event.target.value })
+    }
+    const changePhone = (event) => {
+        setPhone({ ...phone, value: event.target.value })
+    }
+    const changeAddress = (event) => {
+        setAddress({ ...address, value: event.target.value })
+    }
+    const changeBirthday = (event) => {
+        setBirthday({ ...birthday, value: event.target.value })
+    }
+    const changeUser = (event) => {
+        setUser({ ...user, value: event.target.value })
+    }
+
+    const checkValue = () => {
+        if (user.value.trim().length === 0) setUser({ ...user, error: 'is-invalid' })
+        else setUser({ ...user, error: 'is-valid' })
+        if (birthday.value.trim().length === 0) setBirthday({ ...birthday, error: 'is-invalid' })
+        else setBirthday({ ...birthday, error: 'is-valid' })
+        if (email.value.trim().length === 0) setEmail({ ...email, error: 'is-invalid' })
+        else setEmail({ ...email, error: 'is-valid' })
+        if (address.value.trim().length === 0) setAddress({ ...address, error: 'is-invalid' })
+        else setAddress({ ...address, error: 'is-valid' })
+        let regex = new RegExp(/((09|03|07|08|05)+([0-9]{8})\b)/)
+        if (regex.test(phone.value.trim())) setPhone({ ...phone, error: 'is-valid' })
+        else setPhone({ ...phone, error: 'is-invalid' })
+    }
+    const focusUser = () => {
+        setUser({ ...user, error: '' })
+    }
+
+    const focusEmail = () => {
+        setEmail({ ...email, error: '' })
+    }
+    const focusAddress = () => {
+        setAddress({ ...address, error: '' })
+    }
+    const focusPhone = () => {
+        setPhone({ ...phone, error: '' })
+    }
+
+    const focusBirthday = () => {
+        setBirthday({ ...birthday, error: '' })
+    }
+    const submit = () => {
+        checkValue()
+        if (phone.error === 'is-valid' && address.error === 'is-valid' && email.error === 'is-valid' && user.error === 'is-valid' && birthday.error === 'is-valid') alert('oke')
+    }
+
+
 
     return (
         <div class="profile-container">
@@ -37,17 +105,17 @@ function Profile() {
                         <div id="1" class="dropdown-content">
                             <Link to={"/pageprofile"}><span class="text-item">Chỉnh sửa hồ sơ</span></Link>
                             <Link to={"/pagechangepass"}><span class="text-item">Đổi mật khẩu</span></Link>
+                        </div>
                     </div>
+
+                    <div class="dropdown">
+                        <div class="dropbtn"><i class="fa-solid fa-file-invoice-dollar"></i><span class="text-drop">Lịch sử mua hàng</span></div>
+
+                    </div>
+
+
                 </div>
 
-                <div class="dropdown">
-                    <div class="dropbtn"><i class="fa-solid fa-file-invoice-dollar"></i><span class="text-drop">Lịch sử mua hàng</span></div>
- 
-                </div>
-
-
-            </div>
-            
             </div>
             <div class="part-right">
                 <div class="profile-right-ui">
@@ -56,21 +124,88 @@ function Profile() {
                             <h1 class="profile-title">Hồ sơ của tôi</h1>
                             <div class="note">Quản lý thông tin hồ sơ để bảo mật tài khoản</div>
                         </div>
-                        <div class="change-info">
-                            <div class="form-profile">
-                                <form>
+                        <div class="change-info-contain">
+                            <div class="form-profile-info">
+                                <div className='fillout-order'>
+                                    <div>
+                                        <label className="form-label">Tên hiển thị</label>
+                                        <input
+                                            onInput={changeUser}
+                                            onFocus={focusUser} type="text" className={`form-control ${user.error}`} aria-describedby="validationServer03Feedback"
+                                            value={user.value} />
+                                        <div className="invalid-feedback">
+                                            Trường này không được trống !
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label className="form-label">Email</label>
+                                        <input
+                                            onInput={changeEmail}
+                                            onFocus={focusEmail} type="text" className={`form-control ${email.error}`} aria-describedby="validationServer03Feedback"
+                                            value={email.value} />
+                                        <div className="invalid-feedback">
+                                            Trường này không được trống !
+                                        </div>
+                                        {/* <label className="form-label">Email</label>
+                                        <Input config={configEmail} refFunc={refFunc} ></Input> */}
+                                    </div>
+                                    <div>
+                                        <label className="form-label">Địa chỉ</label>
+                                        <input
+                                            onInput={changeAddress}
+                                            onFocus={focusAddress} type="text" className={`form-control ${address.error}`} aria-describedby="validationServer03Feedback"
+                                            value={address.value} />
+                                        <div className="invalid-feedback">
+                                            Trường này không được trống !
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label className="form-label">Số điện thoại</label>
+                                        <input
+                                            onInput={changePhone}
+                                            onFocus={focusPhone} type="text" className={`form-control ${phone.error}`} aria-describedby="validationServer03Feedback"
+                                            value={phone.value} />
+                                        <div className="invalid-feedback">
+                                            Trường này phải là số điện thoại !
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label className="form-label">Ngày sinh</label>
+                                        <input
+                                            onInput={changeBirthday}
+                                            onFocus={focusBirthday} type="text" className={`form-control ${birthday.error}`} aria-describedby="validationServer03Feedback"
+                                            value={birthday.value} />
+                                        <div className="invalid-feedback">
+                                            Trường này không được trống !
+                                        </div>
+                                    </div>
+
+                                </div>
+                                {/* <form>
                                     <div class="input-profile">
                                         <div class="input">
                                             <div class="title-input"><label>Tên hiển thị</label></div>
                                             <div class="text-input">
                                                 <div class="input-with-validator-wrapper">
-                                                    <div class="input-with-validator">
-                                                        <input type="text" placeholder="Nguyen Van A" maxlength="255"></input>
+                                                    <div class="input-with-validator-profile">
+                                                        <input
+                                                            onInput={changeUser}
+                                                            onFocus={focusUser} type="text" className={`form-control ${user.error}`} aria-describedby="validationServer03Feedback"
+                                                            value={user.value} />
+                                                            <div className="invalid-feedback">
+                                                            Trường này không được trống !
                                                         </div>
+                                                    </div>
+                                                   
+
                                                 </div>
                                             </div>
+
+
                                         </div>
+
                                     </div>
+                       
                                     <div class="input-profile">
                                         <div class="input">
                                             <div class="title-input"><label>Tên tài khoản</label></div>
@@ -78,7 +213,7 @@ function Profile() {
                                                 <div class="input-with-validator-wrapper">
                                                     <div class="input-with-validator">
                                                         <input type="text" placeholder="nlu789" maxlength="255" ></input>
-                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -90,7 +225,7 @@ function Profile() {
                                                 <div class="input-with-validator-wrapper">
                                                     <div class="input-with-validator">
                                                         <input type="text" placeholder="0349111879" maxlength="255" ></input>
-                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -102,7 +237,7 @@ function Profile() {
                                                 <div class="input-with-validator-wrapper">
                                                     <div class="input-with-validator">
                                                         <input type="text" placeholder="nlu@gmail.com" maxlength="255" ></input>
-                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -114,15 +249,15 @@ function Profile() {
                                                 <div class="input-with-validator-wrapper">
                                                     <div class="input-with-validator">
                                                         <input type="text" placeholder="01/01/2000" maxlength="255" ></input>
-                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                </form> */}
                             </div>
                             <div class="btnSaveProfile">
-                                <button class="btnSave" type="button">Lưu</button>
+                                <button onClick={submit} class="btnSave" type="button">Lưu</button>
                             </div>
                         </div>
                     </div>
@@ -131,4 +266,5 @@ function Profile() {
         </div>
     )
 }
+
 export default Profile

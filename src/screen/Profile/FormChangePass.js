@@ -7,7 +7,7 @@ import { FIELD_EMPTY, PASSWORD } from '../../Constant/ErrorForm'
 import Input from '../../component/Input'
 import React from 'react'
 
-import "../Profile/profile.css"
+import "../Profile/changepass.css"
 
 function ChangePass() {
 
@@ -85,7 +85,7 @@ function ChangePass() {
                 <div class="active">
 
                     <div class="dropdown">
-                        <div class="dropbtn"><i class="fa-solid fa-user"></i>Tài khoản của tôi</div>
+                        <div class="dropbtn"><i class="fa-solid fa-user"></i><span class="text-drop">Tài khoản của tôi</span></div>
                         <div id="1" class="dropdown-content">
                             <Link to={"/pageprofile"}><span class="text-item">Chỉnh sửa hồ sơ</span></Link>
                             <Link to={"/pagechangepass"}><span class="text-item">Đổi mật khẩu</span></Link>
@@ -93,7 +93,7 @@ function ChangePass() {
                     </div>
 
                     <div class="dropdown">
-                        <div class="dropbtn"><i class="fa-solid fa-file-invoice-dollar"></i>Lịch sử mua hàng</div>
+                        <div class="dropbtn"><i class="fa-solid fa-file-invoice-dollar"></i><span class="text-drop">Lịch sử mua hàng</span></div>
 
                     </div>
 

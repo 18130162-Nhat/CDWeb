@@ -9,7 +9,7 @@
 .detail-product{
     background: #f6f9fc;
     padding: 50px;
-    min-height: 95vh;
+    min-height: 100vh;
 }
 .content-product{
     width: 70%;
@@ -74,4 +74,16 @@
 }
 .nav-link:hover{
     border: none;
+}
+.display-detail{
+    min-height: 200px;
+    background: #ffffff;
+    width: 80%;
+    margin: auto;
+    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+
+}
+.description{
+    width: 80%;
+    line-height: 2;
 }

@@ -14,7 +14,7 @@
 }
 .container-page-cart{
   background-color:#f6f9fc;
-  padding-top: 50px;
+  padding-top: 0px;
   min-height: 90vh;
 }
 
@@ -118,7 +118,7 @@
   padding-right: 15%;
   display: flex;
   align-items: center;
-  margin-bottom: 53px;
+  margin-bottom: 30px;
   }
   .null-header{
     background-color:#a97c4f;

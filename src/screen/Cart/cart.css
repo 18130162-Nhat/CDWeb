@@ -12,7 +12,6 @@
 }
 .container-page-cart{
   background-color:#f6f9fc;
-  padding-top: 50px;
 }
 
 
@@ -126,7 +125,7 @@
   padding-right: 15%;
   display: flex;
   align-items: center;
-  margin-bottom: 53px;
+  margin-bottom:0;
   }
   .null-header{
     background-color:#a97c4f;
@@ -209,9 +208,7 @@
     margin-left: 20px;
     margin-right: 20px;
   }
-.fa-solid{
 
-}
   .cart-decrease{
     border-radius: 5px;
     display: flex;

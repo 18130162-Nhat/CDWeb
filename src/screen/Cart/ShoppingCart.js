@@ -7,7 +7,7 @@ import image5 from "../../Image/product5.jpg"
 
 import React from 'react'
 
-import "../Cart/cart.css"
+import "./cart.css"
 
 function Cart() {
     return (

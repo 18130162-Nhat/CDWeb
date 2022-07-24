@@ -5,7 +5,7 @@
         localStorage.setItem(key, value)
     } ,
     getItemStorage : (key) =>{
-      
+
         return localStorage.getItem(key)?localStorage.getItem(key):undefined
     }
 }

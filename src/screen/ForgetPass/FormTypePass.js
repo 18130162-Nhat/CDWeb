@@ -6,11 +6,21 @@ import './style.css'
 import {REQUIRE_EMAIL ,FIELD_EMPTY ,PASSWORD} from '../../Constant/ErrorForm'
 import Input from '../../component/Input'
 import useForgetPass from '../../Custom/Hook/useForgetPass'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 function FormTypeEmailOfPass(){
+    const alter = withReactContent(Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+      }))
     const refFunc = useRef([]) 
     const navigate = useNavigate()
     const useForget = useForgetPass()
     const [valueOfPass, setValue] = useState(" ")
+    const [loading,setLoading] = useState(false)
     const configEmail = {
         name : 'email' ,
         label : 'Email*',
@@ -46,12 +56,40 @@ function FormTypeEmailOfPass(){
                     check = check &func()
             })
             if(check){
+                setLoading(true)
                 let formData = new FormData(event.currentTarget)
                let email = formData.get('email')
                let pass = formData.get('pass')
               let  formEmail  = true
-              useForget.setForm({email,pass,formEmail})
-            navigate("/forgetpass/otp")
+                fetch(`http://localhost:8080/sendOTP?email=${email.trim()}`)
+                .then(res =>{
+                    if(!res.ok) throw new Error(res.status)
+                    return res.json()
+                })
+                .then(data =>{
+                    setLoading(false)
+                    if(data.message==='oke'){
+                        useForget.setForm({email,pass,formEmail})
+                        navigate("/forgetpass/otp")
+                        return
+                    } 
+                   else{
+                        
+                        alter.fire({
+                            icon: 'error',
+                            title: 'Email không tồn tại !'
+                          })
+                    }
+                })
+                .catch(err =>{
+                    setLoading(false)
+                        alter.fire({
+                            icon: 'error',
+                            title: 'Email không tồn tại !'
+                          })
+                })
+
+             
                
             }
     }
@@ -89,7 +127,14 @@ function FormTypeEmailOfPass(){
                     </Input>
                     <div className='back-next'>
                         <button onClick={() =>{navigate("/")}} className='back'>Đăng nhập</button>
-                        <button type='submit' className='next'>Tiếp tục</button>
+                        <button type='submit' className='next'>
+                        {
+                            loading? <div class="spinner-border spinner-border-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                          </div>
+                            :"Tiếp tục"
+                        }
+                        </button>
                     </div>
                 </div>
                 </form>

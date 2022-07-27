@@ -45,12 +45,18 @@ function Profile() {
     const checkValue = () => {
         if (user.value.trim().length === 0) setUser({ ...user, error: 'is-invalid' })
         else setUser({ ...user, error: 'is-valid' })
-        if (birthday.value.trim().length === 0) setBirthday({ ...birthday, error: 'is-invalid' })
-        else setBirthday({ ...birthday, error: 'is-valid' })
-        if (email.value.trim().length === 0) setEmail({ ...email, error: 'is-invalid' })
-        else setEmail({ ...email, error: 'is-valid' })
+
+        let regex2 = new RegExp(/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/)
+        if (regex2.test(birthday.value.trim())) setBirthday({ ...birthday, error: 'is-valid' })
+        else setBirthday({ ...birthday, error: 'is-invalid' })
+
+        let regex1 = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
+        if (regex1.test(email.value.trim())) setEmail({ ...email, error: 'is-valid' })
+        else setEmail({ ...email, error: 'is-invalid' })
+
         if (address.value.trim().length === 0) setAddress({ ...address, error: 'is-invalid' })
         else setAddress({ ...address, error: 'is-valid' })
+
         let regex = new RegExp(/((09|03|07|08|05)+([0-9]{8})\b)/)
         if (regex.test(phone.value.trim())) setPhone({ ...phone, error: 'is-valid' })
         else setPhone({ ...phone, error: 'is-invalid' })
@@ -144,7 +150,7 @@ function Profile() {
                                             onFocus={focusEmail} type="text" className={`form-control ${email.error}`} aria-describedby="validationServer03Feedback"
                                             value={email.value} />
                                         <div className="invalid-feedback">
-                                            Trường này không được trống !
+                                            Trường này phải là email !
                                         </div>
                                         {/* <label className="form-label">Email</label>
                                         <Input config={configEmail} refFunc={refFunc} ></Input> */}
@@ -176,7 +182,7 @@ function Profile() {
                                             onFocus={focusBirthday} type="text" className={`form-control ${birthday.error}`} aria-describedby="validationServer03Feedback"
                                             value={birthday.value} />
                                         <div className="invalid-feedback">
-                                            Trường này không được trống !
+                                            Định dạng không hợp lệ! 'dd/mm/yyyy'
                                         </div>
                                     </div>
 

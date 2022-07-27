@@ -1,61 +1,70 @@
 import '../../fontawesome-free-6.0.0-web/css/all.css'
-import image1 from "../../Image/product1.jpg"
-import image2 from "../../Image/product2.jpg"
-import image3 from "../../Image/product3.jpg"
-import image4 from "../../Image/product4.jpg"
-import image5 from "../../Image/product5.jpg"
+import useApplication from '../../Custom/Hook/useApplication'
 
 import React from 'react'
 
 import "./cart.css"
 
 function Cart() {
+    const useApp = useApplication()
+   
+    const totalPrice = () =>{
+        let price = 0
+        useApp.cart.forEach(item => {
+            price += item.price*item.quantity
+        });
+        let strPrice = price+""
+        return  strPrice.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")
+    }
+    
+
     return (
         <div className="container-cart">
 
-          <div>
-          <div className="left-part-container">
-                <div className="left-part">
-                    <div className="icon-left">
-                        <i className="fa-solid fa-truck-fast" ></i>
-                    </div>
-                    <div className="description">
-                        <div><span className="title-left">Giao hàng nhanh chóng</span></div>
-                        <div><span className="detail">Free ship cho đơn hàng từ 500.000</span></div>
-                    </div>
-                </div>
-                <div className="left-part">
-                    <div className="icon-left">
-                        <i className="fa-solid fa-headset"></i>
-                    </div>
-                    <div className="description">
-                        <div><span className="title-left">Hỗ trợ 24/7</span></div>
-                        <div><span className="detail">Liên hệ hỗ trợ 24h/ngày</span></div>
-                    </div>
-                </div>
-                <div className="left-part">
-                    <div className="icon-left">
-                        <i className="fa-solid fa-arrows-rotate"></i>
-                    </div>
-                    <div className="description">
-                        <div><span className="title-left">Đổi trả-Hoàn tiền 100%</span></div>
-                        <div><span className="detail">Nếu sản phẩm bị lỗi/hư hỏng</span></div>
-                    </div>
-                </div>
-                <div className="left-part-end">
-                    <div className="icon-left">
-                        <i className="fa-solid fa-comment"></i>
-                    </div>
-                    <div className="description">
-                        <div><span className="title-left">Nhận xét-Đánh giá</span></div>
-                        <div><span className="detail"></span></div>
-                    </div>
-                </div>
+            <div>
+                <div className="left-part-container">
 
-                <button className="btn-continue-buy" type="button">Tiếp tục mua sắm</button>
+                    <div className="left-part">
+                        <div className="icon-left">
+                            <i className="fa-solid fa-truck-fast" ></i>
+                        </div>
+                        <div className="description">
+                            <div><span className="title-left">Giao hàng nhanh chóng</span></div>
+                            <div><span className="detail">Free ship cho đơn hàng từ 500.000</span></div>
+                        </div>
+                    </div>
+                    <div className="left-part">
+                        <div className="icon-left">
+                            <i className="fa-solid fa-headset"></i>
+                        </div>
+                        <div className="description">
+                            <div><span className="title-left">Hỗ trợ 24/7</span></div>
+                            <div><span className="detail">Liên hệ hỗ trợ 24h/ngày</span></div>
+                        </div>
+                    </div>
+                    <div className="left-part">
+                        <div className="icon-left">
+                            <i className="fa-solid fa-arrows-rotate"></i>
+                        </div>
+                        <div className="description">
+                            <div><span className="title-left">Đổi trả-Hoàn tiền 100%</span></div>
+                            <div><span className="detail">Nếu sản phẩm bị lỗi/hư hỏng</span></div>
+                        </div>
+                    </div>
+                    <div className="left-part-end">
+                        <div className="icon-left">
+                            <i className="fa-solid fa-comment"></i>
+                        </div>
+                        <div className="description">
+                            <div><span className="title-left">Nhận xét-Đánh giá</span></div>
+                            <div><span className="detail"></span></div>
+                        </div>
+                    </div>
 
+                    <button className="btn-continue-buy" type="button">Tiếp tục mua sắm</button>
+
+                </div>
             </div>
-          </div>
 
             <div className="modal-body">
 
@@ -69,71 +78,33 @@ function Cart() {
 
                 <div className="cart-items">
 
-                    <div className="cart-row">
-                        <div className="cart-item cart-column">
-                            <img className="cart-item-image" src={image1} width="100" height="100"></img>
-                            <span className="cart-item-title">Giày Sneaker</span>
-                        </div>
-                        <span className="cart-price cart-column">250.000<sup>vnd</sup></span>
-                        <div className="cart-item cart-column cart-amount">
-                            <div className="cart-decrease"><i className="fa-solid fa-minus"></i></div>
-                            <div className="cart-quantity cart-column">
-                                <input className="cart-quantity-input" value="1" min="1"></input>
+                    {
+                        useApp.cart.map(item => (
+                            <div key={item.idProduct} className="cart-row">
+                                <div className="cart-item cart-column">
+                                    <img className="cart-item-image" src={item.thumbnail} width="100" height="100"></img>
+                                    <span className="cart-item-title">{item.name}</span>
+                                </div>
+                                <span className="cart-price cart-column">{(item.price+"").replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}<sup>vnd</sup></span>
+                                <div className="cart-item cart-column cart-amount">
+                                    <div onClick={() => useApp.subItem(item)} className="cart-decrease"><i className="fa-solid fa-minus"></i></div>
+                                    <div className="cart-quantity cart-column">
+                                        <input className="cart-quantity-input" value={item.quantity} min="1"></input>
+                                    </div>
+                                    <div onClick={() => useApp.addItem(item)} className="cart-increase"><i className="fa-solid fa-plus"></i></div>
+                                </div>
+                                <button onClick={() => useApp.removeItem(item)} className="btn btn-danger" type="button">Xóa</button>
                             </div>
-                            <div className="cart-increase"><i className="fa-solid fa-plus"></i></div>
-                        </div>
-                        <button className="btn btn-danger" type="button">Xóa</button>
-                    </div>
-                    <div className="cart-row">
-                        <div className="cart-item cart-column">
-                            <img className="cart-item-image" src={image2} width="100" height="100"></img>
-                            <span className="cart-item-title">Giày Sneaker</span>
-                        </div>
-                        <span className="cart-price cart-column">250.000<sup>vnd</sup></span>
-                        <div className="cart-item cart-column cart-amount">
-                            <div className="cart-decrease"><i className="fa-solid fa-minus"></i></div>
-                            <div className="cart-quantity cart-column">
-                                <input className="cart-quantity-input" value="1" min="1"></input>
-                            </div>
-                            <div className="cart-increase"><i className="fa-solid fa-plus"></i></div>
-                        </div>
-                        <button className="btn btn-danger" type="button">Xóa</button>
-                    </div>
-                    <div className="cart-row">
-                        <div className="cart-item cart-column">
-                            <img className="cart-item-image" src={image3} width="100" height="100"></img>
-                            <span className="cart-item-title">Giày Sneaker</span>
-                        </div>
-                        <span className="cart-price cart-column">250.000<sup>vnd</sup></span>
-                        <div className="cart-item cart-column cart-amount">
-                            <div className="cart-decrease"><i className="fa-solid fa-minus"></i></div>
-                            <div className="cart-quantity cart-column">
-                                <input className="cart-quantity-input" value="1" min="1"></input>
-                            </div>
-                            <div className="cart-increase"><i className="fa-solid fa-plus"></i></div>
-                        </div>
-                        <button className="btn btn-danger" type="button">Xóa</button>
-                    </div>
-                    <div className="cart-row">
-                        <div className="cart-item cart-column">
-                            <img className="cart-item-image" src={image4} width="100" height="100"></img>
-                            <span className="cart-item-title">Giày Sneaker</span>
-                        </div>
-                        <span className="cart-price cart-column">250.000<sup>vnd</sup></span>
-                        <div className="cart-item cart-column cart-amount">
-                            <div className="cart-decrease"><i className="fa-solid fa-minus"></i></div>
-                            <div className="cart-quantity cart-column">
-                                <input className="cart-quantity-input" value="1" min="1"></input>
-                            </div>
-                            <div className="cart-increase"><i className="fa-solid fa-plus"></i></div>
-                        </div>
-                        <button className="btn btn-danger" type="button">Xóa</button>
-                    </div>
-                   
+                        ))
+                    }
 
-                    <div className="cart-total">
+                    
+                    
+
+
+                    <div className="cart-total mt-5">
                         <strong className="cart-total-title">Tổng Cộng:</strong>
-                        <span className="cart-total-price">123.456.789<sup>vnd</sup></span>
+                        <span className="cart-total-price">{totalPrice()}<sup>vnd</sup></span>
                     </div>
                 </div>
 

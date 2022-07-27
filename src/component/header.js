@@ -13,6 +13,14 @@ function Header() {
     const [search, setSearch] = useState('')
     const [list, setList] = useState([])
     const user = useApplication()
+
+    const computeQuantity = () =>{
+        let count = 0
+        user.cart.forEach(p => {
+            count +=p.quantity
+        });
+        return count
+    }
     const inputSearch = (event) => {
         setSearch(event.target.value.trim())
         if (event.target.value.trim().length === 0) setShow(false)
@@ -38,7 +46,14 @@ function Header() {
         }
     }
 
-
+    const clickIconSearch = () =>{
+       if(search.length!==0){
+        setShow(false)
+        navigate(`/shop?search=${search}`)
+       }
+       
+       
+    }
     const clickItem = (item) =>{
         setShow(false)
         navigate(`/detail/${item.idProduct}`)
@@ -68,7 +83,7 @@ function Header() {
 
                         <div className="bag-responsive">
                             <i className="fa-solid fa-bag-shopping icon-bag"></i>
-                            <span className="item-shopping">0</span>
+                            <span className="item-shopping">{computeQuantity()}</span>
                         </div>
                     </div>
 
@@ -89,8 +104,8 @@ function Header() {
 
                 <div className="search">
                     <input onInput={inputSearch} className="input-search" type="text" name="search" id="" value={search} placeholder="Tìm kiếm" />
-                    <i className="fa-solid fa-magnifying-glass"></i>
-                    <ul className={show ? 'search-auto-complete show' : 'search-auto-complete'}>
+                    <i onClick={clickIconSearch} className="fa-solid fa-magnifying-glass"></i>
+                    <ul style={{maxHeight:'300px' , overflowX:'auto'}} className={show ? 'search-auto-complete show' : 'search-auto-complete'}>
                         {list.length === 0 ? <div className='p-2 text-center'>Không tìm thấy kết quả</div> :
                             <>
                                 {
@@ -116,7 +131,7 @@ function Header() {
             <div className="bag-shopping">
 
                 <i className="fa-solid fa-bag-shopping"></i>
-                <span className="item-shopping">0</span>
+                <span className="item-shopping">{computeQuantity()}</span>
             </div>
 
             {user.user !== undefined ?

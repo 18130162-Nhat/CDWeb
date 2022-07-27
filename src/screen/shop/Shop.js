@@ -31,8 +31,8 @@ function Shop({ list }) {
 
             {
                 list.map(item => (
-                    <div onClick={() =>navigate(`/detail/${item.idProduct}`)} key={item.idProduct} className="card-item ">
-                        <div className="img-item mb-5">
+                    <div  key={item.idProduct} className="card-item ">
+                        <div  onClick={() =>navigate(`/detail/${item.idProduct}`)} className="img-item mb-5">
                             <img src={item.thumbnail} alt=""/>
                         </div>
 

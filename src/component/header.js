@@ -115,7 +115,7 @@ function Header() {
                                             <li onClick={() => clickItem(item)} key={item.idProduct}>
                                                 
                                                 <div className='tag-auto-complete'>
-                                                    <img src={logo} />
+                                                    <img src={item.thumbnail} />
                                                 </div>
                                                 <span>{item.name}</span>
                                             </li>

@@ -2,7 +2,8 @@ import '../../fontawesome-free-6.0.0-web/css/all.css'
 import { useRef, useState } from 'react'
 import avatar from "../../Image/user-img.png"
 import { Link, useNavigate } from "react-router-dom"
-// import { FIELD_EMPTY, getListError } from "../../Constant/ErrorForm"
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 import { FIELD_EMPTY, PASSWORD } from '../../Constant/ErrorForm'
 import Input from '../../component/Input'
 import React from 'react'
@@ -11,24 +12,29 @@ import "../Profile/changepass.css"
 
 function ChangePass() {
 
+    const alter = withReactContent(Swal)
+    const navigate = useNavigate()
+
     // const location = useLocation();
     const refFunc = useRef([])
     // const navigate = useNavigate()
     const [valueOfPass, setValue] = useState(" ")
-    // const register = useRegister()
+    const [valueOfCurrentPass, setCurrentValue] = useState("123456789")
+
+
     const configPass = {
         name: 'pass',
         label: 'Nhập mật khẩu hiện tại*',
         listError: [PASSWORD, FIELD_EMPTY],
         index: 0,
-        repeat: false,
+        repeat: { value: valueOfCurrentPass},
         type: true,
         url: false
     }
     const configNewPass = {
         name: 'newpass',
         label: 'Mật khẩu mới*',
-        listError: [PASSWORD, FIELD_EMPTY],
+        listError: [PASSWORD],
         index: 1,
         repeat: false,
         type: true,
@@ -43,6 +49,7 @@ function ChangePass() {
         type: true,
         url: false
     }
+
     const submitForm = (event) => {
         event.preventDefault();
         let check = true
@@ -55,6 +62,39 @@ function ChangePass() {
             let pass = formData.get("pass")
             let newpass = formData.get("newpass")
             let repeatpass = formData.get("repeat")
+            fetch("http://localhost:8080/customer/changePass",{
+                    method :"POST",
+                    body : formData
+                })
+                .then(res =>{
+                    if(!res.ok) throw new Error(res.status)
+                    return res.json()
+                })
+                .then(data =>{
+                    if(data.message==='oke'){
+                        alter.fire(
+                            {
+                                icon: 'success',
+                                title: 'Đổi mật khẩu',
+                                text: "Cập nhật thành công",
+                                allowOutsideClick : false,
+                                showConfirmButton: true,
+                                confirmButtonText: 'OK'
+                              }
+                        ).then((result) => {
+                            if (result.isConfirmed) {
+                              navigate("/pageprofile")
+                            }
+                          })
+                    }
+                })
+                .catch(err =>{
+                    alter.fire(
+                        {icon: 'error',
+                        title: 'Cập nhật không thành công'}
+                      )
+                })
+             
         }
     }
 
@@ -113,7 +153,7 @@ function ChangePass() {
                                 <p> (*Bắt buộc)</p>
                                 <form onSubmit={submitForm}>
                                     <div className="form-body-change-pass">
-                                        <Input config={configPass} refFunc={refFunc} funcParent={setValueOf} >
+                                        <Input config={configPass} refFunc={refFunc} >
                                             <i className="fa-solid fa-key"></i>
                                         </Input>
                                         <Input config={configNewPass} refFunc={refFunc} funcParent={setValueOf} >

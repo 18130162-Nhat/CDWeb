@@ -1,6 +1,7 @@
 import '../../fontawesome-free-6.0.0-web/css/all.css'
 import useApplication from '../../Custom/Hook/useApplication'
 import bag from '../../Image/shopping-bag.svg'
+import { Link } from "react-router-dom"
 import React from 'react'
 import { useNavigate} from 'react-router-dom'
 import Swal from 'sweetalert2'
@@ -93,11 +94,11 @@ function Cart() {
             <div className="modal-body">
 
                 <div className="cart-row-header">
-                    <span className="cart-header">Giỏ hàng</span>
+                    <Link to={"/pageCart"} className="nav-cart"><span className="cart-header cart2">Giỏ hàng</span></Link>
                     <div className="null-header"></div>
-                    <span className="cart-header">Chi tiết</span>
-                    <div className="null-header"></div>
-                    <span className="cart-header">Thanh toán</span>
+                    <Link to={"/order"} className="nav-detail"><span className="cart-header detail2">Chi tiết</span></Link>
+                    {/* <div className="null-header"></div>
+                    <span className="cart-header">Thanh toán</span> */}
                 </div>
                 {
                     useApp.cart.length === 0 ?

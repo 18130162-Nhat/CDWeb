@@ -2,32 +2,30 @@ import '../../fontawesome-free-6.0.0-web/css/all.css'
 import avatar from "../../Image/user-img.png"
 import { useRef, useState } from 'react'
 import useApplication from '../../Custom/Hook/useApplication'
-import { Link, Navigate, useLocation } from "react-router-dom"
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom"
 import Input from '../../component/Input'
-import {REQUIRE_EMAIL ,FIELD_EMPTY ,PASSWORD} from '../../Constant/ErrorForm'
-
-import React from 'react'
-
+import { REQUIRE_EMAIL, FIELD_EMPTY, PASSWORD } from '../../Constant/ErrorForm'
+import { useRef, useState, React, useEffect } from 'react'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 import "./profile.css"
+
 
 function Profile() {
     const location = useLocation();
     const useApp = useApplication()
 
-    // const refFunc = useRef([]) 
-    // const configEmail = {
-    //     name : 'email' ,
-    //     listError : [REQUIRE_EMAIL],
-    //     index : 0 ,
-    //     repeat : false,
-    //     type : false,
-    //     url: {url :"http://localhost:8080/isExistEmail?email=", type : "email"}
-    // }
-    const [email, setEmail] = useState({ value: "", error: '' })
+    const alter = withReactContent(Swal)
+
+    const navigate = useNavigate()
+
+    const [firstName, setFirstName] = useState({ value: '', error: '' })
+    const [email, setEmail] = useState({ value: '', error: '' })
+    const [lastName, setLastName] = useState({ value: '', error: '' })
     const [phone, setPhone] = useState({ value: '', error: '' })
-    const [address, setAddress] = useState({ value: '', error: '' })
-    const [birthday, setBirthday] = useState({ value: "", error: '' })
-    const [user, setUser] = useState({ value: "", error: '' })
+
+    const [birthday, setBirthday] = useState({ value: '', error: '' })
+
 
     const changeEmail = (event) => {
         setEmail({ ...email, value: event.target.value })
@@ -35,61 +33,134 @@ function Profile() {
     const changePhone = (event) => {
         setPhone({ ...phone, value: event.target.value })
     }
-    const changeAddress = (event) => {
-        setAddress({ ...address, value: event.target.value })
+    const changeLastName = (event) => {
+        setLastName({ ...lastName, value: event.target.value })
     }
-    const changeBirthday = (event) => {
-        setBirthday({ ...birthday, value: event.target.value })
+    // const changeBirthday = (event) => {
+    //     setBirthday({ ...birthday, value: event.target.value })
+    // }
+    const changeFirstName = (event) => {
+        setFirstName({ ...firstName, value: event.target.value })
     }
-    const changeUser = (event) => {
-        setUser({ ...user, value: event.target.value })
-    }
+
+
 
     const checkValue = () => {
-        if (user.value.trim().length === 0) setUser({ ...user, error: 'is-invalid' })
-        else setUser({ ...user, error: 'is-valid' })
+        if (firstName.value.trim().length === 0) setFirstName({ ...firstName, error: 'is-invalid' })
+        else setFirstName({ ...firstName, error: 'is-valid' })
 
-        let regex2 = new RegExp(/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/)
-        if (regex2.test(birthday.value.trim())) setBirthday({ ...birthday, error: 'is-valid' })
-        else setBirthday({ ...birthday, error: 'is-invalid' })
+        // let regex2 = new RegExp(/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/);
+        // if (regex2.test(birthday.value.trim())) setBirthday({ ...birthday, error: 'is-valid' })
+        // else setBirthday({ ...birthday, error: 'is-invalid' })
 
         let regex1 = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
         if (regex1.test(email.value.trim())) setEmail({ ...email, error: 'is-valid' })
         else setEmail({ ...email, error: 'is-invalid' })
 
-        if (address.value.trim().length === 0) setAddress({ ...address, error: 'is-invalid' })
-        else setAddress({ ...address, error: 'is-valid' })
+        if (lastName.value.trim().length === 0) setLastName({ ...lastName, error: 'is-invalid' })
+        else setLastName({ ...lastName, error: 'is-valid' })
 
         let regex = new RegExp(/((09|03|07|08|05)+([0-9]{8})\b)/)
         if (regex.test(phone.value.trim())) setPhone({ ...phone, error: 'is-valid' })
         else setPhone({ ...phone, error: 'is-invalid' })
     }
-    const focusUser = () => {
-        setUser({ ...user, error: '' })
+
+    const focusFirstName = () => {
+        setFirstName({ ...firstName, error: '' })
     }
 
     const focusEmail = () => {
         setEmail({ ...email, error: '' })
     }
-    const focusAddress = () => {
-        setAddress({ ...address, error: '' })
+
+    const focusLastName = () => {
+        setLastName({ ...lastName, error: '' })
     }
+
     const focusPhone = () => {
         setPhone({ ...phone, error: '' })
     }
 
-    const focusBirthday = () => {
-        setBirthday({ ...birthday, error: '' })
-    }
-    const submit = () => {
+    // const focusBirthday = () => {
+    //     setBirthday({ ...birthday, error: '' })
+    // }
+
+
+    useEffect(() => {
+        fetch("http://localhost:8080/findCustomerByfilter?idCus=1")
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                setFirstName({ ...firstName, error: '', value: data.data.firstName })
+                setEmail({ ...email, error: '', value: data.data.email })
+                setLastName({ ...lastName, error: '', value: data.data.lastName })
+                setPhone({ ...phone, error: '', value: data.data.phone })
+            })
+    }, [])
+
+    const submitTest = (event) => {
+        event.preventDefault();
+
+        let check = false
+
         checkValue()
-        if (phone.error === 'is-valid' && address.error === 'is-valid' && email.error === 'is-valid' && user.error === 'is-valid' && birthday.error === 'is-valid') alert('oke')
+        if (firstName.value.length !== 0 && lastName.value.length !== 0 && email.value.length !== 0 && phone.value.length !== 0)
+            check = true
+
+        if (check) {
+
+            
+            let form = new FormData()
+            form.append('idCus', 1)
+            form.append('firstName', firstName.value)
+            form.append('email', email.value)
+            form.append('lastName', lastName.value)
+            form.append('phone', phone.value)
+            fetch("http://localhost:8080/customer/updateProfile", {
+                method: "POST",
+                body: form
+            })
+                .then(res => {
+                    if (!res.ok) throw new Error(res.status)
+                    return res.json()
+                })
+                .then(data => {
+                    if (data.message === 'oke') {
+                        setFirstName({ value: firstName.value })
+                        setLastName({ value: lastName.value })
+                        setEmail({ value: email.value })
+                        setPhone({ value: phone.value })
+                        alter.fire(
+                            {
+                                icon: 'success',
+                                title: 'Chỉnh sửa hồ sơ',
+                                text: "Cập nhật thành công",
+                                allowOutsideClick: false,
+                                showConfirmButton: true,
+                                confirmButtonText: 'OK'
+                            }
+                        ).then((result) => {
+                            if (result.isConfirmed) {
+                                navigate("/pageprofile")
+                            }
+                        })
+                    }
+                })
+                .catch(err => {
+                    alter.fire(
+                        {
+                            icon: 'error',
+                            title: 'Cập nhật không thành công'
+                        }
+                    )
+                })
+
+        }
     }
-
-
     if (useApp.user === undefined) {
         return <Navigate to={"/"} state={{ from: location }} replace />
     }
+
     return (
         <div class="profile-container">
             <div class="part-left">
@@ -120,7 +191,7 @@ function Profile() {
                     </div>
 
                     <div class="dropdown">
-                    <div class="dropbtn"><i class="fa-solid fa-file-invoice-dollar"></i><Link style={{textDecoration:'none' ,color:'#111111'}} to={"/history-order"}><span class="text-drop">Lịch sử mua hàng</span></Link></div>
+                        <div class="dropbtn"><i class="fa-solid fa-file-invoice-dollar"></i><Link style={{ textDecoration: 'none', color: '#111111' }} to={"/history-order"}><span class="text-drop">Lịch sử mua hàng</span></Link></div>
 
                     </div>
 
@@ -139,11 +210,23 @@ function Profile() {
                             <div class="form-profile-info">
                                 <div className='fillout-order'>
                                     <div>
-                                        <label className="form-label">Tên hiển thị</label>
+                                        <label className="form-label">First Name</label>
                                         <input
-                                            onInput={changeUser}
-                                            onFocus={focusUser} type="text" className={`form-control ${user.error}`} aria-describedby="validationServer03Feedback"
-                                            value={user.value} />
+                                            onInput={changeFirstName}
+
+                                            onFocus={focusFirstName} type="text" className={`form-control ${firstName.error}`} aria-describedby="validationServer03Feedback"
+                                            value={firstName.value} />
+                                        <div className="invalid-feedback">
+                                            Trường này không được trống !
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label className="form-label">Last Name</label>
+                                        <input
+                                            onInput={changeLastName}
+
+                                            onFocus={focusLastName} type="text" className={`form-control ${lastName.error}`} aria-describedby="validationServer03Feedback"
+                                            value={lastName.value} />
                                         <div className="invalid-feedback">
                                             Trường này không được trống !
                                         </div>
@@ -152,6 +235,7 @@ function Profile() {
                                         <label className="form-label">Email</label>
                                         <input
                                             onInput={changeEmail}
+
                                             onFocus={focusEmail} type="text" className={`form-control ${email.error}`} aria-describedby="validationServer03Feedback"
                                             value={email.value} />
                                         <div className="invalid-feedback">
@@ -160,27 +244,19 @@ function Profile() {
                                         {/* <label className="form-label">Email</label>
                                         <Input config={configEmail} refFunc={refFunc} ></Input> */}
                                     </div>
-                                    <div>
-                                        <label className="form-label">Địa chỉ</label>
-                                        <input
-                                            onInput={changeAddress}
-                                            onFocus={focusAddress} type="text" className={`form-control ${address.error}`} aria-describedby="validationServer03Feedback"
-                                            value={address.value} />
-                                        <div className="invalid-feedback">
-                                            Trường này không được trống !
-                                        </div>
-                                    </div>
+
                                     <div>
                                         <label className="form-label">Số điện thoại</label>
                                         <input
                                             onInput={changePhone}
+
                                             onFocus={focusPhone} type="text" className={`form-control ${phone.error}`} aria-describedby="validationServer03Feedback"
                                             value={phone.value} />
                                         <div className="invalid-feedback">
                                             Trường này phải là số điện thoại !
                                         </div>
                                     </div>
-                                    <div>
+                                    {/* <div>
                                         <label className="form-label">Ngày sinh</label>
                                         <input
                                             onInput={changeBirthday}
@@ -189,92 +265,20 @@ function Profile() {
                                         <div className="invalid-feedback">
                                             Định dạng không hợp lệ! 'dd/mm/yyyy'
                                         </div>
-                                    </div>
+                                    </div> */}
 
                                 </div>
-                                {/* <form>
-                                    <div class="input-profile">
-                                        <div class="input">
-                                            <div class="title-input"><label>Tên hiển thị</label></div>
-                                            <div class="text-input">
-                                                <div class="input-with-validator-wrapper">
-                                                    <div class="input-with-validator-profile">
-                                                        <input
-                                                            onInput={changeUser}
-                                                            onFocus={focusUser} type="text" className={`form-control ${user.error}`} aria-describedby="validationServer03Feedback"
-                                                            value={user.value} />
-                                                            <div className="invalid-feedback">
-                                                            Trường này không được trống !
-                                                        </div>
-                                                    </div>
-                                                   
 
-                                                </div>
-                                            </div>
-
-
-                                        </div>
-
-                                    </div>
-                       
-                                    <div class="input-profile">
-                                        <div class="input">
-                                            <div class="title-input"><label>Tên tài khoản</label></div>
-                                            <div class="text-input">
-                                                <div class="input-with-validator-wrapper">
-                                                    <div class="input-with-validator">
-                                                        <input type="text" placeholder="nlu789" maxlength="255" ></input>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="input-profile">
-                                        <div class="input">
-                                            <div class="title-input"><label>Số điện thoại</label></div>
-                                            <div class="text-input">
-                                                <div class="input-with-validator-wrapper">
-                                                    <div class="input-with-validator">
-                                                        <input type="text" placeholder="0349111879" maxlength="255" ></input>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="input-profile">
-                                        <div class="input">
-                                            <div class="title-input"><label>Email</label></div>
-                                            <div class="text-input">
-                                                <div class="input-with-validator-wrapper">
-                                                    <div class="input-with-validator">
-                                                        <input type="text" placeholder="nlu@gmail.com" maxlength="255" ></input>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="input-profile">
-                                        <div class="input">
-                                            <div class="title-input"><label>Ngày sinh</label></div>
-                                            <div class="text-input">
-                                                <div class="input-with-validator-wrapper">
-                                                    <div class="input-with-validator">
-                                                        <input type="text" placeholder="01/01/2000" maxlength="255" ></input>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form> */}
                             </div>
                             <div class="btnSaveProfile">
-                                <button onClick={submit} class="btnSave" type="button">Lưu</button>
+                                <button onClick={submitTest} class="btnSave" type="button">Lưu</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
     )
 }
 

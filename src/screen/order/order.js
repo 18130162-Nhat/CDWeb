@@ -139,7 +139,7 @@ function Order() {
 
     return (
         <div className='container-page-cart'>
-            <div className='page-cart'>
+            <div className='page-order'>
                 <div className="container-cart">
 
                     <div>
@@ -189,11 +189,11 @@ function Order() {
                     <div className="modal-body">
 
                         <div className="cart-row-header">
-                            <span className="cart-header">Giỏ hàng</span>
+                            <Link to={"/pageCart"} className="nav-cart1"><span className="cart-header cart1">Giỏ hàng</span></Link>
                             <div className="null-header"></div>
-                            <span className="cart-header">Chi tiết</span>
-                            <div className="null-header"></div>
-                            <span className="cart-header">Thanh toán</span>
+                            <Link to={"/order"} className="nav-detail1"><span className="cart-header detail1">Chi tiết</span></Link>
+                            {/* <div className="null-header"></div>
+                            <span className="cart-header">Thanh toán</span> */}
                         </div>
 
                         <div className='fillout-order'>

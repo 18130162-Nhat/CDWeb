@@ -115,7 +115,7 @@ function Header() {
                                             <li onClick={() => clickItem(item)} key={item.idProduct}>
                                                 
                                                 <div className='tag-auto-complete'>
-                                                    <img src={logo} />
+                                                    <img src={item.thumbnail} />
                                                 </div>
                                                 <span>{item.name}</span>
                                             </li>
@@ -140,7 +140,7 @@ function Header() {
                     <span className="name-user" style={{minWidth:'150px'}}>{JSON.parse(sessionStorage.getItem("user")).name}</span>
                     <ul style={{ paddingLeft: '0' }} className="option">
                         <li>
-                            <a href="#">Cài đặt</a>
+                            <Link to={"/pageprofile"}>Cài đặt</Link>
                         </li>
                         <li style={{ paddingBottom: '5px' }}>
                             <a href="#">Đăng xuất</a>

@@ -17,9 +17,9 @@ function ChangePass() {
 
     // const location = useLocation();
     const refFunc = useRef([])
-    // const navigate = useNavigate()
-    const [valueOfPass, setValue] = useState(" ")
-    const [valueOfCurrentPass, setCurrentValue] = useState("123456789")
+  
+    const [valueOfPass, setValue] = useState("")
+
 
 
     const configPass = {
@@ -27,7 +27,7 @@ function ChangePass() {
         label: 'Nhập mật khẩu hiện tại*',
         listError: [PASSWORD, FIELD_EMPTY],
         index: 0,
-        repeat: { value: valueOfCurrentPass},
+        repeat: false,
         type: true,
         url: false
     }
@@ -50,6 +50,7 @@ function ChangePass() {
         url: false
     }
 
+
     const submitForm = (event) => {
         event.preventDefault();
         let check = true
@@ -57,14 +58,24 @@ function ChangePass() {
         refFunc.current.forEach(func => {
             check = check & func()
         })
+        
         if (check) {
+            console.log(check)
             let formData = new FormData(event.currentTarget)
+            // let idCus = 1
             let pass = formData.get("pass")
             let newpass = formData.get("newpass")
-            let repeatpass = formData.get("repeat")
+            let repeat = formData.get("repeat")
+
+            let form = new FormData()
+            // form.setForm({idCus, pass, newpass, repeat})
+            form.append('idCus', 1)
+            form.append('pass', pass)
+            form.append('newpass', newpass)
+            // form.append('repeat', repeat)
             fetch("http://localhost:8080/customer/changePass",{
                     method :"POST",
-                    body : formData
+                    body : form
                 })
                 .then(res =>{
                     if(!res.ok) throw new Error(res.status)
@@ -73,10 +84,27 @@ function ChangePass() {
                 .then(data =>{
                     if(data.message==='oke'){
                         alter.fire(
+
                             {
                                 icon: 'success',
                                 title: 'Đổi mật khẩu',
-                                text: "Cập nhật thành công",
+                                text: "Đổi mật khẩu thành công",
+                                allowOutsideClick : false,
+                                showConfirmButton: true,
+                                confirmButtonText: 'OK'
+                              }
+                        ).then((result) => {
+                            if (result.isConfirmed) {
+                              navigate("/pageprofile")
+                            }
+                          })
+                    }else{
+                        alter.fire(
+
+                            {
+                                icon: 'error',
+                                title: 'Đổi mật khẩu',
+                                text: "Đổi mật khẩu không thành công",
                                 allowOutsideClick : false,
                                 showConfirmButton: true,
                                 confirmButtonText: 'OK'
@@ -91,7 +119,7 @@ function ChangePass() {
                 .catch(err =>{
                     alter.fire(
                         {icon: 'error',
-                        title: 'Cập nhật không thành công'}
+                        title: 'Đổi mật khẩu không thành công'}
                       )
                 })
              

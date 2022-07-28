@@ -140,7 +140,7 @@ function Header() {
                     <span className="name-user">18130162@st.hcmuaf.edu.vn </span>
                     <ul style={{ paddingLeft: '0' }} className="option">
                         <li>
-                            <a href="#">Cài đặt</a>
+                            <Link to={"/pageprofile"}>Cài đặt</Link>
                         </li>
                         <li style={{ paddingBottom: '5px' }}>
                             <a href="#">Đăng xuất</a>

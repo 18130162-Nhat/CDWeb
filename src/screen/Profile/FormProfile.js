@@ -91,7 +91,6 @@ function Profile() {
     setLastName({...lastName, error: '',value: data.data.lastName})
     setPhone({...phone, error: '',value: data.data.phone})
     })
-   
   },[])
 
     const submitTest = (event) => {

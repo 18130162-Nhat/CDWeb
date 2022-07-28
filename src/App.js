@@ -14,27 +14,31 @@ import PageProfile from "./screen/Profile/PageProfile"
 import PageChangePass from "./screen/Profile/PageChangePass"
 import PageForgetPass from "./screen/ForgetPass/PageForget";
 import FormTypeEmailOfPass from "./screen/ForgetPass/FormTypePass";
+import HistoryOrder from "./screen/Profile/HistoryOrder";
+import Home from "./screen/Home/Home";
 
 function App() {
   return (
     <Routes>
-      < Route  element ={<Layout/>}>
-        <Route path="/" index element ={<PageLogin/>}/>
-        <Route path="/register" element ={<PageRegister/>}>
-          <Route index path="formInfor" element={<FormInformation/>}/>
-          <Route path="formEmail" element ={<FormTypeEmail/>}/>
+      < Route element={<Layout />}>
+        <Route path="/" index element={<PageLogin />} />
+        <Route path="/register" element={<PageRegister />}>
+          <Route index path="formInfor" element={<FormInformation />} />
+          <Route path="formEmail" element={<FormTypeEmail />} />
         </Route>
-        <Route path="/forgetpass" element={<PageForgetPass/>}>
-       <Route index path="typePass" element = {<FormTypeEmailOfPass/>}/>
-       <Route  path="otp" element = {<OTP/>}/>
+        <Route path="/forgetpass" element={<PageForgetPass />}>
+          <Route index path="typePass" element={<FormTypeEmailOfPass />} />
+          <Route path="otp" element={<OTP />} />
         </Route>
-        <Route path="/pagecart"  element = {<PageCart/>}/>
-        <Route path="/shop" element = {<PageShop/>}/>
-        <Route path="/contact" element ={<PageContact/>}/>
-        <Route path="/order" element ={<Order/>}/>
-        <Route path="/detail/:id" element={<Detail/>}/>
-        <Route path="/pageprofile"  element = {<PageProfile/>}/>
-        <Route path="/pagechangepass"  element = {<PageChangePass/>}/>
+        <Route path="/pagecart" element={<PageCart />} />
+        <Route path="/shop" element={<PageShop />} />
+        <Route path="/contact" element={<PageContact />} />
+        <Route path="/order" element={<Order />} />
+        <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/pageprofile" element={<PageProfile />} />
+        <Route path="/pagechangepass" element={<PageChangePass />} />
+        <Route path="/history-order" element={<HistoryOrder />}></Route>
+        <Route path="/home" element= {<Home/>}/>
       </Route>
     </Routes>
   );

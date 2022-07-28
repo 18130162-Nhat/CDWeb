@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext,  useState } from "react";
 import localStorageApp from "../service/LocalStorage";
 export const ApplicationContext = createContext()
 
@@ -10,7 +10,9 @@ function ApplicationProvider({ children }) {
    const logged = (object) => {
       setUser(object)
    }
-
+   const setCartEmpty = () =>{
+      setCart([])
+   }
    const addItem = (item) => {
       let arrayCopy = [...cart]
       let pos = 0
@@ -75,7 +77,7 @@ function ApplicationProvider({ children }) {
    }
 
 
-   let value = { user, logged, cart, addItem, removeItem, subItem,addItemDetail }
+   let value = { user, logged, cart, addItem, removeItem, subItem,addItemDetail ,setCartEmpty }
    return <ApplicationContext.Provider value={value}>
       {children}
    </ApplicationContext.Provider>

@@ -1,7 +1,8 @@
 import '../../fontawesome-free-6.0.0-web/css/all.css'
 import { useRef, useState } from 'react'
 import avatar from "../../Image/user-img.png"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, Navigate, useLocation } from "react-router-dom"
+import useApplication from '../../Custom/Hook/useApplication';
 // import { FIELD_EMPTY, getListError } from "../../Constant/ErrorForm"
 import { FIELD_EMPTY, PASSWORD } from '../../Constant/ErrorForm'
 import Input from '../../component/Input'
@@ -10,6 +11,8 @@ import React from 'react'
 import "../Profile/changepass.css"
 
 function ChangePass() {
+    const location = useLocation();
+    const useApp = useApplication()
 
     // const location = useLocation();
     const refFunc = useRef([])
@@ -62,6 +65,9 @@ function ChangePass() {
         let value = callback()
         setValue(value)
     }
+    if (useApp.user === undefined) {
+        return <Navigate to={"/"} state={{ from: location }} replace />
+    }
 
     return (
         <div class="profile-container">
@@ -73,7 +79,7 @@ function ChangePass() {
                         </div>
                     </Link>
                     <div class="username-head">
-                        <div class="username">Nguyen Van A</div>
+                        <div class="username">{useApp.user.name}</div>
                         <div class="div-edit">
                             <Link to={"/pageprofile"} class="edit">
                                 <i class="fa-solid fa-pen"></i>
@@ -93,7 +99,7 @@ function ChangePass() {
                     </div>
 
                     <div class="dropdown">
-                        <div class="dropbtn"><i class="fa-solid fa-file-invoice-dollar"></i><span class="text-drop">Lịch sử mua hàng</span></div>
+                    <div class="dropbtn"><i class="fa-solid fa-file-invoice-dollar"></i><Link style={{textDecoration:'none' ,color:'#111111'}} to={"/history-order"}><span class="text-drop">Lịch sử mua hàng</span></Link></div>
 
                     </div>
 

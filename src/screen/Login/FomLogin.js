@@ -97,11 +97,11 @@ function FormLogin() {
        form.append('email' ,inputEmail.value)
        form.append('pass', inputPass.value)
         setLoading(true)
-        APIAuthen.signIn(() =>{
+        APIAuthen.signIn((data) =>{
             setLoading(true)
             navigate("/order")
-            localStorageApp.setItemStorage('user' , "bui nhat")
-            useApp.logged({name : 'nhat'})
+            localStorageApp.setItemStorage('user' , JSON.stringify(data.data))
+            useApp.logged(data.data)
         } ,() =>{
             setLoading(false)
             setInputPass({...inputPass , messageError : "",isError:true})

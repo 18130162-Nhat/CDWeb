@@ -1,7 +1,8 @@
 import '../../fontawesome-free-6.0.0-web/css/all.css'
 import avatar from "../../Image/user-img.png"
 import { useRef, useState } from 'react'
-import { Link, useNavigate } from "react-router-dom"
+import useApplication from '../../Custom/Hook/useApplication'
+import { Link, Navigate, useLocation } from "react-router-dom"
 import Input from '../../component/Input'
 import {REQUIRE_EMAIL ,FIELD_EMPTY ,PASSWORD} from '../../Constant/ErrorForm'
 
@@ -10,6 +11,8 @@ import React from 'react'
 import "./profile.css"
 
 function Profile() {
+    const location = useLocation();
+    const useApp = useApplication()
 
     // const refFunc = useRef([]) 
     // const configEmail = {
@@ -84,7 +87,9 @@ function Profile() {
     }
 
 
-
+    if (useApp.user === undefined) {
+        return <Navigate to={"/"} state={{ from: location }} replace />
+    }
     return (
         <div class="profile-container">
             <div class="part-left">
@@ -95,7 +100,7 @@ function Profile() {
                         </div>
                     </Link>
                     <div class="username-head">
-                        <div class="username">Nguyen Van A</div>
+                        <div class="username">{useApp.user.name}</div>
                         <div class="div-edit">
                             <Link to={"/pageprofile"} class="edit">
                                 <i class="fa-solid fa-pen"></i>
@@ -115,7 +120,7 @@ function Profile() {
                     </div>
 
                     <div class="dropdown">
-                        <div class="dropbtn"><i class="fa-solid fa-file-invoice-dollar"></i><span class="text-drop">Lịch sử mua hàng</span></div>
+                    <div class="dropbtn"><i class="fa-solid fa-file-invoice-dollar"></i><Link style={{textDecoration:'none' ,color:'#111111'}} to={"/history-order"}><span class="text-drop">Lịch sử mua hàng</span></Link></div>
 
                     </div>
 

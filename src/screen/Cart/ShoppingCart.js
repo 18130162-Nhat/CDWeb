@@ -1,22 +1,46 @@
 import '../../fontawesome-free-6.0.0-web/css/all.css'
 import useApplication from '../../Custom/Hook/useApplication'
-
+import bag from '../../Image/shopping-bag.svg'
 import React from 'react'
-
+import { useNavigate} from 'react-router-dom'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 import "./cart.css"
 
 function Cart() {
     const useApp = useApplication()
-   
-    const totalPrice = () =>{
+    const navigate = useNavigate()
+    const popup = withReactContent(Swal)
+    const totalPrice = () => {
         let price = 0
         useApp.cart.forEach(item => {
-            price += item.price*item.quantity
+            price += item.price * item.quantity
         });
-        let strPrice = price+""
-        return  strPrice.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")
+        let strPrice = price + ""
+        return strPrice.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")
     }
-    
+
+    const checkOut = () =>{
+            let cart = JSON.parse(sessionStorage.getItem("cart"))
+            if(cart) navigate("/order")
+            else{
+                popup.fire(
+                    {
+                        icon: 'error',
+                        title: 'Giỏ hàng trống',
+                        text: "Đi đến cửa hàng để mua sắm nào",
+                        allowOutsideClick: false,
+                        showConfirmButton: true,
+                        confirmButtonText: 'Mua sắm'
+                    }
+                ).then((result) => {
+                    if (result.isConfirmed) {
+                        navigate("/shop")
+                    }
+                })
+            }
+    }
+
 
     return (
         <div className="container-cart">
@@ -61,7 +85,7 @@ function Cart() {
                         </div>
                     </div>
 
-                    <button className="btn-continue-buy" type="button">Tiếp tục mua sắm</button>
+                    <button onClick={() => navigate("/shop")} className="btn-continue-buy" type="button">Tiếp tục mua sắm</button>
 
                 </div>
             </div>
@@ -75,6 +99,18 @@ function Cart() {
                     <div className="null-header"></div>
                     <span className="cart-header">Thanh toán</span>
                 </div>
+                {
+                    useApp.cart.length === 0 ?
+                       <>
+                       <div className='d-flex justify-content-center mt-5 pt-5'>
+                            <img src={bag}></img>
+
+                        </div>
+                        <h1 class="display-6 text-center">Giỏ hàng trống</h1>
+                       <div className='text-center'>  <button onClick={() => navigate("/shop")} type="button" className="btn btn-primary mt-5">Đi đến cửa hàng nào</button></div>
+                       </>
+                       :""
+                }
 
                 <div className="cart-items">
 
@@ -85,7 +121,7 @@ function Cart() {
                                     <img className="cart-item-image" src={item.thumbnail} width="100" height="100"></img>
                                     <span className="cart-item-title">{item.name}</span>
                                 </div>
-                                <span className="cart-price cart-column">{(item.price+"").replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}<sup>vnd</sup></span>
+                                <span className="cart-price cart-column">{(item.price + "").replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")}<sup>vnd</sup></span>
                                 <div className="cart-item cart-column cart-amount">
                                     <div onClick={() => useApp.subItem(item)} className="cart-decrease"><i className="fa-solid fa-minus"></i></div>
                                     <div className="cart-quantity cart-column">
@@ -98,14 +134,16 @@ function Cart() {
                         ))
                     }
 
-                    
-                    
 
 
-                    <div className="cart-total mt-5">
-                        <strong className="cart-total-title">Tổng Cộng:</strong>
-                        <span className="cart-total-price">{totalPrice()}<sup>vnd</sup></span>
-                    </div>
+
+
+                    {useApp.cart.length === 0 ? "" :
+                        <div className="cart-total mt-5">
+                            <strong className="cart-total-title">Tổng Cộng:</strong>
+                            <span className="cart-total-price">{totalPrice()}<sup>vnd</sup></span>
+                        </div>
+                    }
                 </div>
 
             </div>
@@ -122,7 +160,7 @@ function Cart() {
                     </div>
                     <input className="voucher-text" type="text" name="voucher"></input>
                     <div>
-                        <button className="btn btn-apply" type="button">Áp dụng</button>
+                        <button onClick={checkOut} className="btn btn-apply" type="button">Áp dụng</button>
                     </div>
 
                 </div>

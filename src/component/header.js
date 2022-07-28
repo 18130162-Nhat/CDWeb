@@ -90,7 +90,7 @@ function Header() {
                 </div>
                 <hr className="hr-navigation" />
                 <ul style={{ marginBottom: '0px' }}>
-                    <li> <Link to={"/order"}>Trang chủ</Link></li>
+                    <li> <Link to={"/home"}>Trang chủ</Link></li>
                     <li> <Link to={"/shop"}>Cửa hàng</Link></li>
                     <li> <Link to={"/contact"}>Liên hệ</Link></li>
 
@@ -137,7 +137,7 @@ function Header() {
             {user.user !== undefined ?
                 <div className="header-user">
                     <i className="fa-solid fa-user"></i>
-                    <span className="name-user">18130162@st.hcmuaf.edu.vn </span>
+                    <span className="name-user" style={{minWidth:'150px'}}>{JSON.parse(sessionStorage.getItem("user")).name}</span>
                     <ul style={{ paddingLeft: '0' }} className="option">
                         <li>
                             <a href="#">Cài đặt</a>

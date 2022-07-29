@@ -11,9 +11,12 @@ import img3 from "./imageHome/product_blue.png"
 import img4 from "./imageHome/running.jpg"
 import img5 from "./imageHome/coming1.jpg"
 import img6 from "./imageHome/coming2.jpg"
-import img7 from "./imageHome/coming4.jpg"
-import img8 from "./imageHome/coming6.jpg"
-import img9 from "./imageHome/coming7.jpg"
+import img7 from "./imageHome/coming5.jpg"
+import img8 from "./imageHome/coming8.jpg"
+import img9 from "./imageHome/coming6.jpg"
+import img10 from "./imageHome/coming4.jpg"
+import img11 from "./imageHome/coming3.jpg"
+import img12 from "./imageHome/coming7.jpg"
 import { useNavigate } from "react-router-dom"
 function Home() {
 
@@ -135,11 +138,50 @@ function Home() {
                     </div>
                     <div className="img-coming">
 
-                        <img className="img-new" src={img5}></img>
-                        <img className="img-new" src={img6}></img>
-                        <img className="img-new" src={img7}></img>
-                        <img className="img-new" src={img8}></img>
-                        {/* <img className="img-new" src={img9}></img> */}
+                        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+
+                            <div class="carousel-inner">
+                                <div class="carousel-item active" >
+                                    <div style={{ height: '300px' }} className="d-flex justify-content-evenly align-items-center ">
+                                        <div className="div-img"> <img class="d-block w-100" src={img5}></img>
+                                        </div>
+                                        <div className="div-img"> <img class="d-block w-100" src={img6}></img>
+                                        </div>
+                                        <div className="div-img"> <img class="d-block w-100" src={img7}></img>
+                                        </div>
+                                        <div className="div-img"> <img class="d-block w-100" src={img8}></img>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                                <div class="carousel-item" >
+                                    <div style={{ height: '300px' }} className="d-flex justify-content-evenly align-items-center ">
+                                        <div className="div-img"> <img class="d-block w-100" src={img9}></img>
+                                        </div>
+                                        <div className="div-img"> <img class="d-block w-100" src={img10}></img>
+                                        </div>
+                                        <div className="div-img"> <img class="d-block w-100" src={img11}></img>
+                                        </div>
+                                        <div className="div-img"> <img class="d-block w-100" src={img12}></img>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
 
                     </div>
                 </div>

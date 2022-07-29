@@ -2,9 +2,7 @@ import '../../fontawesome-free-6.0.0-web/css/all.css'
 import avatar from "../../Image/user-img.png"
 import useApplication from '../../Custom/Hook/useApplication'
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom"
-import Input from '../../component/Input'
-import { REQUIRE_EMAIL, FIELD_EMPTY, PASSWORD } from '../../Constant/ErrorForm'
-import { useRef, useState, React, useEffect } from 'react'
+import { useState, React, useEffect } from 'react'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import "./profile.css"
@@ -86,7 +84,8 @@ function Profile() {
 
 
     useEffect(() => {
-        fetch("http://localhost:8080/findCustomerByfilter?idCus=1")
+        let id = JSON.parse(sessionStorage.getItem("user")).idUser
+        fetch(`http://localhost:8080/findCustomerByfilter?idCus=${id}`)
             .then(response => response.json())
             .then(data => {
                 console.log(data)
@@ -110,7 +109,8 @@ function Profile() {
 
             
             let form = new FormData()
-            form.append('idCus', 1)
+            let id = JSON.parse(sessionStorage.getItem("user")).idUser
+            form.append('idCus', id)
             form.append('firstName', firstName.value)
             form.append('email', email.value)
             form.append('lastName', lastName.value)

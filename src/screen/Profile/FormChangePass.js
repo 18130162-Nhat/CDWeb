@@ -2,8 +2,7 @@ import '../../fontawesome-free-6.0.0-web/css/all.css'
 import { useRef, useState } from 'react'
 import avatar from "../../Image/user-img.png"
 import { Link, Navigate, useLocation,useNavigate } from "react-router-dom"
-import useApplication from '../../Custom/Hook/useApplication';
-// import { FIELD_EMPTY, getListError } from "../../Constant/ErrorForm"
+import useApplication from '../../Custom/Hook/useApplication'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { FIELD_EMPTY, PASSWORD } from '../../Constant/ErrorForm'
@@ -73,7 +72,8 @@ function ChangePass() {
 
             let form = new FormData()
             // form.setForm({idCus, pass, newpass, repeat})
-            form.append('idCus', 1)
+            let id = JSON.parse(sessionStorage.getItem("user")).idUser
+            form.append('idCus', id)
             form.append('pass', pass)
             form.append('newpass', newpass)
             // form.append('repeat', repeat)

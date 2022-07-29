@@ -8,6 +8,12 @@ import { Autoplay, Pagination } from "swiper";
 import img from './imageHome/nike-black.png'
 import img2 from "./imageHome/product_red.png"
 import img3 from "./imageHome/product_blue.png"
+import img4 from "./imageHome/running.jpg"
+import img5 from "./imageHome/coming1.jpg"
+import img6 from "./imageHome/coming2.jpg"
+import img7 from "./imageHome/coming4.jpg"
+import img8 from "./imageHome/coming6.jpg"
+import img9 from "./imageHome/coming7.jpg"
 import { useNavigate } from "react-router-dom"
 function Home() {
 
@@ -92,6 +98,51 @@ function Home() {
 
                 </Swiper>
 
+            </div>
+            <div className="home-contain" style={{}}>
+                <div className="home-intro">
+                    <div className="img-intro">
+                        <img className="img-in" src={img4}></img>
+                    </div>
+                    <div className="intro-text">
+                        <h1>
+                            Introduce
+                        </h1>
+                        <p style={{ width: '90%' }}>
+                            Thể thao giúp chúng ta khỏe mạnh.
+                            Mang chúng ta đến với nhau.
+                            Thông qua thể thao, chúng ta có sức mạnh để thay đổi cuộc sống.
+                            Cho dù đó là thông qua những câu chuyện của các vận động viên đầy cảm hứng.
+                            Giúp bạn đứng dậy và di chuyển.
+                            Đồ thể thao có công nghệ mới nhất để nâng cao hiệu suất của bạn.
+                            Bức phá giới hạn của bạn.
+                            Chúng tôi cung cấp một ngôi nhà cho người chạy bộ, cầu thủ bóng rổ, trẻ em bóng đá, những người đam mê thể dục.
+                            Người đi bộ đường dài cuối tuần thích trốn khỏi thành phố.
+                            Giáo viên yoga truyền bá các động tác.
+                            Giày thể thao chất lượng của chúng tôi giúp bạn tập trung trước khi tiếng còi vang lên.
+                            Trong cuộc đua. Và ở vạch đích.
+                            Chúng tôi hợp tác với những người giỏi nhất trong ngành để cùng sáng tạo.
+                            Bằng cách này, chúng tôi cung cấp cho người hâm mộ các thể loại và kiểu dáng thể thao phù hợp với nhu cầu thể thao của họ, đồng thời lưu ý đến tính bền vững.
+                            Chúng tôi ở đây để hỗ trợ người sáng tạo.
+                            Cải thiện sản phẩm của họ.Tạo các thay đổi.
+                            Và chúng tôi nghĩ về tác động của chúng tôi đối với thế giới.
+                        </p>
+                    </div>
+                </div>
+                <div className="home-coming">
+                    <div className="title-coming">
+                        <h1 className="title-new">Sản phẩm sắp ra mắt...</h1>
+                    </div>
+                    <div className="img-coming">
+
+                        <img className="img-new" src={img5}></img>
+                        <img className="img-new" src={img6}></img>
+                        <img className="img-new" src={img7}></img>
+                        <img className="img-new" src={img8}></img>
+                        {/* <img className="img-new" src={img9}></img> */}
+
+                    </div>
+                </div>
             </div>
         </div>
     )

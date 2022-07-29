@@ -6,7 +6,7 @@
     } ,
     getItemStorage : (key) =>{
 
-        return sessionStorage.getItem(key)?localStorage.getItem(key):undefined
+        return sessionStorage.getItem(key)?sessionStorage.getItem(key):undefined
     }
 }
 export default localStorageApp

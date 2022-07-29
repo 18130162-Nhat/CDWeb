@@ -137,8 +137,8 @@ function Header() {
             {user.user !== undefined ?
                 <div className="header-user">
                     <i className="fa-solid fa-user"></i>
-                    <span className="name-user" style={{minWidth:'150px'}}>{JSON.parse(sessionStorage.getItem("user")).name}</span>
-                    <ul style={{ paddingLeft: '0' }} className="option">
+                    <span className="name-user" style={{minWidth:'150px'}}>{user.user.name}</span>
+                    <ul style={{ paddingLeft: '0' , zIndex:'99999999'}} className="option">
                         <li>
                             <Link to={"/pageprofile"}>Cài đặt</Link>
                         </li>

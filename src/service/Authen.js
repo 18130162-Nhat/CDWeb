@@ -11,6 +11,7 @@ const APIAuthen = {
             return res.json()
         })
         .then(data =>{
+            console.log(data.data)
             if(data.message==='oke') sucess(data)
         })
         .catch(err =>{

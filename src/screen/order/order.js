@@ -68,8 +68,8 @@ function Order() {
 
     const submit = () => {
 
-        let user = JSON.parse(sessionStorage.getItem("user"))
-        if(!user) {
+        let cus = JSON.parse(sessionStorage.getItem("user"))
+        if(!cus) {
             popup.fire(
                 {
                     icon: 'error',
@@ -85,9 +85,11 @@ function Order() {
                 }
             })
         } else{
-
+                
             checkValue()
+        
             if (phone.error === 'is-valid' && address.error === 'is-valid' && user.error === 'is-valid') {
+                
                 fetch("http://localhost:8080/order", {
                     method: "POST",
                     headers: {
@@ -196,7 +198,7 @@ function Order() {
                             <span className="cart-header">Thanh toán</span> */}
                         </div>
 
-                        <div className='fillout-order'>
+                        <div style ={{width:'80%'}} className='fillout-order'>
                             <div>
                                 <label className="form-label">Tên người nhận</label>
                                 <input

@@ -99,7 +99,8 @@ function FormLogin() {
         setLoading(true)
         APIAuthen.signIn((data) =>{
             setLoading(true)
-            navigate("/order")
+            navigate("/home")
+            console.log(data.data)
             localStorageApp.setItemStorage('user' , JSON.stringify(data.data))
             useApp.logged(data.data)
         } ,() =>{

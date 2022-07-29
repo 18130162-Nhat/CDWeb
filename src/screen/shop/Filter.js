@@ -58,7 +58,7 @@ function Filter({func,sort,displayItem}) {
                 <select onChange={(event) => func(event,3)} className="form-select">
                     <option selected value="">-- Tất cả --</option>
                     <option value={"SPORT"}>Thể thao</option>
-                    <option value={"CHILD"}>Trẻ em</option>
+                    <option value={"CHILDREN"}>Trẻ em</option>
                     <option value={"ADULT"}>Người lớn</option>
                     
                 </select>

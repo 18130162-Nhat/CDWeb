@@ -1,6 +1,5 @@
 import '../../fontawesome-free-6.0.0-web/css/all.css'
 import avatar from "../../Image/user-img.png"
-import { useRef, useState } from 'react'
 import useApplication from '../../Custom/Hook/useApplication'
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom"
 import Input from '../../component/Input'

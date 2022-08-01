@@ -16,6 +16,7 @@ import PageForgetPass from "./screen/ForgetPass/PageForget";
 import FormTypeEmailOfPass from "./screen/ForgetPass/FormTypePass";
 import HistoryOrder from "./screen/Profile/HistoryOrder";
 import Home from "./screen/Home/Home";
+import NoMatch from "./screen/PageNotFound/PageNotFound"
 
 function App() {
   return (
@@ -38,8 +39,9 @@ function App() {
         <Route path="/pageprofile" element={<PageProfile />} />
         <Route path="/pagechangepass" element={<PageChangePass />} />
         <Route path="/history-order" element={<HistoryOrder />}></Route>
-        <Route path="/home" element= {<Home/>}/>
+        <Route path="/home" element= {<Home/>}/>   
       </Route>
+      <Route path="*" element={<NoMatch />} />
     </Routes>
   );
 }

@@ -96,7 +96,7 @@ function Cart() {
                 <div className="cart-row-header">
                     <Link to={"/pageCart"} className="nav-cart"><span className="cart-header cart2">Giỏ hàng</span></Link>
                     <div className="null-header"></div>
-                    <Link to={"/order"} className="nav-detail"><span className="cart-header detail2">Chi tiết</span></Link>
+                    <Link to={"/order"} className="nav-detail"><span className="cart-header detail2">Đặt hàng</span></Link>
                     {/* <div className="null-header"></div>
                     <span className="cart-header">Thanh toán</span> */}
                 </div>
@@ -134,9 +134,6 @@ function Cart() {
                             </div>
                         ))
                     }
-
-
-
 
 
                     {useApp.cart.length === 0 ? "" :

@@ -193,7 +193,7 @@ function Order() {
                         <div className="cart-row-header">
                             <Link to={"/pageCart"} className="nav-cart1"><span className="cart-header cart1">Giỏ hàng</span></Link>
                             <div className="null-header"></div>
-                            <Link to={"/order"} className="nav-detail1"><span className="cart-header detail1">Chi tiết</span></Link>
+                            <Link to={"/order"} className="nav-detail1"><span className="cart-header detail1">Đặt hàng</span></Link>
                             {/* <div className="null-header"></div>
                             <span className="cart-header">Thanh toán</span> */}
                         </div>

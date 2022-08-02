@@ -9,11 +9,9 @@ import "./profile.css"
 
 
 function Profile() {
-    const location = useLocation();
+    const location = useLocation()
     const useApp = useApplication()
-
-    const alter = withReactContent(Swal)
-
+    const alter = withReactContent(Swal);
     const navigate = useNavigate()
 
     const [firstName, setFirstName] = useState({ value: '', error: '' })
@@ -21,45 +19,82 @@ function Profile() {
     const [lastName, setLastName] = useState({ value: '', error: '' })
     const [phone, setPhone] = useState({ value: '', error: '' })
 
-    const [birthday, setBirthday] = useState({ value: '', error: '' })
+    // const [birthday, setBirthday] = useState({ value: '', error: '' })
 
-
+    
+    const changeFirstName = (event) => {
+        setFirstName({ ...firstName, value: event.target.value })
+    }
+    const changeLastName = (event) => {
+        setLastName({ ...lastName, value: event.target.value })
+    }
     const changeEmail = (event) => {
         setEmail({ ...email, value: event.target.value })
     }
     const changePhone = (event) => {
         setPhone({ ...phone, value: event.target.value })
     }
-    const changeLastName = (event) => {
-        setLastName({ ...lastName, value: event.target.value })
-    }
+
     // const changeBirthday = (event) => {
     //     setBirthday({ ...birthday, value: event.target.value })
     // }
-    const changeFirstName = (event) => {
-        setFirstName({ ...firstName, value: event.target.value })
+
+
+    const blurFirstName = () => {
+        validateFirstName()
+        
+    }
+    const blurLastName = () => {
+        validateLastName()
+
+    }
+    const blurEmail = () => {
+        validateEmail()
+
+    }
+    const blurPhone = () => {
+        validatePhone()
     }
 
+
+    const validateFirstName = () => {
+        if (firstName.value.trim().length === 0) setFirstName({ ...firstName, error: 'is-invalid' })
+        else setFirstName({ ...firstName, error: 'is-valid' })
+    }
+    const validateLastName = () => {
+        if (lastName.value.trim().length === 0) setLastName({ ...lastName, error: 'is-invalid' })
+        else setLastName({ ...lastName, error: 'is-valid' })
+    }
+    const validateEmail = () => {
+        let regex1 = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
+        if (regex1.test(email.value.trim())) setEmail({ ...email, error: 'is-valid' })
+        else setEmail({ ...email, error: 'is-invalid' })
+    }
+    const validatePhone = () => {
+        let regex = new RegExp(/((09|03|07|08|05)+([0-9]{8})\b)/)
+        if (regex.test(phone.value.trim())) setPhone({ ...phone, error: 'is-valid' })
+        else setPhone({ ...phone, error: 'is-invalid' })
+    }
 
 
     const checkValue = () => {
         if (firstName.value.trim().length === 0) setFirstName({ ...firstName, error: 'is-invalid' })
         else setFirstName({ ...firstName, error: 'is-valid' })
 
-        // let regex2 = new RegExp(/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/);
-        // if (regex2.test(birthday.value.trim())) setBirthday({ ...birthday, error: 'is-valid' })
-        // else setBirthday({ ...birthday, error: 'is-invalid' })
-
-        let regex1 = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
-        if (regex1.test(email.value.trim())) setEmail({ ...email, error: 'is-valid' })
-        else setEmail({ ...email, error: 'is-invalid' })
-
         if (lastName.value.trim().length === 0) setLastName({ ...lastName, error: 'is-invalid' })
         else setLastName({ ...lastName, error: 'is-valid' })
+
+        let regex1 = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}')
+        if (regex1.test(email.value.trim())) setEmail({ ...email, error: 'is-valid' })
+        else setEmail({ ...email, error: 'is-invalid' })
 
         let regex = new RegExp(/((09|03|07|08|05)+([0-9]{8})\b)/)
         if (regex.test(phone.value.trim())) setPhone({ ...phone, error: 'is-valid' })
         else setPhone({ ...phone, error: 'is-invalid' })
+
+        // let regex2 = new RegExp(/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/);
+        // if (regex2.test(birthday.value.trim())) setBirthday({ ...birthday, error: 'is-valid' })
+        // else setBirthday({ ...birthday, error: 'is-invalid' })
     }
 
     const focusFirstName = () => {
@@ -107,7 +142,7 @@ function Profile() {
 
         if (check) {
 
-            
+
             let form = new FormData()
             let id = JSON.parse(sessionStorage.getItem("user")).idUser
             form.append('idCus', id)
@@ -212,7 +247,7 @@ function Profile() {
                                         <label className="form-label">First Name</label>
                                         <input
                                             onInput={changeFirstName}
-
+                                            onBlur={blurFirstName}
                                             onFocus={focusFirstName} type="text" className={`form-control ${firstName.error}`} aria-describedby="validationServer03Feedback"
                                             value={firstName.value} />
                                         <div className="invalid-feedback">
@@ -223,7 +258,7 @@ function Profile() {
                                         <label className="form-label">Last Name</label>
                                         <input
                                             onInput={changeLastName}
-
+                                            onBlur={blurLastName}
                                             onFocus={focusLastName} type="text" className={`form-control ${lastName.error}`} aria-describedby="validationServer03Feedback"
                                             value={lastName.value} />
                                         <div className="invalid-feedback">
@@ -234,7 +269,7 @@ function Profile() {
                                         <label className="form-label">Email</label>
                                         <input
                                             onInput={changeEmail}
-
+                                            onBlur={blurEmail}
                                             onFocus={focusEmail} type="text" className={`form-control ${email.error}`} aria-describedby="validationServer03Feedback"
                                             value={email.value} />
                                         <div className="invalid-feedback">
@@ -248,7 +283,7 @@ function Profile() {
                                         <label className="form-label">Số điện thoại</label>
                                         <input
                                             onInput={changePhone}
-
+                                            onBlur={blurPhone}
                                             onFocus={focusPhone} type="text" className={`form-control ${phone.error}`} aria-describedby="validationServer03Feedback"
                                             value={phone.value} />
                                         <div className="invalid-feedback">

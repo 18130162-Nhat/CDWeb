@@ -23,7 +23,8 @@ function Cart() {
 
     const checkOut = () =>{
             let cart = JSON.parse(sessionStorage.getItem("cart"))
-            if(cart) navigate("/order")
+         
+            if(cart.length!==0) navigate("/order")
             else{
                 popup.fire(
                     {

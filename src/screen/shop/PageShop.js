@@ -3,13 +3,13 @@ import Pagination from "./Pagination"
 import Filter from "./Filter"
 import Shop from "./Shop"
 import { useEffect, useState } from "react"
-import { useSearchParams , useNavigate} from "react-router-dom"
-
+import { useSearchParams} from "react-router-dom"
+import Loading from '../../component/Loading'
 
 
 function PageShop({ list }) {
-   const navigate = useNavigate()
     const [searchParams] = useSearchParams()
+    const [loading,setLoading] = useState(false)
     let search = searchParams.get("search")
     const initObject = {
         itemProduct: 8,
@@ -73,6 +73,7 @@ function PageShop({ list }) {
     },[search])
 
     useEffect(() => {
+        setLoading(true)
         fetch("http://localhost:8080/findProductByfilter", {
             method: "POST",
             body: JSON.stringify(shopProduct),
@@ -86,12 +87,13 @@ function PageShop({ list }) {
             })
 
             .then(data => {
+                setLoading(false)
                setListItem(data.data.list)
                computeOffset(data.data.itemPerPage,data.data.itemFiltered,data.data.pageActive)
                
             })
             .catch(err => {
-
+                setLoading(false)
             })
 
     }, [shopProduct])
@@ -112,14 +114,19 @@ function PageShop({ list }) {
     return (
 
         <div style={{ background: '#f6f9fc', minHeight: '100vh' }} className="pt-5 pb-5">
-           <div className="mb-5" style={{width:'80%' ,margin:'auto'}}>
+        <div className="mb-5" style={{width:'80%' ,margin:'auto'}}>
           {
             search &&  <h1 class="display-6">Kết quả tìm kiếm cho : "{search}"</h1>
           }
            </div>
             <Filter displayItem = {displayItem} sort = {sort} func={changeFilter}></Filter>
-            <Shop list={listItem}></Shop>
+           
+           {loading?<Loading />:
+            <Shop list={listItem}></Shop>}
+         
+            
             <Pagination click = {clickPage} pagination={objectPagination}></Pagination>
+           
         </div>
     )
 

@@ -1,7 +1,7 @@
 import '../../fontawesome-free-6.0.0-web/css/all.css'
 import { useRef, useState } from 'react'
 import avatar from "../../Image/user-img.png"
-import { Link, Navigate, useLocation,useNavigate } from "react-router-dom"
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom"
 import useApplication from '../../Custom/Hook/useApplication'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
@@ -20,7 +20,7 @@ function ChangePass() {
 
     // const location = useLocation();
     const refFunc = useRef([])
-  
+
     const [valueOfPass, setValue] = useState("")
 
 
@@ -61,72 +61,74 @@ function ChangePass() {
         refFunc.current.forEach(func => {
             check = check & func()
         })
-        
+
         if (check) {
             console.log(check)
             let formData = new FormData(event.currentTarget)
-            // let idCus = 1
+            
             let pass = formData.get("pass")
             let newpass = formData.get("newpass")
-            let repeat = formData.get("repeat")
+
 
             let form = new FormData()
-            // form.setForm({idCus, pass, newpass, repeat})
+
             let id = JSON.parse(sessionStorage.getItem("user")).idUser
             form.append('idCus', id)
             form.append('pass', pass)
             form.append('newpass', newpass)
-            // form.append('repeat', repeat)
-            fetch("http://localhost:8080/customer/changePass",{
-                    method :"POST",
-                    body : form
-                })
-                .then(res =>{
-                    if(!res.ok) throw new Error(res.status)
+
+            fetch("http://localhost:8080/customer/changePass", {
+                method: "POST",
+                body: form
+            })
+                .then(res => {
+                    if (!res.ok) throw new Error(res.status)
                     return res.json()
                 })
-                .then(data =>{
-                    if(data.message==='oke'){
+                .then(data => {
+                    if (data.message === 'oke') {
                         alter.fire(
 
                             {
                                 icon: 'success',
                                 title: 'Đổi mật khẩu',
                                 text: "Đổi mật khẩu thành công",
-                                allowOutsideClick : false,
+                                allowOutsideClick: false,
                                 showConfirmButton: true,
                                 confirmButtonText: 'OK'
-                              }
+                            }
                         ).then((result) => {
                             if (result.isConfirmed) {
-                              navigate("/pageprofile")
+                                navigate("/pageprofile")
                             }
-                          })
-                    }else{
+                        })
+                    } else {
                         alter.fire(
 
                             {
                                 icon: 'error',
                                 title: 'Đổi mật khẩu',
                                 text: "Đổi mật khẩu không thành công",
-                                allowOutsideClick : false,
+                                allowOutsideClick: false,
                                 showConfirmButton: true,
                                 confirmButtonText: 'OK'
-                              }
+                            }
                         ).then((result) => {
                             if (result.isConfirmed) {
-                              navigate("/pageprofile")
+                                navigate("/pagechangepass")
                             }
-                          })
+                        })
                     }
                 })
-                .catch(err =>{
+                .catch(err => {
                     alter.fire(
-                        {icon: 'error',
-                        title: 'Đổi mật khẩu không thành công'}
-                      )
+                        {
+                            icon: 'error',
+                            title: 'Đổi mật khẩu không thành công'
+                        }
+                    )
                 })
-             
+
         }
     }
 
@@ -148,7 +150,7 @@ function ChangePass() {
                         </div>
                     </Link>
                     <div class="username-head">
-                        <div class="username">{useApp.user.name}</div>
+                        <div class="username">{JSON.parse(sessionStorage.getItem("user")).name}</div>
                         <div class="div-edit">
                             <Link to={"/pageprofile"} class="edit">
                                 <i class="fa-solid fa-pen"></i>
@@ -168,7 +170,7 @@ function ChangePass() {
                     </div>
 
                     <div class="dropdown">
-                    <div class="dropbtn"><i class="fa-solid fa-file-invoice-dollar"></i><Link style={{textDecoration:'none' ,color:'#111111'}} to={"/history-order"}><span class="text-drop">Lịch sử mua hàng</span></Link></div>
+                        <div class="dropbtn"><i class="fa-solid fa-file-invoice-dollar"></i><Link style={{ textDecoration: 'none', color: '#111111' }} to={"/history-order"}><span class="text-drop">Lịch sử mua hàng</span></Link></div>
 
                     </div>
 

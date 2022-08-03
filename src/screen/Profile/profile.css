@@ -1,18 +1,19 @@
-
 @import url('http://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700,800,900&display=swap');
-*{
-    font-family: 'Roboto' ,'sans-serif';
+
+* {
+    font-family: 'Roboto', 'sans-serif';
     box-sizing: border-box;
 }
-.container-profile-page{
-    margin-top:10px;
+
+.container-profile-page {
+    margin-top: 10px;
     margin-right: auto;
     margin-left: auto;
     width: 1200px;
-    background-color:#f6f9fc;
+    background-color: #f6f9fc;
 }
 
-.profile-container{
+.profile-container {
     margin-top: 40px;
     margin-left: 10px;
     display: block;
@@ -25,20 +26,28 @@
 
 }
 
-.profile-header-left{
+.profile-header-left {
+    width: 200px;
     display: flex;
     padding: 10px 0;
     border-bottom: 1px solid #efefef;
 }
 
-.user-avatar-placeholder{
+.user-avatar-placeholder {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     display: block;
 }
 
-.usename{
+.part-left {
+    width: 250px;
+
+}
+
+.usename {
+    width: 250px;
+
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -47,8 +56,8 @@
     color: black;
 }
 
-.username-head{
-    width: 130px;
+.username-head {
+    width: 150px;
     height: 50px;
     flex: 1;
     display: flex;
@@ -59,63 +68,76 @@
     overflow: hidden;
 }
 
-.edit{
-    /* text-transform: capitalize; viết hoa chữ cái đầu mỗi từ */ 
+.edit {
+    /* text-transform: capitalize; viết hoa chữ cái đầu mỗi từ */
     text-decoration: none;
-} 
-.text-edit{
+}
+
+.text-edit {
     color: #888;
     font-size: 12px;
 }
 
-.fa-solid{
+.fa-solid {
     margin: 5px;
     width: 10px;
     height: 10px;
 }
-.fa-pen{
-    font-size:12px;
+
+.fa-pen {
+    font-size: 12px;
     margin-right: 5px;
-    color:#888;
+    color: #888;
     width: 10px;
     height: 10px;
 }
-.text-item{
+
+.text-item {
     font-size: 15px;
     display: block;
 }
-.invalid-feedback{
+
+.invalid-feedback {
     font-size: 10px;
 }
+
 .dropbtn {
     background: none;
     font-size: 16px;
     font-weight: bold;
     border: none;
     cursor: pointer;
-  }
-  .text-drop{
+}
+
+.text-drop {
     margin-left: 10px;
-  }
+}
+
 .message-error {
     font-size: 12px;
 }
-.form-body-change-pass{
+
+.form-body-change-pass {
     padding-top: 10px;
     width: 300px;
 }
-  .dropdown:hover .dropbtn{
-      color: #a97c4f;
-  } 
-  
-  .dropdown {
+
+.dropdown:hover .dropbtn {
+    color: #a97c4f;
+}
+
+.text-drop:hover {
+    color: #a97c4f;
+}
+
+.dropdown {
     margin-top: 10xp;
     margin-bottom: 10px;
     position: relative;
     display: inline-block;
-  }
-  
-  .dropdown-content {
+}
+
+.dropdown-content {
     margin-left: 30px;
     display: flex;
     flex-direction: column;
@@ -123,97 +145,107 @@
     min-width: 160px;
     overflow: auto;
     z-index: 1;
-  }
-  
-  .dropdown-content a {
+}
+
+.dropdown-content a {
     color: black;
     padding: 12px 16px;
-    padding-bottom:0;
+    padding-bottom: 0;
     text-decoration: none;
     display: block;
-  }
-  .text-item:hover{
-      color: #a97c4f;
-  }
+}
 
-  
-  .show {display: block;}
+.text-item:hover {
+    color: #a97c4f;
+}
 
-.active{
+
+.show {
+    display: block;
+}
+
+.active {
     list-style: none;
     padding: 0;
     margin: 15px 0 0;
     cursor: pointer;
 }
 
-.part-right{
+.part-right-pro {
     flex-grow: 1;
     box-sizing: border-box;
-    margin-left: 10px;
-    background:#f6f9fc;
+
+    background: #f6f9fc;
     width: auto;
     height: 100%;
 }
 
-.profile-right-ui{
+.profile-right-ui {
     margin: 10px;
     border-radius: 10px;
     width: 980px;
     display: flex;
-    background:white;
+    background: white;
     flex-direction: column;
 
     height: auto;
 }
-.profile-change{
+
+.profile-change {
     padding: 0 1.875rem 0.625rem;
 }
 
-.change-password{
+.change-password {
     padding-top: 1.875rem;
 }
-.input-change{
+
+.input-change {
     align-items: center;
     justify-content: flex-end;
 }
 
-.title{
+.title {
     border-bottom: 0.0625rem solid #efefef;
     padding: 1.125rem 0;
 }
 
-.profile-title{
-    font-weight:400;
+.profile-title {
+    font-weight: 400;
     margin: 0;
     font-size: 20px;
     text-transform: capitalize;
     color: #333;
 }
-.note{
+
+.note {
     margin-top: 10px;
     font-size: 12px;
     color: #555;
 }
 
-.form-change-pass{
+.form-change-pass {
     flex: 1;
     padding-right: 0rem;
 }
-.input-profile{
+
+.input-profile {
     margin-bottom: 1.875rem;
 }
-.input{
+
+.input {
     align-items: center;
     display: flex;
     justify-content: flex-end;
 }
-.title-input{
+
+.title-input {
     width: 20%;
     text-align: right;
-    color: rgba(85,85,85,.8);
+    color: rgba(85, 85, 85, .8);
     overflow: hidden;
 }
-.text-input{
+
+.text-input {
     width: 80%;
     box-sizing: border-box;
     padding-left: 1.25rem;
@@ -226,25 +258,27 @@
     background-color: #fff;
     position: relative;
     border-radius: 2px;
-    border: 1px solid rgba(0,0,0,.14);
+    border: 1px solid rgba(0, 0, 0, .14);
     box-sizing: border-box;
     box-shadow: inset 0 2px 0 0 rgb(0 0 0 / 2%);
     color: #222;
     height: 40px;
-    padding:0;
+    padding: 0;
     transition: border-color .1s ease;
 }
-.input-pass-with-validator-wrapper{
-    width:300px;
+
+.input-pass-with-validator-wrapper {
+    width: 300px;
     margin-top: 10px;
 }
+
 .input-pass-with-validator {
     display: flex;
     align-items: center;
     background-color: #fff;
     position: relative;
     border-radius: 2px;
-    border: 1px solid rgba(0,0,0,.14);
+    border: 1px solid rgba(0, 0, 0, .14);
     box-sizing: border-box;
     box-shadow: inset 0 2px 0 0 rgb(0 0 0 / 2%);
     color: #222;
@@ -252,6 +286,7 @@
     padding: 10px;
     transition: border-color .1s ease;
 }
+
 .input-with-validator-profile input {
     flex: 1;
     font-size: 14px;
@@ -260,6 +295,7 @@
     box-shadow: none;
     border: 0;
 }
+
 .input-pass-with-validator input {
     flex: 1;
     font-size: 14px;
@@ -268,7 +304,8 @@
     box-shadow: none;
     border: 0;
 }
-.fillout-order{
+
+.fillout-order {
     width: 60%;
     margin: auto;
     background: #ffffff;
@@ -276,11 +313,13 @@
     border-radius: 8px;
     box-shadow: rgba(253, 253, 255, 0.09) 0px 1px 3px;
 }
-.form-label{
+
+.form-label {
     font-size: 14px;
-    margin-top:5px;
+    margin-top: 5px;
     margin-bottom: 5px;
 }
+
 /* .fillout-order .field-form input[type='text'] {
     padding:0;
     font: size 12px;
@@ -296,72 +335,76 @@
     font-weight: 400;
     padding: 4px;
 } */
-.btnAccept{
-    
+.btnAccept {
+
     font-size: 16px;
-    width:100px;
+    width: 100px;
     height: 40px;
     background-color: #a97c4f;
     color: white;
     border: none;
     border-radius: 5px;
 }
-.btnAccept:hover{
+
+.btnAccept:hover {
     background-color: #71481f;
 }
 
-.btnSaveProfile{
+.btnSaveProfile {
     display: flex;
-    justify-content:center;
+    justify-content: center;
 }
-.btnSave{
-    margin-top:10px;
+
+.btnSave {
+    margin-top: 10px;
     text-align: center;
     font-size: 16px;
-    width:100px;
+    width: 100px;
     height: 40px;
     background-color: #a97c4f;
     color: white;
     border: none;
     border-radius: 5px;
 }
-.btnSave:hover{
+
+.btnSave:hover {
     background-color: #71481f;
 }
-@media only screen and (min-width: 768px) and (max-width: 1024px){
 
-    .container-profile-page{
-        margin-top:10px;
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+
+    .container-profile-page {
+        margin-top: 10px;
         margin-right: 10px;
         margin-left: 10px;
         width: auto;
-        background-color:#f6f9fc;
+        background-color: #f6f9fc;
     }
-    
-    .profile-container{
+
+    .profile-container {
         margin-left: 10px;
         display: block;
         flex-shrink: 0;
         border-right: 1px solid #efefef;
         display: flex;
         flex-direction: row;
-    
+
     }
-    
-    .profile-header-left{
+
+    .profile-header-left {
         display: flex;
         border-bottom: 1px solid #efefef;
     }
-    
-    .user-avatar-placeholder{
+
+    .user-avatar-placeholder {
         width: 30px;
         height: 30px;
         border-radius: 50%;
         display: block;
     }
-    
-    .usename{
-        
+
+    .usename {
+
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -369,9 +412,9 @@
         margin-bottom: 5px;
         color: black;
     }
-    
-    .username-head{
-        font-size:12px;
+
+    .username-head {
+        font-size: 12px;
         width: 100px;
         height: 30px;
         flex: 1;
@@ -382,52 +425,56 @@
         padding-left: 10px;
         overflow: hidden;
     }
-    
-    .edit{
-        
-        /* text-transform: capitalize; viết hoa chữ cái đầu mỗi từ */ 
+
+    .edit {
+
+        /* text-transform: capitalize; viết hoa chữ cái đầu mỗi từ */
         text-decoration: none;
-    } 
-    .text-edit{
-        color: #888;
-        font-size:10px;
     }
-    
-    .fa-solid{
+
+    .text-edit {
+        color: #888;
+        font-size: 10px;
+    }
+
+    .fa-solid {
         margin-right: 10px;
         width: 20px;
         height: 10px;
     }
-    .fa-pen{
-        font-size:10px;
+
+    .fa-pen {
+        font-size: 10px;
         margin-right: 5px;
-        color:#888;
+        color: #888;
         width: 10px;
         height: 10px;
     }
-    .text-item{
+
+    .text-item {
         font-size: 12px;
         display: block;
     }
-    
+
     .dropbtn {
         background: none;
         font-size: 12px;
         font-weight: bold;
         border: none;
         cursor: pointer;
-      }
-      .dropdown:hover .dropbtn{
-          color: #a97c4f;
-      } 
-      
-      .dropdown {
+    }
+
+    .dropdown:hover .dropbtn {
+        color: #a97c4f;
+    }
+
+    .dropdown {
         margin-bottom: 10px;
         position: relative;
         display: inline-block;
-      }
-      
-      .dropdown-content {
+    }
+
+    .dropdown-content {
         margin-left: 20px;
         display: flex;
         flex-direction: column;
@@ -435,143 +482,152 @@
         min-width: 120px;
         overflow: auto;
         z-index: 1;
-      }
-      
-      .dropdown-content a {
+    }
+
+    .dropdown-content a {
         color: black;
         padding: 12px 16px;
-        padding-bottom:0;
+        padding-bottom: 0;
         text-decoration: none;
         display: block;
-      }
-      .text-item:hover{
-          color: #a97c4f;
-      }
-    
-      
-      .show {display: block;}
-    
-    .active{
+    }
+
+    .text-item:hover {
+        color: #a97c4f;
+    }
+
+
+    .show {
+        display: block;
+    }
+
+    .active {
         list-style: none;
         padding: 0;
         margin: 15px 0 0;
         cursor: pointer;
     }
-    .part-left {
 
-    }
-    
-    .part-right{
+    .part-left {}
+
+    .part-right {
         flex-grow: 1;
         box-sizing: border-box;
         margin-left: 0;
         margin-right: 10%;
-        background:#f6f9fc;
+        background: #f6f9fc;
         height: 100%;
     }
-    
-    .profile-right-ui{
+
+    .profile-right-ui {
         margin: 10px;
         padding-top: 0px;
         border-radius: 10px;
         width: 600px;
         display: flex;
-        background:white;
+        background: white;
         flex-direction: column;
         width: 400px;
         height: auto;
     }
-    
-    .profile-change{
+
+    .profile-change {
         padding: 0 1.875rem 0.625rem;
     }
-    
-    
-    .title{
+
+
+    .title {
         border-bottom: 0.0625rem solid #efefef;
         padding-top: 5px;
         padding-bottom: 5px;
     }
-    
-    .profile-title{
-        font-weight:400;
+
+    .profile-title {
+        font-weight: 400;
         margin: 0;
         font-size: 15px;
         text-transform: capitalize;
         color: #333;
     }
-    .note{
+
+    .note {
         font-size: 10px;
         color: #555;
     }
 
 
-    .input-profile{
+    .input-profile {
         margin-bottom: 1.875rem;
     }
-    .input{
+
+    .input {
         align-items: center;
         display: flex;
         justify-content: flex-end;
     }
-    .title-input{
-        font-size:15px;
+
+    .title-input {
+        font-size: 15px;
         width: 40%;
         text-align: right;
-        color: rgba(85,85,85,.8);
+        color: rgba(85, 85, 85, .8);
         overflow: hidden;
     }
-    .text-input{
+
+    .text-input {
         width: 60%;
         font-size: 15px;
         box-sizing: border-box;
         padding-left: 1.25rem;
     }
-    .btnSave{
+
+    .btnSave {
         text-align: center;
         font-size: 15px;
-        width:80px;
+        width: 80px;
         height: 30px;
         background-color: #a97c4f;
         color: white;
         border: none;
         border-radius: 5px;
     }
-    .btnSave:hover{
+
+    .btnSave:hover {
         background-color: #71481f;
     }
 
 }
-@media only screen and (max-width: 767px){
-    .container-profile-page{
-        margin-top:10px;
+
+@media only screen and (max-width: 767px) {
+    .container-profile-page {
+        margin-top: 10px;
         margin-right: 0px;
         margin-left: 0px;
         width: auto;
-        background-color:#f6f9fc;
+        background-color: #f6f9fc;
     }
-    
-    .profile-container{
+
+    .profile-container {
         margin-left: 10px;
         display: block;
         flex-shrink: 0;
         border-right: 1px solid #efefef;
         display: flex;
         flex-direction: row;
-    
+
     }
-    
-  
-    
-    .user-avatar-placeholder{
+
+
+
+    .user-avatar-placeholder {
         width: 30px;
         height: 30px;
         border-radius: 50%;
         display: block;
     }
-    
-    .usename{
-        
+
+    .usename {
+
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -579,9 +635,9 @@
         margin-bottom: 5px;
         color: black;
     }
-    
-    .username-head{
-        font-size:12px;
+
+    .username-head {
+        font-size: 12px;
         width: 100px;
         height: 30px;
         flex: 1;
@@ -592,52 +648,56 @@
         padding-left: 10px;
         overflow: hidden;
     }
-    
-    .edit{
-        
-        /* text-transform: capitalize; viết hoa chữ cái đầu mỗi từ */ 
+
+    .edit {
+
+        /* text-transform: capitalize; viết hoa chữ cái đầu mỗi từ */
         text-decoration: none;
-    } 
-    .text-edit{
-        color: #888;
-        font-size:10px;
     }
-    
-    .fa-solid{
+
+    .text-edit {
+        color: #888;
+        font-size: 10px;
+    }
+
+    .fa-solid {
         margin-right: 0px;
         width: 20px;
         height: 10px;
     }
-    .fa-pen{
-        font-size:10px;
+
+    .fa-pen {
+        font-size: 10px;
         margin-right: 5px;
-        color:#888;
+        color: #888;
         width: 10px;
         height: 10px;
     }
-    .text-item{
+
+    .text-item {
         font-size: 12px;
         display: block;
     }
-    
+
     .dropbtn {
         background: none;
         font-size: 12px;
         font-weight: bold;
         border: none;
         cursor: pointer;
-      }
-      .dropdown:hover .dropbtn{
-          color: #a97c4f;
-      } 
-      
-      .dropdown {
+    }
+
+    .dropdown:hover .dropbtn {
+        color: #a97c4f;
+    }
+
+    .dropdown {
         margin-bottom: 10px;
         position: relative;
         display: inline-block;
-      }
-      
-      .dropdown-content {
+    }
+
+    .dropdown-content {
         margin-left: 10px;
         display: flex;
         flex-direction: column;
@@ -645,117 +705,130 @@
         min-width: 120px;
         overflow: auto;
         z-index: 1;
-      }
-      
-      .dropdown-content a {
+    }
+
+    .dropdown-content a {
         color: black;
         padding: 12px 16px;
-        padding-bottom:0;
+        padding-bottom: 0;
         text-decoration: none;
         display: block;
-      }
-      .text-item:hover{
-          color: #a97c4f;
-      }
-    
-      
-      .show {display: block;}
-    
-    .active{
+    }
+
+    .text-item:hover {
+        color: #a97c4f;
+    }
+
+
+    .show {
+        display: block;
+    }
+
+    .active {
         list-style: none;
         padding: 0;
         margin: 15px 0 0;
         cursor: pointer;
     }
+
     .part-left {
-        width:120px;
+        width: 120px;
         border-right: 1px solid #efefef;
     }
-    
-    .part-right{
+
+    .part-right {
         margin-left: 0%;
         margin-right: 10px;
-        background:#f6f9fc;
+        background: #f6f9fc;
         width: 180px;
         height: 100%;
     }
-    
-    .profile-right-ui{
+
+    .profile-right-ui {
         margin: 10px;
         margin-left: 0;
         padding-top: 0px;
         border-radius: 10px;
         width: 245px;
-        background:#f6f9fc;
-    
+        background: #f6f9fc;
+
         height: auto;
     }
-    .profile-change{
+
+    .profile-change {
         padding-left: 5px;
         padding-right: 5px;
     }
-    
-    .title{
+
+    .title {
         border-bottom: 0.0625rem solid #efefef;
-        padding-top:0px;
-        padding-bottom:5px;
+        padding-top: 0px;
+        padding-bottom: 5px;
     }
-    
-    .profile-title{
-        font-weight:400;
+
+    .profile-title {
+        font-weight: 400;
         margin: 0;
         font-size: 15px;
         text-transform: capitalize;
         color: #333;
     }
-    .note{
+
+    .note {
         font-size: 10px;
         color: #555;
     }
-   
-    .input-profile{
+
+    .input-profile {
         margin-bottom: 1.875rem;
     }
-    .input{
+
+    .input {
         align-items: center;
         display: flex;
         justify-content: flex-end;
     }
-    .title-input{
-        font-size:12px;
+
+    .title-input {
+        font-size: 12px;
         width: 35%;
         text-align: right;
-        color: rgba(85,85,85,.8);
+        color: rgba(85, 85, 85, .8);
         overflow: hidden;
     }
-    .text-input{
+
+    .text-input {
         width: 65%;
         box-sizing: border-box;
         padding-left: 0.5rem;
     }
-    .input-with-validator-profile input{
+
+    .input-with-validator-profile input {
         font-size: 10px;
     }
-    .input-pass-with-validator-wrapper{
-        width:200px;
+
+    .input-pass-with-validator-wrapper {
+        width: 200px;
         margin-top: 10px;
     }
-    .input-with-validator-profile{
-        height:0;
+
+    .input-with-validator-profile {
+        height: 0;
         padding: 0;
     }
 
-    .btnSave{
+    .btnSave {
         text-align: center;
         font-size: 12px;
-        width:50px;
+        width: 50px;
         height: 20px;
         background-color: #a97c4f;
         color: white;
         border: none;
         border-radius: 5px;
     }
-    .btnSave:hover{
+
+    .btnSave:hover {
         background-color: #71481f;
     }
 

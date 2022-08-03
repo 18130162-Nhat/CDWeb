@@ -13,6 +13,10 @@ function ApplicationProvider({ children }) {
    const setCartEmpty = () =>{
       setCart([])
    }
+   const setUserEmpty = () =>{
+      setUser(undefined)
+   }
+   
    const addItem = (item) => {
       let arrayCopy = [...cart]
       let pos = 0
@@ -77,7 +81,7 @@ function ApplicationProvider({ children }) {
    }
 
 
-   let value = { user, logged, cart, addItem, removeItem, subItem,addItemDetail ,setCartEmpty }
+   let value = { user, logged, cart, addItem, removeItem, subItem,addItemDetail ,setCartEmpty, setUserEmpty }
    return <ApplicationContext.Provider value={value}>
       {children}
    </ApplicationContext.Provider>

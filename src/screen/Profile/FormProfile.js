@@ -5,12 +5,15 @@ import { Link, Navigate, useLocation, useNavigate } from "react-router-dom"
 import { useState, React, useEffect } from 'react'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import localStorageApp from "../../service/LocalStorage"
+import APIAuthen from "../../service/Authen"
 import "./profile.css"
 
 
 function Profile() {
     const location = useLocation()
     const useApp = useApplication()
+    const [loading , setLoading] = useState(false)
     const alter = withReactContent(Swal);
     const navigate = useNavigate()
 
@@ -21,7 +24,7 @@ function Profile() {
 
     // const [birthday, setBirthday] = useState({ value: '', error: '' })
 
-    
+
     const changeFirstName = (event) => {
         setFirstName({ ...firstName, value: event.target.value })
     }
@@ -42,7 +45,7 @@ function Profile() {
 
     const blurFirstName = () => {
         validateFirstName()
-        
+
     }
     const blurLastName = () => {
         validateLastName()
@@ -125,8 +128,8 @@ function Profile() {
             .then(data => {
                 console.log(data)
                 setFirstName({ ...firstName, error: '', value: data.data.firstName })
-                setEmail({ ...email, error: '', value: data.data.email })
                 setLastName({ ...lastName, error: '', value: data.data.lastName })
+                setEmail({ ...email, error: '', value: data.data.email })
                 setPhone({ ...phone, error: '', value: data.data.phone })
             })
     }, [])
@@ -150,6 +153,7 @@ function Profile() {
             form.append('email', email.value)
             form.append('lastName', lastName.value)
             form.append('phone', phone.value)
+            
             fetch("http://localhost:8080/customer/updateProfile", {
                 method: "POST",
                 body: form
@@ -164,6 +168,9 @@ function Profile() {
                         setLastName({ value: lastName.value })
                         setEmail({ value: email.value })
                         setPhone({ value: phone.value })
+                        localStorageApp.setItemStorage('user' , JSON.stringify({name : data.data.firstName+ " " +data.data.lastName , idUser : data.data.idCustomer}))
+                        useApp.logged({name : data.data.firstName+ " " +data.data.lastName , idUser : data.data.idCustomer})
+                    
                         alter.fire(
                             {
                                 icon: 'success',
@@ -175,6 +182,7 @@ function Profile() {
                             }
                         ).then((result) => {
                             if (result.isConfirmed) {
+                                
                                 navigate("/pageprofile")
                             }
                         })
@@ -205,7 +213,7 @@ function Profile() {
                         </div>
                     </Link>
                     <div class="username-head">
-                        <div class="username">{useApp.user.name}</div>
+                        <div class="username">{JSON.parse(sessionStorage.getItem("user")).name}</div>
                         <div class="div-edit">
                             <Link to={"/pageprofile"} class="edit">
                                 <i class="fa-solid fa-pen"></i>
@@ -233,7 +241,7 @@ function Profile() {
                 </div>
 
             </div>
-            <div class="part-right">
+            <div class="part-right-pro">
                 <div class="profile-right-ui">
                     <div class="profile-change">
                         <div class="title">
@@ -275,12 +283,11 @@ function Profile() {
                                         <div className="invalid-feedback">
                                             Trường này phải là email !
                                         </div>
-                                        {/* <label className="form-label">Email</label>
-                                        <Input config={configEmail} refFunc={refFunc} ></Input> */}
+
                                     </div>
 
                                     <div>
-                                        <label className="form-label">Số điện thoại</label>
+                                        <label className="form-label">Phone</label>
                                         <input
                                             onInput={changePhone}
                                             onBlur={blurPhone}

@@ -46,6 +46,7 @@ function OTP() {
             })
             .then(data => {
                 if (data.message === 'CODE_TIME_OUT') {
+                  
                     toast.fire({
                         icon: 'error',
                         title: 'Mã OTP đã quá hạn !'
@@ -53,6 +54,7 @@ function OTP() {
                     return
                 }
                 if (data.message === 'INVALID_OTP') {
+                   
                     toast.fire({
                         icon: 'error',
                         title: 'Mã OTP không đúng vui lòng nhập lại !'
@@ -62,8 +64,8 @@ function OTP() {
                 if (data.message === 'oke') {
                     withReactContent(Swal).fire({
                         icon: 'success',
-                        title: 'Đăng kí tài khoản',
-                        text: "Bạn đăng kí tài khoản không thành công",
+                        title: 'Đổi mật khẩu',
+                        text: "Bạn đã đổi mật khẩu thành công",
                         allowOutsideClick: false,
                         showConfirmButton: true,
                         confirmButtonText: 'Đănh nhập'
@@ -97,6 +99,7 @@ function OTP() {
         })
         .then(data =>{
             if(data.message==='NOT_TIME_OUT'){
+                setLoadingReset(false)
                 toast.fire({
                     icon: 'warning',
                     title: 'Bạn hãy thử lại trong vài phút !'
@@ -104,6 +107,7 @@ function OTP() {
                 return
             }
             if(data.message==='oke'){
+                setLoadingReset(false)
                 toast.fire({
                     icon: 'success',
                     title: 'Bạn đã gửi lại mã OTP thành công '
@@ -131,7 +135,7 @@ function OTP() {
                         <span className="text">Nhập mã OTP</span>
                     </div>
                 </div>
-                <span className="note-otp" >Mã OTP của bạn đã được gửi về email <br /> vuibuonqua@123gmail.com</span>
+                <span className="note-otp" >Mã OTP của bạn đã được gửi về email <br />Kiểm tra email của bạn</span>
                 <form onSubmit={onSubmit} >
                     <div className="otp-form">
                         <InputOTP />
@@ -145,10 +149,10 @@ function OTP() {
                        {err}
                     </div>
                     <span className="reset-otp">
-                        {setLoadingReset?
+                        {loadingReset?
                         <div class="spinner-border spinner-border-sm" role="status">
                         <span class="visually-hidden">Loading...</span>
-                      </div>:'Gửi lại mã OTP'}
+                      </div>:<span onClick={resetOTP}>Gửi lại mã OTP</span>}
                     </span>
                     <div className='back-next'>
                         <button onClick={() => navigate(-1)} className='back'>Quay lại</button>

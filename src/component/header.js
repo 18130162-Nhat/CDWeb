@@ -1,7 +1,7 @@
 import './style/header.css'
 import logo from '../Image/logo-shoe.jpg'
 import '../fontawesome-free-6.0.0-web/css/all.css'
-import { useEffect, useState } from 'react'
+import { useState ,useRef} from 'react'
 import { Link } from 'react-router-dom'
 import useApplication from '../Custom/Hook/useApplication'
 import { useNavigate } from "react-router-dom"
@@ -13,11 +13,14 @@ function Header() {
     const [search, setSearch] = useState('')
     const [list, setList] = useState([])
     const user = useApplication()
+    const idSetTimeOut = useRef(null)
+    const [spiner, setSpiner] = useState(false)
 
-    const computeQuantity = () =>{
+
+    const computeQuantity = () => {
         let count = 0
         user.cart.forEach(p => {
-            count +=p.quantity
+            count += p.quantity
         });
         return count
     }
@@ -25,36 +28,46 @@ function Header() {
         setSearch(event.target.value.trim())
         if (event.target.value.trim().length === 0) setShow(false)
         else {
-           
-            fetch(`http://localhost:8080/searchAutoComplete?value=${event.target.value.trim()}`)
-                .then(res => {
-                    if (!res.ok) throw new Error(res.status)
-                    return res.json()
-                }).then(data => {
+            setShow(true)
+            if (idSetTimeOut.current) {
+                clearTimeout(idSetTimeOut.current)
+            }
 
-                    if (data.message === 'oke') {
-                        setShow(true)
-                        setList(data.data)
-                       
+            idSetTimeOut.current = setTimeout(() => {
+                setSpiner(true)
+                fetch(`http://localhost:8080/searchAutoComplete?value=${event.target.value.trim()}`)
+                    .then(res => {
+                        if (!res.ok) throw new Error(res.status)
+                        return res.json()
+                    }).then(data => {
+
+                        if (data.message === 'oke') {
+                            setSpiner(false)
+                            setShow(true)
+                            setList(data.data)
+
+                        }
                     }
-                }
-                )
-                .catch(err => {
-                    setShow(true)
-                    setList([])
-                })
+                    )
+                    .catch(err => {
+                        setSpiner(false)
+                        setShow(true)
+                        setList([])
+                    })
+            }, 1500)
+
         }
     }
 
-    const clickIconSearch = () =>{
-       if(search.length!==0){
-        setShow(false)
-        navigate(`/shop?search=${search}`)
-       }
-       
-       
+    const clickIconSearch = () => {
+        if (search.length !== 0) {
+            setShow(false)
+            navigate(`/shop?search=${search}`)
+        }
+
+
     }
-    const clickItem = (item) =>{
+    const clickItem = (item) => {
         setShow(false)
         navigate(`/detail/${item.idProduct}`)
         setSearch('')
@@ -62,6 +75,13 @@ function Header() {
 
     const activeClick = () => {
         setActive(!active)
+    }
+
+    const logOut = () => {
+        sessionStorage.removeItem('user')
+        user.setUserEmpty()
+        navigate("/")
+        
     }
     return (
         <div className="header">
@@ -105,25 +125,35 @@ function Header() {
                 <div className="search">
                     <input onInput={inputSearch} className="input-search" type="text" name="search" id="" value={search} placeholder="Tìm kiếm" />
                     <i onClick={clickIconSearch} className="fa-solid fa-magnifying-glass"></i>
-                    <ul style={{maxHeight:'300px' , overflowX:'auto'}} className={show ? 'search-auto-complete show' : 'search-auto-complete'}>
-                        {list.length === 0 ? <div className='p-2 text-center'>Không tìm thấy kết quả</div> :
-                            <>
-                                {
-                                    list.map(item => (
+                    <ul style={{ maxHeight: '300px', overflowX: 'auto' }} className={show ? 'search-auto-complete show' : 'search-auto-complete'}>
+                        {
+                            spiner ?
+                                <div class="text-center">
+                                    <div class="spinner-border spinner-border-sm" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                                :
+                                <>
+                                    {list.length === 0 ? <div className='p-2 text-center'>Không tìm thấy kết quả</div> :
                                         <>
-                                       
-                                            <li onClick={() => clickItem(item)} key={item.idProduct}>
-                                                
-                                                <div className='tag-auto-complete'>
-                                                    <img src={item.thumbnail} />
-                                                </div>
-                                                <span>{item.name}</span>
-                                            </li>
-                                            
-                                        </>
-                                    ))
-                                }
-                            </>}
+                                            {
+                                                list.map(item => (
+                                                    <>
+
+                                                        <li onClick={() => clickItem(item)} key={item.idProduct}>
+
+                                                            <div className='tag-auto-complete'>
+                                                                <img src={item.thumbnail} />
+                                                            </div>
+                                                            <span>{item.name}</span>
+                                                        </li>
+
+                                                    </>
+                                                ))
+                                            }
+                                        </>}</>
+                        }
 
                     </ul>
                 </div>
@@ -137,13 +167,13 @@ function Header() {
             {user.user !== undefined ?
                 <div className="header-user">
                     <i className="fa-solid fa-user"></i>
-                    <span className="name-user" style={{minWidth:'150px'}}>{user.user.name}</span>
-                    <ul style={{ paddingLeft: '0' , zIndex:'99999999'}} className="option">
+                    <span className="name-user" style={{ minWidth: '150px' }}>{JSON.parse(sessionStorage.getItem("user")).name}</span>
+                    <ul style={{ paddingLeft: '0', zIndex: '99999999' }} className="option">
                         <li>
                             <Link to={"/pageprofile"}>Cài đặt</Link>
                         </li>
                         <li style={{ paddingBottom: '5px' }}>
-                            <a href="#">Đăng xuất</a>
+                            <a className="logout" onClick={logOut} > Đăng xuất</a>
                         </li>
                     </ul>
 

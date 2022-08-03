@@ -1,40 +1,106 @@
 import { useState } from "react"
-
+import { Navigate, useLocation, useNavigate } from "react-router-dom"
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import useApplication from '../../Custom/Hook/useApplication'
 
 function PageContact() {
-    
-    const [emai , setEmail] = useState({value :"", error : '' })
-    const [area , setArea] = useState({value :"", error : '' })
 
-    const changEmail = (event) =>{
-        setEmail({...emai , value : event.target.value})
+    const location = useLocation()
+    const useApp = useApplication()
+    const alter = withReactContent(Swal);
+    const navigate = useNavigate()
+    
+    const [title , setTitle] = useState({value :"", error : '' })
+    const [content , setContent] = useState({value :"", error : '' })
+
+    const changTitle = (event) =>{
+        setTitle({...title, value : event.target.value})
     }
-    const changArea = (event) =>{
-       setArea( {...area , value : event.target.value})
+    const changContent = (event) =>{
+       setContent({...content, value : event.target.value})
     }
-    const focusEmail = () =>{
-        setEmail({...emai , error :''})
+    const focusTitle = (event) =>{
+        setTitle({...title, error :''})
     }
-    const focusArea = () =>{
-        setArea({...area , error :''})
+    const focusContent = (event) =>{
+        setContent({...content, error :''})
+    }
+
+    const blurTitle = () => {
+        validateTitle()
+    }
+    const blurContent = () => {
+        validateContent()
+    }
+
+    const validateTitle = () => {
+        if (title.value.trim().length === 0) setTitle({ ...title, error: 'is-invalid' })
+        else setTitle({ ...title, error: 'is-valid' })
+    }
+    const validateContent = () => {
+        if (content.value.trim().length === 0) setContent({ ...content, error: 'is-invalid' })
+        else setContent({ ...content, error: 'is-valid' })
     }
 
     const submit = (event) =>{
             event.preventDefault()
             checkValidation()
-            if(area.error==='is-valid' && emai.error==='is-valid'){
-                alert('oke')
-            }
+            if(title.error==='is-valid' && content.error==='is-valid'){
+            let form = new FormData()
+            let id = JSON.parse(sessionStorage.getItem("user")).idUser
+            form.append('idCus', id)
+            form.append('title', title.value)
+            form.append('content', content.value)
+            fetch("http://localhost:8080/saveContact", {
+                method: "POST",
+                body: form
+            })
+                .then(res => {
+                    if (!res.ok) throw new Error(res.status)
+                    return res.json()
+                })
+                .then(data => {
+                    if (data.message === 'oke') {
+                        alter.fire(
+                            {
+                                icon: 'success',
+                                title: 'Thành công',
+                                text: "Gửi liên hệ thành công",
+                                allowOutsideClick: false,
+                                showConfirmButton: true,
+                                confirmButtonText: 'OK'
+                            }
+                        ).then((result) => {
+                            if (result.isConfirmed) {
+                                navigate("/contact")
+                            }
+                        })
+                    }
+                })
+                .catch(err => {
+                    alter.fire(
+                        {
+                            icon: 'error',
+                            title: 'Cập nhật không thành công'
+                        }
+                    )
+                })
+
+        }
     }
 
+     
+
+
     const checkValidation = () =>{
-       
-        if(area.value.trim().length!==0) setArea({...area , error:'is-valid'})
-        else setArea({...area , error:'is-invalid'})
-        let regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}')
-            if(regex.test(emai.value.trim())) setEmail({...emai , error:'is-valid'})
-            else setEmail({...emai , error:'is-invalid'})
+        if (title.value.trim().length === 0) setTitle({ ...title, error: 'is-invalid' })
+        else setTitle({ ...title, error: 'is-valid' })
+
+        if (content.value.trim().length === 0) setContent({ ...content, error: 'is-invalid' })
+        else setContent({ ...content, error: 'is-valid' })
     }
+
 
    
     return (
@@ -48,24 +114,26 @@ function PageContact() {
                     <h1 className="display-6 text-center">Liên hệ</h1>
                     <div>
                         <div>
-                            <label className="form-label">Email</label>
-                            <input onFocus={focusEmail}
-                            onInput={changEmail} value ={emai.value} type="email" className={emai.error?`form-control ${emai.error}`:"form-control"} aria-describedby="validationServer03Feedback" />
+                            <label className="form-label">Tiêu đề</label>
+                            <input onFocus={focusTitle}
+                            onBlur={blurTitle}
+                            onInput={changTitle} value ={title.value} type="text" className={title.error?`form-control ${title.error}`:"form-control"} aria-describedby="validationServer03Feedback" />
                             <div className="invalid-feedback">
-                                Trường này không phải là email !
+                                Vui lòng nhập tiêu đề!
                             </div>
                         </div>
                         <div className="mt-5">
                             <label  className="form-label">Nhập nội dung liên hệ</label>
-                            <textarea onFocus={focusArea}
-                            onInput={changArea} value={area.value} rows={8} className={area.error?`form-control ${area.error}`:"form-control"} placeholder="Nội dung"></textarea>
+                            <textarea onFocus={focusContent}
+                            onBlur={blurContent}
+                            onInput={changContent} value={content.value} rows={8} className={content.error?`form-control ${content.error}`:"form-control"} placeholder="Nội dung"></textarea>
                             <div className="invalid-feedback">
-                                Vui lòng điền nội dung cần liên hệ
+                                Vui lòng điền nội dung cần liên hệ!
                             </div>
                         </div>
                     </div>
                     <div className="mt-5">
-                    <button className="btn btn-primary" type="submit">Gửi liên hệ</button>
+                    <button conClick={submit} className="btn btn-primary" type="submit">Gửi liên hệ</button>
                     </div>
                 </form>
             </div>
